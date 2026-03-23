@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bill Keating — Congressional Trading Talents</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 20px;
+  }
+  a { color: #0f3460; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .header h1 { font-size: 1.8em; margin-bottom: 8px; }
+  .header p { opacity: 0.85; font-size: 1.05em; }
+  .header .stats {
+    display: flex; justify-content: center; gap: 20px;
+    margin-top: 15px; font-size: 0.9em; flex-wrap: wrap;
+  }
+  .header .stats span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px; border-radius: 20px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: border-color 0.2s;
+  }
+  .back-link:hover { border-color: #0f3460; text-decoration: none; }
+  .tabs {
+    display: flex;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ddd;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .tab-btn:first-child { border-radius: 8px 0 0 8px; }
+  .tab-btn:last-child { border-radius: 0 8px 8px 0; }
+  .tab-btn.active {
+    background: #0f3460;
+    color: white;
+    border-color: #0f3460;
+    border-bottom-color: #00AA44;
+  }
+  .tab-btn:hover:not(.active) { background: #f5f5f5; }
+  .tab-content { display: none; max-width: 1000px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  .writeup {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    line-height: 1.7;
+    font-size: 0.95em;
+    white-space: pre-line;
+  }
+  .writeup h3 { margin-bottom: 10px; color: #1a1a2e; }
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-header h3 { font-size: 1.1em; }
+  .card img { width: 100%; display: block; }
+  .stat-pill {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.82em;
+    font-weight: 600;
+    display: inline-block;
+    margin: 2px;
+  }
+  .stat-pill.batting { background: #e8f5e9; color: #2e7d32; }
+  .stat-pill.slugging { background: #e3f2fd; color: #0f3460; }
+  .stat-pill.trades { background: #e8eaf6; color: #283593; }
+  .stat-pill.txn { background: #f3e5f5; color: #6a1b9a; }
+  .stat-pill.dim { background: #fff3e0; color: #e65100; }
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chart-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .chart-card img { width: 100%; display: block; }
+  .chart-card .chart-label {
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 0.95em;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+  }
+  .no-data {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1.05em;
+  }
+  @media (max-width: 768px) {
+    .header .stats { gap: 10px; font-size: 0.88em; }
+    .tab-btn { font-size: 0.95em; padding: 12px 14px; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .header { padding: 18px 14px; border-radius: 10px; }
+    .header h1 { font-size: 1.3em; }
+    .header p { font-size: 0.9em; }
+    .header .stats { gap: 6px; font-size: 0.82em; margin-top: 8px; }
+    .header .stats span { padding: 4px 10px; }
+    .back-link { font-size: 0.88em; padding: 6px 14px; margin-bottom: 12px; }
+    .writeup { padding: 14px; font-size: 0.9em; }
+    .tabs { flex-direction: column; margin-bottom: 14px; }
+    .tab-btn { border-radius: 8px !important; padding: 12px 16px; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .card-header h3 { font-size: 1em; }
+    .stat-pill { font-size: 0.78em; padding: 3px 8px; }
+    .charts-grid { gap: 14px; }
+  }
+
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to All Politicians</a>
+
+<div class="header">
+  <h1>Bill Keating</h1>
+  <p>Trading talent profile — ticker timing and attribute analysis</p>
+  <div class="stats">
+    <span>104 Total Trades</span>
+    <span>1 Ticker Talents</span>
+    <span>4 Attribute Talents</span>
+    <span>4 Attribute Charts</span>
+  </div>
+</div>
+
+<div class="writeup">
+  <h3>Talent Summary</h3>
+  Bill Keating has 104 scored trades (74 purchases, 30 sales).
+
+WHAT THEY&#x27;RE GOOD AT: GOOGL purchases (100% batting, 3 trades); MCap × Committee=Small | No purchases (83% batting); MCap × Spend=Small | Q1 purchases (73% batting); MCap × OldSurge=Small | No purchases (73% batting); MCap=Small purchases (73% batting).
+
+NOTABLE PATTERNS: Top sectors: Technology (21), Industrials (15), Healthcare (15). Heavily buy-biased (71% purchases).
+</div>
+
+<div class="tabs">
+  <div class="tab-btn active" onclick="switchTab('timing')">Ticker Timing</div>
+  <div class="tab-btn" onclick="switchTab('attributes')">Attribute Talents</div>
+</div>
+
+<div class="tab-content active" id="tab-timing">
+  <div class="charts-grid">
+
+            <div class="chart-card">
+              <div class="chart-label">ABNB</div>
+              <img src="../timing_charts/Bill_Keating_ABNB.png" alt="Bill Keating ABNB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ADBE</div>
+              <img src="../timing_charts/Bill_Keating_ADBE.png" alt="Bill Keating ADBE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMTM</div>
+              <img src="../timing_charts/Bill_Keating_AMTM.png" alt="Bill Keating AMTM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMZN</div>
+              <img src="../timing_charts/Bill_Keating_AMZN.png" alt="Bill Keating AMZN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BAX</div>
+              <img src="../timing_charts/Bill_Keating_BAX.png" alt="Bill Keating BAX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COF</div>
+              <img src="../timing_charts/Bill_Keating_COF.png" alt="Bill Keating COF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CVS</div>
+              <img src="../timing_charts/Bill_Keating_CVS.png" alt="Bill Keating CVS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GOOGL</div>
+              <img src="../timing_charts/Bill_Keating_GOOGL.png" alt="Bill Keating GOOGL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap_Small</div>
+              <img src="../timing_charts/Bill_Keating_MCap_Small.png" alt="Bill Keating MCap_Small" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Committee_Small___No</div>
+              <img src="../timing_charts/Bill_Keating_MCap___Committee_Small___No.png" alt="Bill Keating MCap___Committee_Small___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OldSurge_Small___No</div>
+              <img src="../timing_charts/Bill_Keating_MCap___OldSurge_Small___No.png" alt="Bill Keating MCap___OldSurge_Small___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Spend_Small___Q1</div>
+              <img src="../timing_charts/Bill_Keating_MCap___Spend_Small___Q1.png" alt="Bill Keating MCap___Spend_Small___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MDT</div>
+              <img src="../timing_charts/Bill_Keating_MDT.png" alt="Bill Keating MDT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MSFT</div>
+              <img src="../timing_charts/Bill_Keating_MSFT.png" alt="Bill Keating MSFT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NOC</div>
+              <img src="../timing_charts/Bill_Keating_NOC.png" alt="Bill Keating NOC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NOW</div>
+              <img src="../timing_charts/Bill_Keating_NOW.png" alt="Bill Keating NOW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNH</div>
+              <img src="../timing_charts/Bill_Keating_UNH.png" alt="Bill Keating UNH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VRSN</div>
+              <img src="../timing_charts/Bill_Keating_VRSN.png" alt="Bill Keating VRSN" loading="lazy">
+            </div>
+</div>
+
+</div>
+
+<div class="tab-content" id="tab-attributes">
+  
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Committee: Small | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 83%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Bill_Keating_MCap___Committee_Small___No.png" alt="MCap × Committee=Small | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Spend: Small | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">11 Trades</span>
+                  <span class="stat-pill batting">Batting 73%</span>
+                  <span class="stat-pill slugging">Slugging 73%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Bill_Keating_MCap___Spend_Small___Q1.png" alt="MCap × Spend=Small | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OldSurge: Small | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">11 Trades</span>
+                  <span class="stat-pill batting">Batting 73%</span>
+                  <span class="stat-pill slugging">Slugging 73%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Bill_Keating_MCap___OldSurge_Small___No.png" alt="MCap × OldSurge=Small | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap: Small</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">11 Trades</span>
+                  <span class="stat-pill batting">Batting 73%</span>
+                  <span class="stat-pill slugging">Slugging 73%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Bill_Keating_MCap_Small.png" alt="MCap=Small" loading="lazy">
+            </div>
+
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  if (tab === 'timing') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('tab-timing').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('tab-attributes').classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>

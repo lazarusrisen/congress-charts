@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Byron Donalds — Congressional Trading Talents</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 20px;
+  }
+  a { color: #0f3460; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .header h1 { font-size: 1.8em; margin-bottom: 8px; }
+  .header p { opacity: 0.85; font-size: 1.05em; }
+  .header .stats {
+    display: flex; justify-content: center; gap: 20px;
+    margin-top: 15px; font-size: 0.9em; flex-wrap: wrap;
+  }
+  .header .stats span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px; border-radius: 20px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: border-color 0.2s;
+  }
+  .back-link:hover { border-color: #0f3460; text-decoration: none; }
+  .tabs {
+    display: flex;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ddd;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .tab-btn:first-child { border-radius: 8px 0 0 8px; }
+  .tab-btn:last-child { border-radius: 0 8px 8px 0; }
+  .tab-btn.active {
+    background: #0f3460;
+    color: white;
+    border-color: #0f3460;
+    border-bottom-color: #00AA44;
+  }
+  .tab-btn:hover:not(.active) { background: #f5f5f5; }
+  .tab-content { display: none; max-width: 1000px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  .writeup {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    line-height: 1.7;
+    font-size: 0.95em;
+    white-space: pre-line;
+  }
+  .writeup h3 { margin-bottom: 10px; color: #1a1a2e; }
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-header h3 { font-size: 1.1em; }
+  .card img { width: 100%; display: block; }
+  .stat-pill {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.82em;
+    font-weight: 600;
+    display: inline-block;
+    margin: 2px;
+  }
+  .stat-pill.batting { background: #e8f5e9; color: #2e7d32; }
+  .stat-pill.slugging { background: #e3f2fd; color: #0f3460; }
+  .stat-pill.trades { background: #e8eaf6; color: #283593; }
+  .stat-pill.txn { background: #f3e5f5; color: #6a1b9a; }
+  .stat-pill.dim { background: #fff3e0; color: #e65100; }
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chart-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .chart-card img { width: 100%; display: block; }
+  .chart-card .chart-label {
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 0.95em;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+  }
+  .no-data {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1.05em;
+  }
+  @media (max-width: 768px) {
+    .header .stats { gap: 10px; font-size: 0.88em; }
+    .tab-btn { font-size: 0.95em; padding: 12px 14px; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .header { padding: 18px 14px; border-radius: 10px; }
+    .header h1 { font-size: 1.3em; }
+    .header p { font-size: 0.9em; }
+    .header .stats { gap: 6px; font-size: 0.82em; margin-top: 8px; }
+    .header .stats span { padding: 4px 10px; }
+    .back-link { font-size: 0.88em; padding: 6px 14px; margin-bottom: 12px; }
+    .writeup { padding: 14px; font-size: 0.9em; }
+    .tabs { flex-direction: column; margin-bottom: 14px; }
+    .tab-btn { border-radius: 8px !important; padding: 12px 16px; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .card-header h3 { font-size: 1em; }
+    .stat-pill { font-size: 0.78em; padding: 3px 8px; }
+    .charts-grid { gap: 14px; }
+  }
+
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to All Politicians</a>
+
+<div class="header">
+  <h1>Byron Donalds</h1>
+  <p>Trading talent profile — ticker timing and attribute analysis</p>
+  <div class="stats">
+    <span>220 Total Trades</span>
+    <span>2 Ticker Talents</span>
+    <span>20 Attribute Talents</span>
+    <span>19 Attribute Charts</span>
+  </div>
+</div>
+
+<div class="writeup">
+  <h3>Talent Summary</h3>
+  Byron Donalds has 220 scored trades (107 purchases, 113 sales).
+
+WHAT THEY&#x27;RE GOOD AT: HUM sales (67% batting, 3 trades); FTNT purchases (60% batting, 5 trades); MCap × OSellers=Small | 1-2 sales (100% batting); MCap × Committee=Big | No sales (71% batting); Industry=Healthcare Plans sales (67% batting); Industry × Spend=Healthcare Plans | Q1 sales (67% batting).
+
+WHAT THEY&#x27;RE BAD AT: MCap × OBuyers=Small | 1-2 (40% whiff).
+
+NOTABLE PATTERNS: Top sectors: Financial Services (60), Healthcare (44), Technology (42).
+</div>
+
+<div class="tabs">
+  <div class="tab-btn active" onclick="switchTab('timing')">Ticker Timing</div>
+  <div class="tab-btn" onclick="switchTab('attributes')">Attribute Talents</div>
+</div>
+
+<div class="tab-content active" id="tab-timing">
+  <div class="charts-grid">
+
+            <div class="chart-card">
+              <div class="chart-label">AA</div>
+              <img src="../timing_charts/Byron_Donalds_AA.png" alt="Byron Donalds AA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ABT</div>
+              <img src="../timing_charts/Byron_Donalds_ABT.png" alt="Byron Donalds ABT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ADSK</div>
+              <img src="../timing_charts/Byron_Donalds_ADSK.png" alt="Byron Donalds ADSK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMZN</div>
+              <img src="../timing_charts/Byron_Donalds_AMZN.png" alt="Byron Donalds AMZN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ANET</div>
+              <img src="../timing_charts/Byron_Donalds_ANET.png" alt="Byron Donalds ANET" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">APH</div>
+              <img src="../timing_charts/Byron_Donalds_APH.png" alt="Byron Donalds APH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AVGO</div>
+              <img src="../timing_charts/Byron_Donalds_AVGO.png" alt="Byron Donalds AVGO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BC</div>
+              <img src="../timing_charts/Byron_Donalds_BC.png" alt="Byron Donalds BC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BRO</div>
+              <img src="../timing_charts/Byron_Donalds_BRO.png" alt="Byron Donalds BRO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CCL</div>
+              <img src="../timing_charts/Byron_Donalds_CCL.png" alt="Byron Donalds CCL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CHE</div>
+              <img src="../timing_charts/Byron_Donalds_CHE.png" alt="Byron Donalds CHE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CMG</div>
+              <img src="../timing_charts/Byron_Donalds_CMG.png" alt="Byron Donalds CMG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CNC</div>
+              <img src="../timing_charts/Byron_Donalds_CNC.png" alt="Byron Donalds CNC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSL</div>
+              <img src="../timing_charts/Byron_Donalds_CSL.png" alt="Byron Donalds CSL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DECK</div>
+              <img src="../timing_charts/Byron_Donalds_DECK.png" alt="Byron Donalds DECK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FDS</div>
+              <img src="../timing_charts/Byron_Donalds_FDS.png" alt="Byron Donalds FDS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FISV</div>
+              <img src="../timing_charts/Byron_Donalds_FISV.png" alt="Byron Donalds FISV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FIX</div>
+              <img src="../timing_charts/Byron_Donalds_FIX.png" alt="Byron Donalds FIX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FTNT</div>
+              <img src="../timing_charts/Byron_Donalds_FTNT.png" alt="Byron Donalds FTNT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GOOG</div>
+              <img src="../timing_charts/Byron_Donalds_GOOG.png" alt="Byron Donalds GOOG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HOOD</div>
+              <img src="../timing_charts/Byron_Donalds_HOOD.png" alt="Byron Donalds HOOD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HUM</div>
+              <img src="../timing_charts/Byron_Donalds_HUM.png" alt="Byron Donalds HUM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IDXX</div>
+              <img src="../timing_charts/Byron_Donalds_IDXX.png" alt="Byron Donalds IDXX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ISRG</div>
+              <img src="../timing_charts/Byron_Donalds_ISRG.png" alt="Byron Donalds ISRG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Drug_Manufacturers_-_General</div>
+              <img src="../timing_charts/Byron_Donalds_Industry_Drug_Manufacturers_-_General.png" alt="Byron Donalds Industry_Drug_Manufacturers_-_General" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Healthcare_Plans</div>
+              <img src="../timing_charts/Byron_Donalds_Industry_Healthcare_Plans.png" alt="Byron Donalds Industry_Healthcare_Plans" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Drug_Manufacturers_-_General___No</div>
+              <img src="../timing_charts/Byron_Donalds_Industry___Committee_Drug_Manufacturers_-_General___No.png" alt="Byron Donalds Industry___Committee_Drug_Manufacturers_-_General___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Healthcare_Plans___No</div>
+              <img src="../timing_charts/Byron_Donalds_Industry___Committee_Healthcare_Plans___No.png" alt="Byron Donalds Industry___Committee_Healthcare_Plans___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Drug_Manufacturers_-_General___No</div>
+              <img src="../timing_charts/Byron_Donalds_Industry___OldSurge_Drug_Manufacturers_-_General___No.png" alt="Byron Donalds Industry___OldSurge_Drug_Manufacturers_-_General___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Healthcare_Plans___No</div>
+              <img src="../timing_charts/Byron_Donalds_Industry___OldSurge_Healthcare_Plans___No.png" alt="Byron Donalds Industry___OldSurge_Healthcare_Plans___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Drug_Manufacturers_-_General___Q1</div>
+              <img src="../timing_charts/Byron_Donalds_Industry___Spend_Drug_Manufacturers_-_General___Q1.png" alt="Byron Donalds Industry___Spend_Drug_Manufacturers_-_General___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Healthcare_Plans___Q1</div>
+              <img src="../timing_charts/Byron_Donalds_Industry___Spend_Healthcare_Plans___Q1.png" alt="Byron Donalds Industry___Spend_Healthcare_Plans___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">JPM</div>
+              <img src="../timing_charts/Byron_Donalds_JPM.png" alt="Byron Donalds JPM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LRCX</div>
+              <img src="../timing_charts/Byron_Donalds_LRCX.png" alt="Byron Donalds LRCX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___Committee_Yes___No</div>
+              <img src="../timing_charts/Byron_Donalds_Lobby365___Committee_Yes___No.png" alt="Byron Donalds Lobby365___Committee_Yes___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___OSellers_Yes___1-2</div>
+              <img src="../timing_charts/Byron_Donalds_Lobby365___OSellers_Yes___1-2.png" alt="Byron Donalds Lobby365___OSellers_Yes___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCK</div>
+              <img src="../timing_charts/Byron_Donalds_MCK.png" alt="Byron Donalds MCK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap_Big</div>
+              <img src="../timing_charts/Byron_Donalds_MCap_Big.png" alt="Byron Donalds MCap_Big" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Committee_Big___No</div>
+              <img src="../timing_charts/Byron_Donalds_MCap___Committee_Big___No.png" alt="Byron Donalds MCap___Committee_Big___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Committee_Tiny___Yes</div>
+              <img src="../timing_charts/Byron_Donalds_MCap___Committee_Tiny___Yes.png" alt="Byron Donalds MCap___Committee_Tiny___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Big___Drug_Manufacturers_-_General</div>
+              <img src="../timing_charts/Byron_Donalds_MCap___Industry_Big___Drug_Manufacturers_-_General.png" alt="Byron Donalds MCap___Industry_Big___Drug_Manufacturers_-_General" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OBuyers_Big___1-2</div>
+              <img src="../timing_charts/Byron_Donalds_MCap___OBuyers_Big___1-2.png" alt="Byron Donalds MCap___OBuyers_Big___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OBuyers_Small___1-2</div>
+              <img src="../timing_charts/Byron_Donalds_MCap___OBuyers_Small___1-2.png" alt="Byron Donalds MCap___OBuyers_Small___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OSellers_Small___1-2</div>
+              <img src="../timing_charts/Byron_Donalds_MCap___OSellers_Small___1-2.png" alt="Byron Donalds MCap___OSellers_Small___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OldSurge_Big___No</div>
+              <img src="../timing_charts/Byron_Donalds_MCap___OldSurge_Big___No.png" alt="Byron Donalds MCap___OldSurge_Big___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Spend_Big___Q1</div>
+              <img src="../timing_charts/Byron_Donalds_MCap___Spend_Big___Q1.png" alt="Byron Donalds MCap___Spend_Big___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MOH</div>
+              <img src="../timing_charts/Byron_Donalds_MOH.png" alt="Byron Donalds MOH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MRK</div>
+              <img src="../timing_charts/Byron_Donalds_MRK.png" alt="Byron Donalds MRK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NVO</div>
+              <img src="../timing_charts/Byron_Donalds_NVO.png" alt="Byron Donalds NVO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OSellers___Committee_1-2___No</div>
+              <img src="../timing_charts/Byron_Donalds_OSellers___Committee_1-2___No.png" alt="Byron Donalds OSellers___Committee_1-2___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OSellers___Committee_1-2___Yes</div>
+              <img src="../timing_charts/Byron_Donalds_OSellers___Committee_1-2___Yes.png" alt="Byron Donalds OSellers___Committee_1-2___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OSellers___OldSurge_1-2___No</div>
+              <img src="../timing_charts/Byron_Donalds_OSellers___OldSurge_1-2___No.png" alt="Byron Donalds OSellers___OldSurge_1-2___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OSellers___Spend_1-2___Q1</div>
+              <img src="../timing_charts/Byron_Donalds_OSellers___Spend_1-2___Q1.png" alt="Byron Donalds OSellers___Spend_1-2___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Owner_Undisclosed</div>
+              <img src="../timing_charts/Byron_Donalds_Owner_Undisclosed.png" alt="Byron Donalds Owner_Undisclosed" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PGR</div>
+              <img src="../timing_charts/Byron_Donalds_PGR.png" alt="Byron Donalds PGR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PYPL</div>
+              <img src="../timing_charts/Byron_Donalds_PYPL.png" alt="Byron Donalds PYPL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">REGN</div>
+              <img src="../timing_charts/Byron_Donalds_REGN.png" alt="Byron Donalds REGN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RLI</div>
+              <img src="../timing_charts/Byron_Donalds_RLI.png" alt="Byron Donalds RLI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Subholding_MORANWEALTHIRA</div>
+              <img src="../timing_charts/Byron_Donalds_Subholding_MORANWEALTHIRA.png" alt="Byron Donalds Subholding_MORANWEALTHIRA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TTD</div>
+              <img src="../timing_charts/Byron_Donalds_TTD.png" alt="Byron Donalds TTD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TW</div>
+              <img src="../timing_charts/Byron_Donalds_TW.png" alt="Byron Donalds TW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">V</div>
+              <img src="../timing_charts/Byron_Donalds_V.png" alt="Byron Donalds V" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VRTX</div>
+              <img src="../timing_charts/Byron_Donalds_VRTX.png" alt="Byron Donalds VRTX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VZ</div>
+              <img src="../timing_charts/Byron_Donalds_VZ.png" alt="Byron Donalds VZ" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WLK</div>
+              <img src="../timing_charts/Byron_Donalds_WLK.png" alt="Byron Donalds WLK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ZION</div>
+              <img src="../timing_charts/Byron_Donalds_ZION.png" alt="Byron Donalds ZION" loading="lazy">
+            </div>
+</div>
+
+</div>
+
+<div class="tab-content" id="tab-attributes">
+  
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OSellers: Small | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 100%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_MCap___OSellers_Small___1-2.png" alt="MCap × OSellers=Small | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Committee: Big | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 71%</span>
+                  <span class="stat-pill slugging">Slugging 86%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_MCap___Committee_Big___No.png" alt="MCap × Committee=Big | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Healthcare Plans</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_Industry_Healthcare_Plans.png" alt="Industry=Healthcare Plans" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Healthcare Plans | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_Industry___Spend_Healthcare_Plans___Q1.png" alt="Industry × Spend=Healthcare Plans | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Healthcare Plans | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_Industry___OldSurge_Healthcare_Plans___No.png" alt="Industry × OldSurge=Healthcare Plans | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Healthcare Plans | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_Industry___Committee_Healthcare_Plans___No.png" alt="Industry × Committee=Healthcare Plans | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Spend: Big | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">11 Trades</span>
+                  <span class="stat-pill batting">Batting 64%</span>
+                  <span class="stat-pill slugging">Slugging 73%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_MCap___Spend_Big___Q1.png" alt="MCap × Spend=Big | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OldSurge: Big | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">11 Trades</span>
+                  <span class="stat-pill batting">Batting 64%</span>
+                  <span class="stat-pill slugging">Slugging 73%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_MCap___OldSurge_Big___No.png" alt="MCap × OldSurge=Big | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap: Big</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">11 Trades</span>
+                  <span class="stat-pill batting">Batting 64%</span>
+                  <span class="stat-pill slugging">Slugging 73%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_MCap_Big.png" alt="MCap=Big" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Drug Manufacturers - General</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_Industry_Drug_Manufacturers_-_General.png" alt="Industry=Drug Manufacturers - General" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Drug Manufacturers - General | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_Industry___Spend_Drug_Manufacturers_-_General___Q1.png" alt="Industry × Spend=Drug Manufacturers - General | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Drug Manufacturers - General | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_Industry___Committee_Drug_Manufacturers_-_General___No.png" alt="Industry × Committee=Drug Manufacturers - General | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Drug Manufacturers - General | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_Industry___OldSurge_Drug_Manufacturers_-_General___No.png" alt="Industry × OldSurge=Drug Manufacturers - General | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OBuyers: Small | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 80%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_MCap___OBuyers_Small___1-2.png" alt="MCap × OBuyers=Small | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers: 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">20 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers × Spend: 1-2 | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">20 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_OSellers___Spend_1-2___Q1.png" alt="OSellers × Spend=1-2 | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers × OldSurge: 1-2 | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">20 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_OSellers___OldSurge_1-2___No.png" alt="OSellers × OldSurge=1-2 | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Committee: Big | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 63%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_MCap___Committee_Big___No.png" alt="MCap × Committee=Big | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers × Committee: 1-2 | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 75%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_OSellers___Committee_1-2___No.png" alt="OSellers × Committee=1-2 | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers × Committee: 1-2 | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">12 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Byron_Donalds_OSellers___Committee_1-2___Yes.png" alt="OSellers × Committee=1-2 | Yes" loading="lazy">
+            </div>
+
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  if (tab === 'timing') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('tab-timing').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('tab-attributes').classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>

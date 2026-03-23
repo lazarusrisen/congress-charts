@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jared Moskowitz — Congressional Trading Talents</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 20px;
+  }
+  a { color: #0f3460; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .header h1 { font-size: 1.8em; margin-bottom: 8px; }
+  .header p { opacity: 0.85; font-size: 1.05em; }
+  .header .stats {
+    display: flex; justify-content: center; gap: 20px;
+    margin-top: 15px; font-size: 0.9em; flex-wrap: wrap;
+  }
+  .header .stats span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px; border-radius: 20px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: border-color 0.2s;
+  }
+  .back-link:hover { border-color: #0f3460; text-decoration: none; }
+  .tabs {
+    display: flex;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ddd;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .tab-btn:first-child { border-radius: 8px 0 0 8px; }
+  .tab-btn:last-child { border-radius: 0 8px 8px 0; }
+  .tab-btn.active {
+    background: #0f3460;
+    color: white;
+    border-color: #0f3460;
+    border-bottom-color: #00AA44;
+  }
+  .tab-btn:hover:not(.active) { background: #f5f5f5; }
+  .tab-content { display: none; max-width: 1000px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  .writeup {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    line-height: 1.7;
+    font-size: 0.95em;
+    white-space: pre-line;
+  }
+  .writeup h3 { margin-bottom: 10px; color: #1a1a2e; }
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-header h3 { font-size: 1.1em; }
+  .card img { width: 100%; display: block; }
+  .stat-pill {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.82em;
+    font-weight: 600;
+    display: inline-block;
+    margin: 2px;
+  }
+  .stat-pill.batting { background: #e8f5e9; color: #2e7d32; }
+  .stat-pill.slugging { background: #e3f2fd; color: #0f3460; }
+  .stat-pill.trades { background: #e8eaf6; color: #283593; }
+  .stat-pill.txn { background: #f3e5f5; color: #6a1b9a; }
+  .stat-pill.dim { background: #fff3e0; color: #e65100; }
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chart-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .chart-card img { width: 100%; display: block; }
+  .chart-card .chart-label {
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 0.95em;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+  }
+  .no-data {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1.05em;
+  }
+  @media (max-width: 768px) {
+    .header .stats { gap: 10px; font-size: 0.88em; }
+    .tab-btn { font-size: 0.95em; padding: 12px 14px; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .header { padding: 18px 14px; border-radius: 10px; }
+    .header h1 { font-size: 1.3em; }
+    .header p { font-size: 0.9em; }
+    .header .stats { gap: 6px; font-size: 0.82em; margin-top: 8px; }
+    .header .stats span { padding: 4px 10px; }
+    .back-link { font-size: 0.88em; padding: 6px 14px; margin-bottom: 12px; }
+    .writeup { padding: 14px; font-size: 0.9em; }
+    .tabs { flex-direction: column; margin-bottom: 14px; }
+    .tab-btn { border-radius: 8px !important; padding: 12px 16px; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .card-header h3 { font-size: 1em; }
+    .stat-pill { font-size: 0.78em; padding: 3px 8px; }
+    .charts-grid { gap: 14px; }
+  }
+
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to All Politicians</a>
+
+<div class="header">
+  <h1>Jared Moskowitz</h1>
+  <p>Trading talent profile — ticker timing and attribute analysis</p>
+  <div class="stats">
+    <span>382 Total Trades</span>
+    <span>5 Ticker Talents</span>
+    <span>3 Attribute Talents</span>
+    <span>3 Attribute Charts</span>
+  </div>
+</div>
+
+<div class="writeup">
+  <h3>Talent Summary</h3>
+  Jared Moskowitz has 382 scored trades (248 purchases, 134 sales).
+
+WHAT THEY&#x27;RE GOOD AT: SBCF sales (100% batting, 3 trades); MCK purchases (100% batting, 3 trades); JPM purchases (67% batting, 3 trades); GS purchases (50% batting, 4 trades); AVGO purchases (50% batting, 4 trades); Lobby365 × Committee=Yes | No purchases (67% batting).
+
+WHAT THEY&#x27;RE BAD AT: Ticker=GS (50% whiff).
+
+NOTABLE PATTERNS: Top sectors: Healthcare (69), Financial Services (57), Technology (55).
+</div>
+
+<div class="tabs">
+  <div class="tab-btn active" onclick="switchTab('timing')">Ticker Timing</div>
+  <div class="tab-btn" onclick="switchTab('attributes')">Attribute Talents</div>
+</div>
+
+<div class="tab-content active" id="tab-timing">
+  <div class="charts-grid">
+
+            <div class="chart-card">
+              <div class="chart-label">ABBV</div>
+              <img src="../timing_charts/Jared_Moskowitz_ABBV.png" alt="Jared Moskowitz ABBV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ADI</div>
+              <img src="../timing_charts/Jared_Moskowitz_ADI.png" alt="Jared Moskowitz ADI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMGN</div>
+              <img src="../timing_charts/Jared_Moskowitz_AMGN.png" alt="Jared Moskowitz AMGN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMZN</div>
+              <img src="../timing_charts/Jared_Moskowitz_AMZN.png" alt="Jared Moskowitz AMZN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">APD</div>
+              <img src="../timing_charts/Jared_Moskowitz_APD.png" alt="Jared Moskowitz APD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ATO</div>
+              <img src="../timing_charts/Jared_Moskowitz_ATO.png" alt="Jared Moskowitz ATO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AVGO</div>
+              <img src="../timing_charts/Jared_Moskowitz_AVGO.png" alt="Jared Moskowitz AVGO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AXP</div>
+              <img src="../timing_charts/Jared_Moskowitz_AXP.png" alt="Jared Moskowitz AXP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BBY</div>
+              <img src="../timing_charts/Jared_Moskowitz_BBY.png" alt="Jared Moskowitz BBY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BRKB</div>
+              <img src="../timing_charts/Jared_Moskowitz_BRKB.png" alt="Jared Moskowitz BRKB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BRO</div>
+              <img src="../timing_charts/Jared_Moskowitz_BRO.png" alt="Jared Moskowitz BRO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CARR</div>
+              <img src="../timing_charts/Jared_Moskowitz_CARR.png" alt="Jared Moskowitz CARR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CAT</div>
+              <img src="../timing_charts/Jared_Moskowitz_CAT.png" alt="Jared Moskowitz CAT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CB</div>
+              <img src="../timing_charts/Jared_Moskowitz_CB.png" alt="Jared Moskowitz CB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CMI</div>
+              <img src="../timing_charts/Jared_Moskowitz_CMI.png" alt="Jared Moskowitz CMI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CNI</div>
+              <img src="../timing_charts/Jared_Moskowitz_CNI.png" alt="Jared Moskowitz CNI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COST</div>
+              <img src="../timing_charts/Jared_Moskowitz_COST.png" alt="Jared Moskowitz COST" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSCO</div>
+              <img src="../timing_charts/Jared_Moskowitz_CSCO.png" alt="Jared Moskowitz CSCO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DG</div>
+              <img src="../timing_charts/Jared_Moskowitz_DG.png" alt="Jared Moskowitz DG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ELV</div>
+              <img src="../timing_charts/Jared_Moskowitz_ELV.png" alt="Jared Moskowitz ELV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GOOG</div>
+              <img src="../timing_charts/Jared_Moskowitz_GOOG.png" alt="Jared Moskowitz GOOG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GS</div>
+              <img src="../timing_charts/Jared_Moskowitz_GS.png" alt="Jared Moskowitz GS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HON</div>
+              <img src="../timing_charts/Jared_Moskowitz_HON.png" alt="Jared Moskowitz HON" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">INTC</div>
+              <img src="../timing_charts/Jared_Moskowitz_INTC.png" alt="Jared Moskowitz INTC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OSellers_Drug_Manufacturers_-_General___1-2</div>
+              <img src="../timing_charts/Jared_Moskowitz_Industry___OSellers_Drug_Manufacturers_-_General___1-2.png" alt="Jared Moskowitz Industry___OSellers_Drug_Manufacturers_-_General___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">JPM</div>
+              <img src="../timing_charts/Jared_Moskowitz_JPM.png" alt="Jared Moskowitz JPM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LIN</div>
+              <img src="../timing_charts/Jared_Moskowitz_LIN.png" alt="Jared Moskowitz LIN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LLY</div>
+              <img src="../timing_charts/Jared_Moskowitz_LLY.png" alt="Jared Moskowitz LLY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LMT</div>
+              <img src="../timing_charts/Jared_Moskowitz_LMT.png" alt="Jared Moskowitz LMT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCK</div>
+              <img src="../timing_charts/Jared_Moskowitz_MCK.png" alt="Jared Moskowitz MCK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OSellers_Mega___1-2</div>
+              <img src="../timing_charts/Jared_Moskowitz_MCap___OSellers_Mega___1-2.png" alt="Jared Moskowitz MCap___OSellers_Mega___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MDLZ</div>
+              <img src="../timing_charts/Jared_Moskowitz_MDLZ.png" alt="Jared Moskowitz MDLZ" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">META</div>
+              <img src="../timing_charts/Jared_Moskowitz_META.png" alt="Jared Moskowitz META" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MRK</div>
+              <img src="../timing_charts/Jared_Moskowitz_MRK.png" alt="Jared Moskowitz MRK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NEE</div>
+              <img src="../timing_charts/Jared_Moskowitz_NEE.png" alt="Jared Moskowitz NEE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NKE</div>
+              <img src="../timing_charts/Jared_Moskowitz_NKE.png" alt="Jared Moskowitz NKE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NVDA</div>
+              <img src="../timing_charts/Jared_Moskowitz_NVDA.png" alt="Jared Moskowitz NVDA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ORCL</div>
+              <img src="../timing_charts/Jared_Moskowitz_ORCL.png" alt="Jared Moskowitz ORCL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PEG</div>
+              <img src="../timing_charts/Jared_Moskowitz_PEG.png" alt="Jared Moskowitz PEG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PFE</div>
+              <img src="../timing_charts/Jared_Moskowitz_PFE.png" alt="Jared Moskowitz PFE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">QCOM</div>
+              <img src="../timing_charts/Jared_Moskowitz_QCOM.png" alt="Jared Moskowitz QCOM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ROP</div>
+              <img src="../timing_charts/Jared_Moskowitz_ROP.png" alt="Jared Moskowitz ROP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SBCF</div>
+              <img src="../timing_charts/Jared_Moskowitz_SBCF.png" alt="Jared Moskowitz SBCF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SHW</div>
+              <img src="../timing_charts/Jared_Moskowitz_SHW.png" alt="Jared Moskowitz SHW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SNA</div>
+              <img src="../timing_charts/Jared_Moskowitz_SNA.png" alt="Jared Moskowitz SNA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SO</div>
+              <img src="../timing_charts/Jared_Moskowitz_SO.png" alt="Jared Moskowitz SO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SPGI</div>
+              <img src="../timing_charts/Jared_Moskowitz_SPGI.png" alt="Jared Moskowitz SPGI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SYK</div>
+              <img src="../timing_charts/Jared_Moskowitz_SYK.png" alt="Jared Moskowitz SYK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TJX</div>
+              <img src="../timing_charts/Jared_Moskowitz_TJX.png" alt="Jared Moskowitz TJX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TMUS</div>
+              <img src="../timing_charts/Jared_Moskowitz_TMUS.png" alt="Jared Moskowitz TMUS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TSCO</div>
+              <img src="../timing_charts/Jared_Moskowitz_TSCO.png" alt="Jared Moskowitz TSCO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TSM</div>
+              <img src="../timing_charts/Jared_Moskowitz_TSM.png" alt="Jared Moskowitz TSM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TXN</div>
+              <img src="../timing_charts/Jared_Moskowitz_TXN.png" alt="Jared Moskowitz TXN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WST</div>
+              <img src="../timing_charts/Jared_Moskowitz_WST.png" alt="Jared Moskowitz WST" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">XOM</div>
+              <img src="../timing_charts/Jared_Moskowitz_XOM.png" alt="Jared Moskowitz XOM" loading="lazy">
+            </div>
+</div>
+
+</div>
+
+<div class="tab-content" id="tab-attributes">
+  
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Lobby365 × Committee: Yes | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Jared_Moskowitz_Lobby365___Committee_Yes___No.png" alt="Lobby365 × Committee=Yes | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OSellers: Mega | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">11 Trades</span>
+                  <span class="stat-pill batting">Batting 55%</span>
+                  <span class="stat-pill slugging">Slugging 73%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Jared_Moskowitz_MCap___OSellers_Mega___1-2.png" alt="MCap × OSellers=Mega | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OSellers: Drug Manufacturers - General | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Jared_Moskowitz_Industry___OSellers_Drug_Manufacturers_-_General___1-2.png" alt="Industry × OSellers=Drug Manufacturers - General | 1-2" loading="lazy">
+            </div>
+
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  if (tab === 'timing') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('tab-timing').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('tab-attributes').classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>

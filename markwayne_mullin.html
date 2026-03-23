@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markwayne Mullin — Congressional Trading Talents</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 20px;
+  }
+  a { color: #0f3460; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .header h1 { font-size: 1.8em; margin-bottom: 8px; }
+  .header p { opacity: 0.85; font-size: 1.05em; }
+  .header .stats {
+    display: flex; justify-content: center; gap: 20px;
+    margin-top: 15px; font-size: 0.9em; flex-wrap: wrap;
+  }
+  .header .stats span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px; border-radius: 20px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: border-color 0.2s;
+  }
+  .back-link:hover { border-color: #0f3460; text-decoration: none; }
+  .tabs {
+    display: flex;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ddd;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .tab-btn:first-child { border-radius: 8px 0 0 8px; }
+  .tab-btn:last-child { border-radius: 0 8px 8px 0; }
+  .tab-btn.active {
+    background: #0f3460;
+    color: white;
+    border-color: #0f3460;
+    border-bottom-color: #00AA44;
+  }
+  .tab-btn:hover:not(.active) { background: #f5f5f5; }
+  .tab-content { display: none; max-width: 1000px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  .writeup {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    line-height: 1.7;
+    font-size: 0.95em;
+    white-space: pre-line;
+  }
+  .writeup h3 { margin-bottom: 10px; color: #1a1a2e; }
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-header h3 { font-size: 1.1em; }
+  .card img { width: 100%; display: block; }
+  .stat-pill {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.82em;
+    font-weight: 600;
+    display: inline-block;
+    margin: 2px;
+  }
+  .stat-pill.batting { background: #e8f5e9; color: #2e7d32; }
+  .stat-pill.slugging { background: #e3f2fd; color: #0f3460; }
+  .stat-pill.trades { background: #e8eaf6; color: #283593; }
+  .stat-pill.txn { background: #f3e5f5; color: #6a1b9a; }
+  .stat-pill.dim { background: #fff3e0; color: #e65100; }
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chart-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .chart-card img { width: 100%; display: block; }
+  .chart-card .chart-label {
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 0.95em;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+  }
+  .no-data {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1.05em;
+  }
+  @media (max-width: 768px) {
+    .header .stats { gap: 10px; font-size: 0.88em; }
+    .tab-btn { font-size: 0.95em; padding: 12px 14px; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .header { padding: 18px 14px; border-radius: 10px; }
+    .header h1 { font-size: 1.3em; }
+    .header p { font-size: 0.9em; }
+    .header .stats { gap: 6px; font-size: 0.82em; margin-top: 8px; }
+    .header .stats span { padding: 4px 10px; }
+    .back-link { font-size: 0.88em; padding: 6px 14px; margin-bottom: 12px; }
+    .writeup { padding: 14px; font-size: 0.9em; }
+    .tabs { flex-direction: column; margin-bottom: 14px; }
+    .tab-btn { border-radius: 8px !important; padding: 12px 16px; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .card-header h3 { font-size: 1em; }
+    .stat-pill { font-size: 0.78em; padding: 3px 8px; }
+    .charts-grid { gap: 14px; }
+  }
+
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to All Politicians</a>
+
+<div class="header">
+  <h1>Markwayne Mullin</h1>
+  <p>Trading talent profile — ticker timing and attribute analysis</p>
+  <div class="stats">
+    <span>401 Total Trades</span>
+    <span>9 Ticker Talents</span>
+    <span>20 Attribute Talents</span>
+    <span>20 Attribute Charts</span>
+  </div>
+</div>
+
+<div class="writeup">
+  <h3>Talent Summary</h3>
+  Markwayne Mullin has 401 scored trades (283 purchases, 118 sales).
+
+WHAT THEY&#x27;RE GOOD AT: RTX purchases (100% batting, 3 trades); LRCX purchases (80% batting, 5 trades); META purchases (75% batting, 4 trades); AMD purchases (67% batting, 3 trades); LRN purchases (67% batting, 3 trades); Industry × OldSurge=Aerospace &amp; Defense | No purchases (100% batting).
+
+WHAT THEY&#x27;RE BAD AT: Industry × OBuyers=Semiconductor Equipment &amp; Materials | 1-2 (40% whiff); Ticker=AMD (33% whiff); Ticker=LRN (33% whiff).
+
+NOTABLE PATTERNS: Top sectors: Technology (82), Industrials (61), Consumer Defensive (52). Heavily buy-biased (71% purchases).
+</div>
+
+<div class="tabs">
+  <div class="tab-btn active" onclick="switchTab('timing')">Ticker Timing</div>
+  <div class="tab-btn" onclick="switchTab('attributes')">Attribute Talents</div>
+</div>
+
+<div class="tab-content active" id="tab-timing">
+  <div class="charts-grid">
+
+            <div class="chart-card">
+              <div class="chart-label">AAPL</div>
+              <img src="../timing_charts/Markwayne_Mullin_AAPL.png" alt="Markwayne Mullin AAPL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ADBE</div>
+              <img src="../timing_charts/Markwayne_Mullin_ADBE.png" alt="Markwayne Mullin ADBE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMAT</div>
+              <img src="../timing_charts/Markwayne_Mullin_AMAT.png" alt="Markwayne Mullin AMAT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMD</div>
+              <img src="../timing_charts/Markwayne_Mullin_AMD.png" alt="Markwayne Mullin AMD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMZN</div>
+              <img src="../timing_charts/Markwayne_Mullin_AMZN.png" alt="Markwayne Mullin AMZN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AXON</div>
+              <img src="../timing_charts/Markwayne_Mullin_AXON.png" alt="Markwayne Mullin AXON" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AXP</div>
+              <img src="../timing_charts/Markwayne_Mullin_AXP.png" alt="Markwayne Mullin AXP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AZO</div>
+              <img src="../timing_charts/Markwayne_Mullin_AZO.png" alt="Markwayne Mullin AZO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BLK</div>
+              <img src="../timing_charts/Markwayne_Mullin_BLK.png" alt="Markwayne Mullin BLK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BMI</div>
+              <img src="../timing_charts/Markwayne_Mullin_BMI.png" alt="Markwayne Mullin BMI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BSX</div>
+              <img src="../timing_charts/Markwayne_Mullin_BSX.png" alt="Markwayne Mullin BSX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CAT</div>
+              <img src="../timing_charts/Markwayne_Mullin_CAT.png" alt="Markwayne Mullin CAT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CMG</div>
+              <img src="../timing_charts/Markwayne_Mullin_CMG.png" alt="Markwayne Mullin CMG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COF</div>
+              <img src="../timing_charts/Markwayne_Mullin_COF.png" alt="Markwayne Mullin COF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COP</div>
+              <img src="../timing_charts/Markwayne_Mullin_COP.png" alt="Markwayne Mullin COP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COST</div>
+              <img src="../timing_charts/Markwayne_Mullin_COST.png" alt="Markwayne Mullin COST" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CRDO</div>
+              <img src="../timing_charts/Markwayne_Mullin_CRDO.png" alt="Markwayne Mullin CRDO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CRM</div>
+              <img src="../timing_charts/Markwayne_Mullin_CRM.png" alt="Markwayne Mullin CRM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CRS</div>
+              <img src="../timing_charts/Markwayne_Mullin_CRS.png" alt="Markwayne Mullin CRS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSX</div>
+              <img src="../timing_charts/Markwayne_Mullin_CSX.png" alt="Markwayne Mullin CSX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CVX</div>
+              <img src="../timing_charts/Markwayne_Mullin_CVX.png" alt="Markwayne Mullin CVX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CYBR</div>
+              <img src="../timing_charts/Markwayne_Mullin_CYBR.png" alt="Markwayne Mullin CYBR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DE</div>
+              <img src="../timing_charts/Markwayne_Mullin_DE.png" alt="Markwayne Mullin DE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DELL</div>
+              <img src="../timing_charts/Markwayne_Mullin_DELL.png" alt="Markwayne Mullin DELL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ELF</div>
+              <img src="../timing_charts/Markwayne_Mullin_ELF.png" alt="Markwayne Mullin ELF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ELV</div>
+              <img src="../timing_charts/Markwayne_Mullin_ELV.png" alt="Markwayne Mullin ELV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ETN</div>
+              <img src="../timing_charts/Markwayne_Mullin_ETN.png" alt="Markwayne Mullin ETN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EW</div>
+              <img src="../timing_charts/Markwayne_Mullin_EW.png" alt="Markwayne Mullin EW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FCFS</div>
+              <img src="../timing_charts/Markwayne_Mullin_FCFS.png" alt="Markwayne Mullin FCFS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FISV</div>
+              <img src="../timing_charts/Markwayne_Mullin_FISV.png" alt="Markwayne Mullin FISV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FRPT</div>
+              <img src="../timing_charts/Markwayne_Mullin_FRPT.png" alt="Markwayne Mullin FRPT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GS</div>
+              <img src="../timing_charts/Markwayne_Mullin_GS.png" alt="Markwayne Mullin GS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HLT</div>
+              <img src="../timing_charts/Markwayne_Mullin_HLT.png" alt="Markwayne Mullin HLT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HON</div>
+              <img src="../timing_charts/Markwayne_Mullin_HON.png" alt="Markwayne Mullin HON" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ISRG</div>
+              <img src="../timing_charts/Markwayne_Mullin_ISRG.png" alt="Markwayne Mullin ISRG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Aerospace___Defense</div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry_Aerospace___Defense.png" alt="Markwayne Mullin Industry_Aerospace___Defense" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Semiconductor_Equipment___Materials</div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry_Semiconductor_Equipment___Materials.png" alt="Markwayne Mullin Industry_Semiconductor_Equipment___Materials" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Aerospace___Defense___Yes</div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___Committee_Aerospace___Defense___Yes.png" alt="Markwayne Mullin Industry___Committee_Aerospace___Defense___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Semiconductor_Equipment___Materials___Yes</div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___Committee_Semiconductor_Equipment___Materials___Yes.png" alt="Markwayne Mullin Industry___Committee_Semiconductor_Equipment___Materials___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Semiconductor_Equipment___Materials___1-2</div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___OBuyers_Semiconductor_Equipment___Materials___1-2.png" alt="Markwayne Mullin Industry___OBuyers_Semiconductor_Equipment___Materials___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OSellers_Semiconductor_Equipment___Materials___1-2</div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___OSellers_Semiconductor_Equipment___Materials___1-2.png" alt="Markwayne Mullin Industry___OSellers_Semiconductor_Equipment___Materials___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Aerospace___Defense___No</div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___OldSurge_Aerospace___Defense___No.png" alt="Markwayne Mullin Industry___OldSurge_Aerospace___Defense___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Semiconductor_Equipment___Materials___No</div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___OldSurge_Semiconductor_Equipment___Materials___No.png" alt="Markwayne Mullin Industry___OldSurge_Semiconductor_Equipment___Materials___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Aerospace___Defense___Q1</div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___Spend_Aerospace___Defense___Q1.png" alt="Markwayne Mullin Industry___Spend_Aerospace___Defense___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Semiconductor_Equipment___Materials___Q1</div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___Spend_Semiconductor_Equipment___Materials___Q1.png" alt="Markwayne Mullin Industry___Spend_Semiconductor_Equipment___Materials___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">JPM</div>
+              <img src="../timing_charts/Markwayne_Mullin_JPM.png" alt="Markwayne Mullin JPM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KLAC</div>
+              <img src="../timing_charts/Markwayne_Mullin_KLAC.png" alt="Markwayne Mullin KLAC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LHX</div>
+              <img src="../timing_charts/Markwayne_Mullin_LHX.png" alt="Markwayne Mullin LHX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LRCX</div>
+              <img src="../timing_charts/Markwayne_Mullin_LRCX.png" alt="Markwayne Mullin LRCX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LRN</div>
+              <img src="../timing_charts/Markwayne_Mullin_LRN.png" alt="Markwayne Mullin LRN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCK</div>
+              <img src="../timing_charts/Markwayne_Mullin_MCK.png" alt="Markwayne Mullin MCK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap_Tiny</div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap_Tiny.png" alt="Markwayne Mullin MCap_Tiny" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Committee_Mid___No</div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap___Committee_Mid___No.png" alt="Markwayne Mullin MCap___Committee_Mid___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Committee_Tiny___Yes</div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap___Committee_Tiny___Yes.png" alt="Markwayne Mullin MCap___Committee_Tiny___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Big___Semiconductor_Equipment___Materials</div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap___Industry_Big___Semiconductor_Equipment___Materials.png" alt="Markwayne Mullin MCap___Industry_Big___Semiconductor_Equipment___Materials" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OldSurge_Tiny___No</div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap___OldSurge_Tiny___No.png" alt="Markwayne Mullin MCap___OldSurge_Tiny___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Spend_Tiny___Q1</div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap___Spend_Tiny___Q1.png" alt="Markwayne Mullin MCap___Spend_Tiny___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">META</div>
+              <img src="../timing_charts/Markwayne_Mullin_META.png" alt="Markwayne Mullin META" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MSFT</div>
+              <img src="../timing_charts/Markwayne_Mullin_MSFT.png" alt="Markwayne Mullin MSFT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NKE</div>
+              <img src="../timing_charts/Markwayne_Mullin_NKE.png" alt="Markwayne Mullin NKE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NVDA</div>
+              <img src="../timing_charts/Markwayne_Mullin_NVDA.png" alt="Markwayne Mullin NVDA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OBuyers___Committee_1-2___No</div>
+              <img src="../timing_charts/Markwayne_Mullin_OBuyers___Committee_1-2___No.png" alt="Markwayne Mullin OBuyers___Committee_1-2___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OLLI</div>
+              <img src="../timing_charts/Markwayne_Mullin_OLLI.png" alt="Markwayne Mullin OLLI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OSellers___Committee_1-2___No</div>
+              <img src="../timing_charts/Markwayne_Mullin_OSellers___Committee_1-2___No.png" alt="Markwayne Mullin OSellers___Committee_1-2___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OSellers___Committee_3-4___No</div>
+              <img src="../timing_charts/Markwayne_Mullin_OSellers___Committee_3-4___No.png" alt="Markwayne Mullin OSellers___Committee_3-4___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PANW</div>
+              <img src="../timing_charts/Markwayne_Mullin_PANW.png" alt="Markwayne Mullin PANW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PODD</div>
+              <img src="../timing_charts/Markwayne_Mullin_PODD.png" alt="Markwayne Mullin PODD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RTX</div>
+              <img src="../timing_charts/Markwayne_Mullin_RTX.png" alt="Markwayne Mullin RTX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SBUX</div>
+              <img src="../timing_charts/Markwayne_Mullin_SBUX.png" alt="Markwayne Mullin SBUX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SFM</div>
+              <img src="../timing_charts/Markwayne_Mullin_SFM.png" alt="Markwayne Mullin SFM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SHOP</div>
+              <img src="../timing_charts/Markwayne_Mullin_SHOP.png" alt="Markwayne Mullin SHOP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SHW</div>
+              <img src="../timing_charts/Markwayne_Mullin_SHW.png" alt="Markwayne Mullin SHW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SPGI</div>
+              <img src="../timing_charts/Markwayne_Mullin_SPGI.png" alt="Markwayne Mullin SPGI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Sector_Consumer_Cyclical</div>
+              <img src="../timing_charts/Markwayne_Mullin_Sector_Consumer_Cyclical.png" alt="Markwayne Mullin Sector_Consumer_Cyclical" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TXN</div>
+              <img src="../timing_charts/Markwayne_Mullin_TXN.png" alt="Markwayne Mullin TXN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNH</div>
+              <img src="../timing_charts/Markwayne_Mullin_UNH.png" alt="Markwayne Mullin UNH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNP</div>
+              <img src="../timing_charts/Markwayne_Mullin_UNP.png" alt="Markwayne Mullin UNP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">V</div>
+              <img src="../timing_charts/Markwayne_Mullin_V.png" alt="Markwayne Mullin V" loading="lazy">
+            </div>
+</div>
+
+</div>
+
+<div class="tab-content" id="tab-attributes">
+  
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Aerospace &amp; Defense | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 100%</span>
+                  <span class="stat-pill slugging">Slugging 117%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___OldSurge_Aerospace___Defense___No.png" alt="Industry × OldSurge=Aerospace &amp; Defense | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Aerospace &amp; Defense | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 100%</span>
+                  <span class="stat-pill slugging">Slugging 117%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___Spend_Aerospace___Defense___Q1.png" alt="Industry × Spend=Aerospace &amp; Defense | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Aerospace &amp; Defense</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 100%</span>
+                  <span class="stat-pill slugging">Slugging 117%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry_Aerospace___Defense.png" alt="Industry=Aerospace &amp; Defense" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Aerospace &amp; Defense | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 100%</span>
+                  <span class="stat-pill slugging">Slugging 117%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___Committee_Aerospace___Defense___Yes.png" alt="Industry × Committee=Aerospace &amp; Defense | Yes" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Semiconductor Equipment &amp; Materials | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">12 Trades</span>
+                  <span class="stat-pill batting">Batting 75%</span>
+                  <span class="stat-pill slugging">Slugging 108%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___OldSurge_Semiconductor_Equipment___Materials___No.png" alt="Industry × OldSurge=Semiconductor Equipment &amp; Materials | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Semiconductor Equipment &amp; Materials | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">12 Trades</span>
+                  <span class="stat-pill batting">Batting 75%</span>
+                  <span class="stat-pill slugging">Slugging 108%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___Spend_Semiconductor_Equipment___Materials___Q1.png" alt="Industry × Spend=Semiconductor Equipment &amp; Materials | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Big | Semiconductor Equipment &amp; Materials</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">12 Trades</span>
+                  <span class="stat-pill batting">Batting 75%</span>
+                  <span class="stat-pill slugging">Slugging 108%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap___Industry_Big___Semiconductor_Equipment___Materials.png" alt="MCap × Industry=Big | Semiconductor Equipment &amp; Materials" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Semiconductor Equipment &amp; Materials</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">12 Trades</span>
+                  <span class="stat-pill batting">Batting 75%</span>
+                  <span class="stat-pill slugging">Slugging 108%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry_Semiconductor_Equipment___Materials.png" alt="Industry=Semiconductor Equipment &amp; Materials" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Semiconductor Equipment &amp; Materials | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">12 Trades</span>
+                  <span class="stat-pill batting">Batting 75%</span>
+                  <span class="stat-pill slugging">Slugging 108%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___Committee_Semiconductor_Equipment___Materials___Yes.png" alt="Industry × Committee=Semiconductor Equipment &amp; Materials | Yes" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OSellers: Semiconductor Equipment &amp; Materials | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 71%</span>
+                  <span class="stat-pill slugging">Slugging 114%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___OSellers_Semiconductor_Equipment___Materials___1-2.png" alt="Industry × OSellers=Semiconductor Equipment &amp; Materials | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Sector: Consumer Cyclical</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">16 Trades</span>
+                  <span class="stat-pill batting">Batting 63%</span>
+                  <span class="stat-pill slugging">Slugging 63%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_Sector_Consumer_Cyclical.png" alt="Sector=Consumer Cyclical" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Committee: Mid | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">13 Trades</span>
+                  <span class="stat-pill batting">Batting 62%</span>
+                  <span class="stat-pill slugging">Slugging 62%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap___Committee_Mid___No.png" alt="MCap × Committee=Mid | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OBuyers: Semiconductor Equipment &amp; Materials | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 80%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_Industry___OBuyers_Semiconductor_Equipment___Materials___1-2.png" alt="Industry × OBuyers=Semiconductor Equipment &amp; Materials | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers × Committee: 3-4 | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_OSellers___Committee_3-4___No.png" alt="OSellers × Committee=3-4 | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers × Committee: 1-2 | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">12 Trades</span>
+                  <span class="stat-pill batting">Batting 58%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_OSellers___Committee_1-2___No.png" alt="OSellers × Committee=1-2 | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OBuyers × Committee: 1-2 | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">18 Trades</span>
+                  <span class="stat-pill batting">Batting 56%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_OBuyers___Committee_1-2___No.png" alt="OBuyers × Committee=1-2 | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap: Tiny</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap_Tiny.png" alt="MCap=Tiny" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Committee: Tiny | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap___Committee_Tiny___Yes.png" alt="MCap × Committee=Tiny | Yes" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Spend: Tiny | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap___Spend_Tiny___Q1.png" alt="MCap × Spend=Tiny | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OldSurge: Tiny | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Markwayne_Mullin_MCap___OldSurge_Tiny___No.png" alt="MCap × OldSurge=Tiny | No" loading="lazy">
+            </div>
+
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  if (tab === 'timing') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('tab-timing').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('tab-attributes').classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lisa Mcclain — Congressional Trading Talents</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 20px;
+  }
+  a { color: #0f3460; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .header h1 { font-size: 1.8em; margin-bottom: 8px; }
+  .header p { opacity: 0.85; font-size: 1.05em; }
+  .header .stats {
+    display: flex; justify-content: center; gap: 20px;
+    margin-top: 15px; font-size: 0.9em; flex-wrap: wrap;
+  }
+  .header .stats span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px; border-radius: 20px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: border-color 0.2s;
+  }
+  .back-link:hover { border-color: #0f3460; text-decoration: none; }
+  .tabs {
+    display: flex;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ddd;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .tab-btn:first-child { border-radius: 8px 0 0 8px; }
+  .tab-btn:last-child { border-radius: 0 8px 8px 0; }
+  .tab-btn.active {
+    background: #0f3460;
+    color: white;
+    border-color: #0f3460;
+    border-bottom-color: #00AA44;
+  }
+  .tab-btn:hover:not(.active) { background: #f5f5f5; }
+  .tab-content { display: none; max-width: 1000px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  .writeup {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    line-height: 1.7;
+    font-size: 0.95em;
+    white-space: pre-line;
+  }
+  .writeup h3 { margin-bottom: 10px; color: #1a1a2e; }
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-header h3 { font-size: 1.1em; }
+  .card img { width: 100%; display: block; }
+  .stat-pill {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.82em;
+    font-weight: 600;
+    display: inline-block;
+    margin: 2px;
+  }
+  .stat-pill.batting { background: #e8f5e9; color: #2e7d32; }
+  .stat-pill.slugging { background: #e3f2fd; color: #0f3460; }
+  .stat-pill.trades { background: #e8eaf6; color: #283593; }
+  .stat-pill.txn { background: #f3e5f5; color: #6a1b9a; }
+  .stat-pill.dim { background: #fff3e0; color: #e65100; }
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chart-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .chart-card img { width: 100%; display: block; }
+  .chart-card .chart-label {
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 0.95em;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+  }
+  .no-data {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1.05em;
+  }
+  @media (max-width: 768px) {
+    .header .stats { gap: 10px; font-size: 0.88em; }
+    .tab-btn { font-size: 0.95em; padding: 12px 14px; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .header { padding: 18px 14px; border-radius: 10px; }
+    .header h1 { font-size: 1.3em; }
+    .header p { font-size: 0.9em; }
+    .header .stats { gap: 6px; font-size: 0.82em; margin-top: 8px; }
+    .header .stats span { padding: 4px 10px; }
+    .back-link { font-size: 0.88em; padding: 6px 14px; margin-bottom: 12px; }
+    .writeup { padding: 14px; font-size: 0.9em; }
+    .tabs { flex-direction: column; margin-bottom: 14px; }
+    .tab-btn { border-radius: 8px !important; padding: 12px 16px; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .card-header h3 { font-size: 1em; }
+    .stat-pill { font-size: 0.78em; padding: 3px 8px; }
+    .charts-grid { gap: 14px; }
+  }
+
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to All Politicians</a>
+
+<div class="header">
+  <h1>Lisa Mcclain</h1>
+  <p>Trading talent profile — ticker timing and attribute analysis</p>
+  <div class="stats">
+    <span>1396 Total Trades</span>
+    <span>16 Ticker Talents</span>
+    <span>34 Attribute Talents</span>
+    <span>34 Attribute Charts</span>
+  </div>
+</div>
+
+<div class="writeup">
+  <h3>Talent Summary</h3>
+  Lisa Mcclain has 1396 scored trades (704 purchases, 692 sales).
+
+WHAT THEY&#x27;RE GOOD AT: AMD sales (100% batting, 3 trades); TMO purchases (100% batting, 3 trades); GOOG purchases (100% batting, 3 trades); UNH sales (67% batting, 3 trades); TSM purchases (67% batting, 6 trades); MCap × Industry=Mid | Banks - Diversified purchases (100% batting).
+
+WHAT THEY&#x27;RE BAD AT: Subholding=CHARLESSCHWABBROKERAGEACCOUNT548 (30% whiff).
+
+NOTABLE PATTERNS: Top sectors: Technology (270), Healthcare (173), Financial Services (171).
+</div>
+
+<div class="tabs">
+  <div class="tab-btn active" onclick="switchTab('timing')">Ticker Timing</div>
+  <div class="tab-btn" onclick="switchTab('attributes')">Attribute Talents</div>
+</div>
+
+<div class="tab-content active" id="tab-timing">
+  <div class="charts-grid">
+
+            <div class="chart-card">
+              <div class="chart-label">AAPL</div>
+              <img src="../timing_charts/Lisa_Mcclain_AAPL.png" alt="Lisa Mcclain AAPL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ABBV</div>
+              <img src="../timing_charts/Lisa_Mcclain_ABBV.png" alt="Lisa Mcclain ABBV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ACIW</div>
+              <img src="../timing_charts/Lisa_Mcclain_ACIW.png" alt="Lisa Mcclain ACIW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ACN</div>
+              <img src="../timing_charts/Lisa_Mcclain_ACN.png" alt="Lisa Mcclain ACN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ADC</div>
+              <img src="../timing_charts/Lisa_Mcclain_ADC.png" alt="Lisa Mcclain ADC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AJG</div>
+              <img src="../timing_charts/Lisa_Mcclain_AJG.png" alt="Lisa Mcclain AJG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AKAM</div>
+              <img src="../timing_charts/Lisa_Mcclain_AKAM.png" alt="Lisa Mcclain AKAM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALEX</div>
+              <img src="../timing_charts/Lisa_Mcclain_ALEX.png" alt="Lisa Mcclain ALEX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALK</div>
+              <img src="../timing_charts/Lisa_Mcclain_ALK.png" alt="Lisa Mcclain ALK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALLE</div>
+              <img src="../timing_charts/Lisa_Mcclain_ALLE.png" alt="Lisa Mcclain ALLE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMD</div>
+              <img src="../timing_charts/Lisa_Mcclain_AMD.png" alt="Lisa Mcclain AMD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMZN</div>
+              <img src="../timing_charts/Lisa_Mcclain_AMZN.png" alt="Lisa Mcclain AMZN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ANET</div>
+              <img src="../timing_charts/Lisa_Mcclain_ANET.png" alt="Lisa Mcclain ANET" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">APPF</div>
+              <img src="../timing_charts/Lisa_Mcclain_APPF.png" alt="Lisa Mcclain APPF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ASML</div>
+              <img src="../timing_charts/Lisa_Mcclain_ASML.png" alt="Lisa Mcclain ASML" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AVB</div>
+              <img src="../timing_charts/Lisa_Mcclain_AVB.png" alt="Lisa Mcclain AVB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AVGO</div>
+              <img src="../timing_charts/Lisa_Mcclain_AVGO.png" alt="Lisa Mcclain AVGO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AWI</div>
+              <img src="../timing_charts/Lisa_Mcclain_AWI.png" alt="Lisa Mcclain AWI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AXP</div>
+              <img src="../timing_charts/Lisa_Mcclain_AXP.png" alt="Lisa Mcclain AXP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AZN</div>
+              <img src="../timing_charts/Lisa_Mcclain_AZN.png" alt="Lisa Mcclain AZN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BABA</div>
+              <img src="../timing_charts/Lisa_Mcclain_BABA.png" alt="Lisa Mcclain BABA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BAC</div>
+              <img src="../timing_charts/Lisa_Mcclain_BAC.png" alt="Lisa Mcclain BAC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BAX</div>
+              <img src="../timing_charts/Lisa_Mcclain_BAX.png" alt="Lisa Mcclain BAX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BBAI</div>
+              <img src="../timing_charts/Lisa_Mcclain_BBAI.png" alt="Lisa Mcclain BBAI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BCO</div>
+              <img src="../timing_charts/Lisa_Mcclain_BCO.png" alt="Lisa Mcclain BCO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BCS</div>
+              <img src="../timing_charts/Lisa_Mcclain_BCS.png" alt="Lisa Mcclain BCS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BHP</div>
+              <img src="../timing_charts/Lisa_Mcclain_BHP.png" alt="Lisa Mcclain BHP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BK</div>
+              <img src="../timing_charts/Lisa_Mcclain_BK.png" alt="Lisa Mcclain BK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BL</div>
+              <img src="../timing_charts/Lisa_Mcclain_BL.png" alt="Lisa Mcclain BL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BLK</div>
+              <img src="../timing_charts/Lisa_Mcclain_BLK.png" alt="Lisa Mcclain BLK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BP</div>
+              <img src="../timing_charts/Lisa_Mcclain_BP.png" alt="Lisa Mcclain BP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BRKB</div>
+              <img src="../timing_charts/Lisa_Mcclain_BRKB.png" alt="Lisa Mcclain BRKB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BRO</div>
+              <img src="../timing_charts/Lisa_Mcclain_BRO.png" alt="Lisa Mcclain BRO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BSX</div>
+              <img src="../timing_charts/Lisa_Mcclain_BSX.png" alt="Lisa Mcclain BSX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BTI</div>
+              <img src="../timing_charts/Lisa_Mcclain_BTI.png" alt="Lisa Mcclain BTI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BURL</div>
+              <img src="../timing_charts/Lisa_Mcclain_BURL.png" alt="Lisa Mcclain BURL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BWXT</div>
+              <img src="../timing_charts/Lisa_Mcclain_BWXT.png" alt="Lisa Mcclain BWXT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CACI</div>
+              <img src="../timing_charts/Lisa_Mcclain_CACI.png" alt="Lisa Mcclain CACI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CASY</div>
+              <img src="../timing_charts/Lisa_Mcclain_CASY.png" alt="Lisa Mcclain CASY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CEG</div>
+              <img src="../timing_charts/Lisa_Mcclain_CEG.png" alt="Lisa Mcclain CEG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CHD</div>
+              <img src="../timing_charts/Lisa_Mcclain_CHD.png" alt="Lisa Mcclain CHD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CHRD</div>
+              <img src="../timing_charts/Lisa_Mcclain_CHRD.png" alt="Lisa Mcclain CHRD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CIEN</div>
+              <img src="../timing_charts/Lisa_Mcclain_CIEN.png" alt="Lisa Mcclain CIEN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CL</div>
+              <img src="../timing_charts/Lisa_Mcclain_CL.png" alt="Lisa Mcclain CL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CLX</div>
+              <img src="../timing_charts/Lisa_Mcclain_CLX.png" alt="Lisa Mcclain CLX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CMI</div>
+              <img src="../timing_charts/Lisa_Mcclain_CMI.png" alt="Lisa Mcclain CMI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CNH</div>
+              <img src="../timing_charts/Lisa_Mcclain_CNH.png" alt="Lisa Mcclain CNH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CNM</div>
+              <img src="../timing_charts/Lisa_Mcclain_CNM.png" alt="Lisa Mcclain CNM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COHR</div>
+              <img src="../timing_charts/Lisa_Mcclain_COHR.png" alt="Lisa Mcclain COHR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COP</div>
+              <img src="../timing_charts/Lisa_Mcclain_COP.png" alt="Lisa Mcclain COP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COST</div>
+              <img src="../timing_charts/Lisa_Mcclain_COST.png" alt="Lisa Mcclain COST" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CRM</div>
+              <img src="../timing_charts/Lisa_Mcclain_CRM.png" alt="Lisa Mcclain CRM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSGP</div>
+              <img src="../timing_charts/Lisa_Mcclain_CSGP.png" alt="Lisa Mcclain CSGP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSL</div>
+              <img src="../timing_charts/Lisa_Mcclain_CSL.png" alt="Lisa Mcclain CSL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CVLT</div>
+              <img src="../timing_charts/Lisa_Mcclain_CVLT.png" alt="Lisa Mcclain CVLT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CYTK</div>
+              <img src="../timing_charts/Lisa_Mcclain_CYTK.png" alt="Lisa Mcclain CYTK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DAL</div>
+              <img src="../timing_charts/Lisa_Mcclain_DAL.png" alt="Lisa Mcclain DAL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DDOG</div>
+              <img src="../timing_charts/Lisa_Mcclain_DDOG.png" alt="Lisa Mcclain DDOG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DELL</div>
+              <img src="../timing_charts/Lisa_Mcclain_DELL.png" alt="Lisa Mcclain DELL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DEO</div>
+              <img src="../timing_charts/Lisa_Mcclain_DEO.png" alt="Lisa Mcclain DEO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DHI</div>
+              <img src="../timing_charts/Lisa_Mcclain_DHI.png" alt="Lisa Mcclain DHI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DKS</div>
+              <img src="../timing_charts/Lisa_Mcclain_DKS.png" alt="Lisa Mcclain DKS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DLB</div>
+              <img src="../timing_charts/Lisa_Mcclain_DLB.png" alt="Lisa Mcclain DLB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DRI</div>
+              <img src="../timing_charts/Lisa_Mcclain_DRI.png" alt="Lisa Mcclain DRI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DT</div>
+              <img src="../timing_charts/Lisa_Mcclain_DT.png" alt="Lisa Mcclain DT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DUK</div>
+              <img src="../timing_charts/Lisa_Mcclain_DUK.png" alt="Lisa Mcclain DUK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DUOL</div>
+              <img src="../timing_charts/Lisa_Mcclain_DUOL.png" alt="Lisa Mcclain DUOL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EBAY</div>
+              <img src="../timing_charts/Lisa_Mcclain_EBAY.png" alt="Lisa Mcclain EBAY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ECL</div>
+              <img src="../timing_charts/Lisa_Mcclain_ECL.png" alt="Lisa Mcclain ECL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EHC</div>
+              <img src="../timing_charts/Lisa_Mcclain_EHC.png" alt="Lisa Mcclain EHC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EME</div>
+              <img src="../timing_charts/Lisa_Mcclain_EME.png" alt="Lisa Mcclain EME" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ENTG</div>
+              <img src="../timing_charts/Lisa_Mcclain_ENTG.png" alt="Lisa Mcclain ENTG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EQNR</div>
+              <img src="../timing_charts/Lisa_Mcclain_EQNR.png" alt="Lisa Mcclain EQNR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ETN</div>
+              <img src="../timing_charts/Lisa_Mcclain_ETN.png" alt="Lisa Mcclain ETN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EXC</div>
+              <img src="../timing_charts/Lisa_Mcclain_EXC.png" alt="Lisa Mcclain EXC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FCPT</div>
+              <img src="../timing_charts/Lisa_Mcclain_FCPT.png" alt="Lisa Mcclain FCPT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FIVE</div>
+              <img src="../timing_charts/Lisa_Mcclain_FIVE.png" alt="Lisa Mcclain FIVE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FLO</div>
+              <img src="../timing_charts/Lisa_Mcclain_FLO.png" alt="Lisa Mcclain FLO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FMC</div>
+              <img src="../timing_charts/Lisa_Mcclain_FMC.png" alt="Lisa Mcclain FMC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FN</div>
+              <img src="../timing_charts/Lisa_Mcclain_FN.png" alt="Lisa Mcclain FN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FTNT</div>
+              <img src="../timing_charts/Lisa_Mcclain_FTNT.png" alt="Lisa Mcclain FTNT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FUN</div>
+              <img src="../timing_charts/Lisa_Mcclain_FUN.png" alt="Lisa Mcclain FUN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GFI</div>
+              <img src="../timing_charts/Lisa_Mcclain_GFI.png" alt="Lisa Mcclain GFI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GGG</div>
+              <img src="../timing_charts/Lisa_Mcclain_GGG.png" alt="Lisa Mcclain GGG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GIS</div>
+              <img src="../timing_charts/Lisa_Mcclain_GIS.png" alt="Lisa Mcclain GIS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GL</div>
+              <img src="../timing_charts/Lisa_Mcclain_GL.png" alt="Lisa Mcclain GL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GNW</div>
+              <img src="../timing_charts/Lisa_Mcclain_GNW.png" alt="Lisa Mcclain GNW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GOOG</div>
+              <img src="../timing_charts/Lisa_Mcclain_GOOG.png" alt="Lisa Mcclain GOOG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GOOGL</div>
+              <img src="../timing_charts/Lisa_Mcclain_GOOGL.png" alt="Lisa Mcclain GOOGL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GPK</div>
+              <img src="../timing_charts/Lisa_Mcclain_GPK.png" alt="Lisa Mcclain GPK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GS</div>
+              <img src="../timing_charts/Lisa_Mcclain_GS.png" alt="Lisa Mcclain GS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GSK</div>
+              <img src="../timing_charts/Lisa_Mcclain_GSK.png" alt="Lisa Mcclain GSK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GTY</div>
+              <img src="../timing_charts/Lisa_Mcclain_GTY.png" alt="Lisa Mcclain GTY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GWRE</div>
+              <img src="../timing_charts/Lisa_Mcclain_GWRE.png" alt="Lisa Mcclain GWRE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HAS</div>
+              <img src="../timing_charts/Lisa_Mcclain_HAS.png" alt="Lisa Mcclain HAS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HCA</div>
+              <img src="../timing_charts/Lisa_Mcclain_HCA.png" alt="Lisa Mcclain HCA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HDB</div>
+              <img src="../timing_charts/Lisa_Mcclain_HDB.png" alt="Lisa Mcclain HDB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HMC</div>
+              <img src="../timing_charts/Lisa_Mcclain_HMC.png" alt="Lisa Mcclain HMC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HOMB</div>
+              <img src="../timing_charts/Lisa_Mcclain_HOMB.png" alt="Lisa Mcclain HOMB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HPE</div>
+              <img src="../timing_charts/Lisa_Mcclain_HPE.png" alt="Lisa Mcclain HPE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HRL</div>
+              <img src="../timing_charts/Lisa_Mcclain_HRL.png" alt="Lisa Mcclain HRL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HUM</div>
+              <img src="../timing_charts/Lisa_Mcclain_HUM.png" alt="Lisa Mcclain HUM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HWM</div>
+              <img src="../timing_charts/Lisa_Mcclain_HWM.png" alt="Lisa Mcclain HWM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IBKR</div>
+              <img src="../timing_charts/Lisa_Mcclain_IBKR.png" alt="Lisa Mcclain IBKR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IEX</div>
+              <img src="../timing_charts/Lisa_Mcclain_IEX.png" alt="Lisa Mcclain IEX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ILMN</div>
+              <img src="../timing_charts/Lisa_Mcclain_ILMN.png" alt="Lisa Mcclain ILMN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">INFY</div>
+              <img src="../timing_charts/Lisa_Mcclain_INFY.png" alt="Lisa Mcclain INFY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ING</div>
+              <img src="../timing_charts/Lisa_Mcclain_ING.png" alt="Lisa Mcclain ING" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">INGR</div>
+              <img src="../timing_charts/Lisa_Mcclain_INGR.png" alt="Lisa Mcclain INGR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">INTU</div>
+              <img src="../timing_charts/Lisa_Mcclain_INTU.png" alt="Lisa Mcclain INTU" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ISRG</div>
+              <img src="../timing_charts/Lisa_Mcclain_ISRG.png" alt="Lisa Mcclain ISRG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IT</div>
+              <img src="../timing_charts/Lisa_Mcclain_IT.png" alt="Lisa Mcclain IT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ITT</div>
+              <img src="../timing_charts/Lisa_Mcclain_ITT.png" alt="Lisa Mcclain ITT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ITW</div>
+              <img src="../timing_charts/Lisa_Mcclain_ITW.png" alt="Lisa Mcclain ITW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Asset_Management</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry_Asset_Management.png" alt="Lisa Mcclain Industry_Asset_Management" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Banks_-_Diversified</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry_Banks_-_Diversified.png" alt="Lisa Mcclain Industry_Banks_-_Diversified" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Capital_Markets</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry_Capital_Markets.png" alt="Lisa Mcclain Industry_Capital_Markets" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Residential_Construction</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry_Residential_Construction.png" alt="Lisa Mcclain Industry_Residential_Construction" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Asset_Management___Yes</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Committee_Asset_Management___Yes.png" alt="Lisa Mcclain Industry___Committee_Asset_Management___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Banks_-_Diversified___Yes</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Committee_Banks_-_Diversified___Yes.png" alt="Lisa Mcclain Industry___Committee_Banks_-_Diversified___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Capital_Markets___Yes</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Committee_Capital_Markets___Yes.png" alt="Lisa Mcclain Industry___Committee_Capital_Markets___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Mag7___1-2</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OBuyers_Mag7___1-2.png" alt="Lisa Mcclain Industry___OBuyers_Mag7___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Semiconductors___1-2</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OBuyers_Semiconductors___1-2.png" alt="Lisa Mcclain Industry___OBuyers_Semiconductors___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Software_-_Application___1-2</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OBuyers_Software_-_Application___1-2.png" alt="Lisa Mcclain Industry___OBuyers_Software_-_Application___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Software_-_Infrastructure___1-2</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OBuyers_Software_-_Infrastructure___1-2.png" alt="Lisa Mcclain Industry___OBuyers_Software_-_Infrastructure___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Specialty_Industrial_Machinery___1-2</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OBuyers_Specialty_Industrial_Machinery___1-2.png" alt="Lisa Mcclain Industry___OBuyers_Specialty_Industrial_Machinery___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OSellers_Healthcare_Plans___1-2</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OSellers_Healthcare_Plans___1-2.png" alt="Lisa Mcclain Industry___OSellers_Healthcare_Plans___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OSellers_Mag7___3-4</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OSellers_Mag7___3-4.png" alt="Lisa Mcclain Industry___OSellers_Mag7___3-4" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Asset_Management___No</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OldSurge_Asset_Management___No.png" alt="Lisa Mcclain Industry___OldSurge_Asset_Management___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Banks_-_Diversified___No</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OldSurge_Banks_-_Diversified___No.png" alt="Lisa Mcclain Industry___OldSurge_Banks_-_Diversified___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Capital_Markets___No</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OldSurge_Capital_Markets___No.png" alt="Lisa Mcclain Industry___OldSurge_Capital_Markets___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Residential_Construction___No</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OldSurge_Residential_Construction___No.png" alt="Lisa Mcclain Industry___OldSurge_Residential_Construction___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Asset_Management___Q1</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Spend_Asset_Management___Q1.png" alt="Lisa Mcclain Industry___Spend_Asset_Management___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Banks_-_Diversified___Q1</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Spend_Banks_-_Diversified___Q1.png" alt="Lisa Mcclain Industry___Spend_Banks_-_Diversified___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Capital_Markets___Q1</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Spend_Capital_Markets___Q1.png" alt="Lisa Mcclain Industry___Spend_Capital_Markets___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Residential_Construction___Q1</div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Spend_Residential_Construction___Q1.png" alt="Lisa Mcclain Industry___Spend_Residential_Construction___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">JD</div>
+              <img src="../timing_charts/Lisa_Mcclain_JD.png" alt="Lisa Mcclain JD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">JNJ</div>
+              <img src="../timing_charts/Lisa_Mcclain_JNJ.png" alt="Lisa Mcclain JNJ" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">JPM</div>
+              <img src="../timing_charts/Lisa_Mcclain_JPM.png" alt="Lisa Mcclain JPM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KBH</div>
+              <img src="../timing_charts/Lisa_Mcclain_KBH.png" alt="Lisa Mcclain KBH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KO</div>
+              <img src="../timing_charts/Lisa_Mcclain_KO.png" alt="Lisa Mcclain KO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KRG</div>
+              <img src="../timing_charts/Lisa_Mcclain_KRG.png" alt="Lisa Mcclain KRG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KVUE</div>
+              <img src="../timing_charts/Lisa_Mcclain_KVUE.png" alt="Lisa Mcclain KVUE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">L</div>
+              <img src="../timing_charts/Lisa_Mcclain_L.png" alt="Lisa Mcclain L" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LI</div>
+              <img src="../timing_charts/Lisa_Mcclain_LI.png" alt="Lisa Mcclain LI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LLY</div>
+              <img src="../timing_charts/Lisa_Mcclain_LLY.png" alt="Lisa Mcclain LLY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LNC</div>
+              <img src="../timing_charts/Lisa_Mcclain_LNC.png" alt="Lisa Mcclain LNC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LPX</div>
+              <img src="../timing_charts/Lisa_Mcclain_LPX.png" alt="Lisa Mcclain LPX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LULU</div>
+              <img src="../timing_charts/Lisa_Mcclain_LULU.png" alt="Lisa Mcclain LULU" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___Industry_Yes___Diagnostics___Research</div>
+              <img src="../timing_charts/Lisa_Mcclain_Lobby365___Industry_Yes___Diagnostics___Research.png" alt="Lisa Mcclain Lobby365___Industry_Yes___Diagnostics___Research" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___Industry_Yes___Insurance_-_Life</div>
+              <img src="../timing_charts/Lisa_Mcclain_Lobby365___Industry_Yes___Insurance_-_Life.png" alt="Lisa Mcclain Lobby365___Industry_Yes___Insurance_-_Life" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___Industry_Yes___Specialty_Industrial_Machinery</div>
+              <img src="../timing_charts/Lisa_Mcclain_Lobby365___Industry_Yes___Specialty_Industrial_Machinery.png" alt="Lisa Mcclain Lobby365___Industry_Yes___Specialty_Industrial_Machinery" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___OBuyers_Yes___5_</div>
+              <img src="../timing_charts/Lisa_Mcclain_Lobby365___OBuyers_Yes___5_.png" alt="Lisa Mcclain Lobby365___OBuyers_Yes___5_" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MAN</div>
+              <img src="../timing_charts/Lisa_Mcclain_MAN.png" alt="Lisa Mcclain MAN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCD</div>
+              <img src="../timing_charts/Lisa_Mcclain_MCD.png" alt="Lisa Mcclain MCD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Big___Capital_Markets</div>
+              <img src="../timing_charts/Lisa_Mcclain_MCap___Industry_Big___Capital_Markets.png" alt="Lisa Mcclain MCap___Industry_Big___Capital_Markets" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Mid___Banks_-_Diversified</div>
+              <img src="../timing_charts/Lisa_Mcclain_MCap___Industry_Mid___Banks_-_Diversified.png" alt="Lisa Mcclain MCap___Industry_Mid___Banks_-_Diversified" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Small___Scientific___Technical_Instruments</div>
+              <img src="../timing_charts/Lisa_Mcclain_MCap___Industry_Small___Scientific___Technical_Instruments.png" alt="Lisa Mcclain MCap___Industry_Small___Scientific___Technical_Instruments" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OSellers_Mega___3-4</div>
+              <img src="../timing_charts/Lisa_Mcclain_MCap___OSellers_Mega___3-4.png" alt="Lisa Mcclain MCap___OSellers_Mega___3-4" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">META</div>
+              <img src="../timing_charts/Lisa_Mcclain_META.png" alt="Lisa Mcclain META" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MGY</div>
+              <img src="../timing_charts/Lisa_Mcclain_MGY.png" alt="Lisa Mcclain MGY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MKSI</div>
+              <img src="../timing_charts/Lisa_Mcclain_MKSI.png" alt="Lisa Mcclain MKSI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MORN</div>
+              <img src="../timing_charts/Lisa_Mcclain_MORN.png" alt="Lisa Mcclain MORN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MSFT</div>
+              <img src="../timing_charts/Lisa_Mcclain_MSFT.png" alt="Lisa Mcclain MSFT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MTZ</div>
+              <img src="../timing_charts/Lisa_Mcclain_MTZ.png" alt="Lisa Mcclain MTZ" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MU</div>
+              <img src="../timing_charts/Lisa_Mcclain_MU.png" alt="Lisa Mcclain MU" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MUFG</div>
+              <img src="../timing_charts/Lisa_Mcclain_MUFG.png" alt="Lisa Mcclain MUFG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NCLH</div>
+              <img src="../timing_charts/Lisa_Mcclain_NCLH.png" alt="Lisa Mcclain NCLH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NEM</div>
+              <img src="../timing_charts/Lisa_Mcclain_NEM.png" alt="Lisa Mcclain NEM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NFLX</div>
+              <img src="../timing_charts/Lisa_Mcclain_NFLX.png" alt="Lisa Mcclain NFLX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NOC</div>
+              <img src="../timing_charts/Lisa_Mcclain_NOC.png" alt="Lisa Mcclain NOC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NOV</div>
+              <img src="../timing_charts/Lisa_Mcclain_NOV.png" alt="Lisa Mcclain NOV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NOW</div>
+              <img src="../timing_charts/Lisa_Mcclain_NOW.png" alt="Lisa Mcclain NOW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NTES</div>
+              <img src="../timing_charts/Lisa_Mcclain_NTES.png" alt="Lisa Mcclain NTES" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NTRS</div>
+              <img src="../timing_charts/Lisa_Mcclain_NTRS.png" alt="Lisa Mcclain NTRS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NVDA</div>
+              <img src="../timing_charts/Lisa_Mcclain_NVDA.png" alt="Lisa Mcclain NVDA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NVO</div>
+              <img src="../timing_charts/Lisa_Mcclain_NVO.png" alt="Lisa Mcclain NVO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NVS</div>
+              <img src="../timing_charts/Lisa_Mcclain_NVS.png" alt="Lisa Mcclain NVS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NXPI</div>
+              <img src="../timing_charts/Lisa_Mcclain_NXPI.png" alt="Lisa Mcclain NXPI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OBuyers___OSellers_5____1-2</div>
+              <img src="../timing_charts/Lisa_Mcclain_OBuyers___OSellers_5____1-2.png" alt="Lisa Mcclain OBuyers___OSellers_5____1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OPCH</div>
+              <img src="../timing_charts/Lisa_Mcclain_OPCH.png" alt="Lisa Mcclain OPCH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ORCL</div>
+              <img src="../timing_charts/Lisa_Mcclain_ORCL.png" alt="Lisa Mcclain ORCL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ORLY</div>
+              <img src="../timing_charts/Lisa_Mcclain_ORLY.png" alt="Lisa Mcclain ORLY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OSellers___Committee_3-4___No</div>
+              <img src="../timing_charts/Lisa_Mcclain_OSellers___Committee_3-4___No.png" alt="Lisa Mcclain OSellers___Committee_3-4___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OTIS</div>
+              <img src="../timing_charts/Lisa_Mcclain_OTIS.png" alt="Lisa Mcclain OTIS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PANW</div>
+              <img src="../timing_charts/Lisa_Mcclain_PANW.png" alt="Lisa Mcclain PANW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PATK</div>
+              <img src="../timing_charts/Lisa_Mcclain_PATK.png" alt="Lisa Mcclain PATK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PDD</div>
+              <img src="../timing_charts/Lisa_Mcclain_PDD.png" alt="Lisa Mcclain PDD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PECO</div>
+              <img src="../timing_charts/Lisa_Mcclain_PECO.png" alt="Lisa Mcclain PECO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PEP</div>
+              <img src="../timing_charts/Lisa_Mcclain_PEP.png" alt="Lisa Mcclain PEP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PFG</div>
+              <img src="../timing_charts/Lisa_Mcclain_PFG.png" alt="Lisa Mcclain PFG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PFGC</div>
+              <img src="../timing_charts/Lisa_Mcclain_PFGC.png" alt="Lisa Mcclain PFGC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PII</div>
+              <img src="../timing_charts/Lisa_Mcclain_PII.png" alt="Lisa Mcclain PII" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PLTR</div>
+              <img src="../timing_charts/Lisa_Mcclain_PLTR.png" alt="Lisa Mcclain PLTR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PSTG</div>
+              <img src="../timing_charts/Lisa_Mcclain_PSTG.png" alt="Lisa Mcclain PSTG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PWR</div>
+              <img src="../timing_charts/Lisa_Mcclain_PWR.png" alt="Lisa Mcclain PWR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PYPL</div>
+              <img src="../timing_charts/Lisa_Mcclain_PYPL.png" alt="Lisa Mcclain PYPL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">QLYS</div>
+              <img src="../timing_charts/Lisa_Mcclain_QLYS.png" alt="Lisa Mcclain QLYS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RBA</div>
+              <img src="../timing_charts/Lisa_Mcclain_RBA.png" alt="Lisa Mcclain RBA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RF</div>
+              <img src="../timing_charts/Lisa_Mcclain_RF.png" alt="Lisa Mcclain RF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RGEN</div>
+              <img src="../timing_charts/Lisa_Mcclain_RGEN.png" alt="Lisa Mcclain RGEN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RGLD</div>
+              <img src="../timing_charts/Lisa_Mcclain_RGLD.png" alt="Lisa Mcclain RGLD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RIO</div>
+              <img src="../timing_charts/Lisa_Mcclain_RIO.png" alt="Lisa Mcclain RIO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ROIV</div>
+              <img src="../timing_charts/Lisa_Mcclain_ROIV.png" alt="Lisa Mcclain ROIV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SAIC</div>
+              <img src="../timing_charts/Lisa_Mcclain_SAIC.png" alt="Lisa Mcclain SAIC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SAP</div>
+              <img src="../timing_charts/Lisa_Mcclain_SAP.png" alt="Lisa Mcclain SAP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SATS</div>
+              <img src="../timing_charts/Lisa_Mcclain_SATS.png" alt="Lisa Mcclain SATS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SBCF</div>
+              <img src="../timing_charts/Lisa_Mcclain_SBCF.png" alt="Lisa Mcclain SBCF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SE</div>
+              <img src="../timing_charts/Lisa_Mcclain_SE.png" alt="Lisa Mcclain SE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SF</div>
+              <img src="../timing_charts/Lisa_Mcclain_SF.png" alt="Lisa Mcclain SF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SFM</div>
+              <img src="../timing_charts/Lisa_Mcclain_SFM.png" alt="Lisa Mcclain SFM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SGI</div>
+              <img src="../timing_charts/Lisa_Mcclain_SGI.png" alt="Lisa Mcclain SGI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SHW</div>
+              <img src="../timing_charts/Lisa_Mcclain_SHW.png" alt="Lisa Mcclain SHW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SJM</div>
+              <img src="../timing_charts/Lisa_Mcclain_SJM.png" alt="Lisa Mcclain SJM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SLB</div>
+              <img src="../timing_charts/Lisa_Mcclain_SLB.png" alt="Lisa Mcclain SLB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SNDK</div>
+              <img src="../timing_charts/Lisa_Mcclain_SNDK.png" alt="Lisa Mcclain SNDK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SNN</div>
+              <img src="../timing_charts/Lisa_Mcclain_SNN.png" alt="Lisa Mcclain SNN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SNPS</div>
+              <img src="../timing_charts/Lisa_Mcclain_SNPS.png" alt="Lisa Mcclain SNPS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SNY</div>
+              <img src="../timing_charts/Lisa_Mcclain_SNY.png" alt="Lisa Mcclain SNY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SONY</div>
+              <img src="../timing_charts/Lisa_Mcclain_SONY.png" alt="Lisa Mcclain SONY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SR</div>
+              <img src="../timing_charts/Lisa_Mcclain_SR.png" alt="Lisa Mcclain SR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SRE</div>
+              <img src="../timing_charts/Lisa_Mcclain_SRE.png" alt="Lisa Mcclain SRE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">STX</div>
+              <img src="../timing_charts/Lisa_Mcclain_STX.png" alt="Lisa Mcclain STX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">STZ</div>
+              <img src="../timing_charts/Lisa_Mcclain_STZ.png" alt="Lisa Mcclain STZ" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SYY</div>
+              <img src="../timing_charts/Lisa_Mcclain_SYY.png" alt="Lisa Mcclain SYY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Subholding_CHARLESSCHWABBROKERAGEACCOUNT548</div>
+              <img src="../timing_charts/Lisa_Mcclain_Subholding_CHARLESSCHWABBROKERAGEACCOUNT548.png" alt="Lisa Mcclain Subholding_CHARLESSCHWABBROKERAGEACCOUNT548" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TCOM</div>
+              <img src="../timing_charts/Lisa_Mcclain_TCOM.png" alt="Lisa Mcclain TCOM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TER</div>
+              <img src="../timing_charts/Lisa_Mcclain_TER.png" alt="Lisa Mcclain TER" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TM</div>
+              <img src="../timing_charts/Lisa_Mcclain_TM.png" alt="Lisa Mcclain TM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TMHC</div>
+              <img src="../timing_charts/Lisa_Mcclain_TMHC.png" alt="Lisa Mcclain TMHC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TMO</div>
+              <img src="../timing_charts/Lisa_Mcclain_TMO.png" alt="Lisa Mcclain TMO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TMUS</div>
+              <img src="../timing_charts/Lisa_Mcclain_TMUS.png" alt="Lisa Mcclain TMUS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TNL</div>
+              <img src="../timing_charts/Lisa_Mcclain_TNL.png" alt="Lisa Mcclain TNL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TSLA</div>
+              <img src="../timing_charts/Lisa_Mcclain_TSLA.png" alt="Lisa Mcclain TSLA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TSM</div>
+              <img src="../timing_charts/Lisa_Mcclain_TSM.png" alt="Lisa Mcclain TSM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TTD</div>
+              <img src="../timing_charts/Lisa_Mcclain_TTD.png" alt="Lisa Mcclain TTD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TXN</div>
+              <img src="../timing_charts/Lisa_Mcclain_TXN.png" alt="Lisa Mcclain TXN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TXRH</div>
+              <img src="../timing_charts/Lisa_Mcclain_TXRH.png" alt="Lisa Mcclain TXRH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TXT</div>
+              <img src="../timing_charts/Lisa_Mcclain_TXT.png" alt="Lisa Mcclain TXT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TYL</div>
+              <img src="../timing_charts/Lisa_Mcclain_TYL.png" alt="Lisa Mcclain TYL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UBER</div>
+              <img src="../timing_charts/Lisa_Mcclain_UBER.png" alt="Lisa Mcclain UBER" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UBSI</div>
+              <img src="../timing_charts/Lisa_Mcclain_UBSI.png" alt="Lisa Mcclain UBSI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UE</div>
+              <img src="../timing_charts/Lisa_Mcclain_UE.png" alt="Lisa Mcclain UE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNH</div>
+              <img src="../timing_charts/Lisa_Mcclain_UNH.png" alt="Lisa Mcclain UNH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNM</div>
+              <img src="../timing_charts/Lisa_Mcclain_UNM.png" alt="Lisa Mcclain UNM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UPS</div>
+              <img src="../timing_charts/Lisa_Mcclain_UPS.png" alt="Lisa Mcclain UPS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UTHR</div>
+              <img src="../timing_charts/Lisa_Mcclain_UTHR.png" alt="Lisa Mcclain UTHR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">V</div>
+              <img src="../timing_charts/Lisa_Mcclain_V.png" alt="Lisa Mcclain V" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VALE</div>
+              <img src="../timing_charts/Lisa_Mcclain_VALE.png" alt="Lisa Mcclain VALE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VNT</div>
+              <img src="../timing_charts/Lisa_Mcclain_VNT.png" alt="Lisa Mcclain VNT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VRT</div>
+              <img src="../timing_charts/Lisa_Mcclain_VRT.png" alt="Lisa Mcclain VRT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VRTX</div>
+              <img src="../timing_charts/Lisa_Mcclain_VRTX.png" alt="Lisa Mcclain VRTX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VST</div>
+              <img src="../timing_charts/Lisa_Mcclain_VST.png" alt="Lisa Mcclain VST" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WMS</div>
+              <img src="../timing_charts/Lisa_Mcclain_WMS.png" alt="Lisa Mcclain WMS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WMT</div>
+              <img src="../timing_charts/Lisa_Mcclain_WMT.png" alt="Lisa Mcclain WMT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WRB</div>
+              <img src="../timing_charts/Lisa_Mcclain_WRB.png" alt="Lisa Mcclain WRB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WSFS</div>
+              <img src="../timing_charts/Lisa_Mcclain_WSFS.png" alt="Lisa Mcclain WSFS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WTRG</div>
+              <img src="../timing_charts/Lisa_Mcclain_WTRG.png" alt="Lisa Mcclain WTRG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WYNN</div>
+              <img src="../timing_charts/Lisa_Mcclain_WYNN.png" alt="Lisa Mcclain WYNN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">XOM</div>
+              <img src="../timing_charts/Lisa_Mcclain_XOM.png" alt="Lisa Mcclain XOM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ZTS</div>
+              <img src="../timing_charts/Lisa_Mcclain_ZTS.png" alt="Lisa Mcclain ZTS" loading="lazy">
+            </div>
+</div>
+
+</div>
+
+<div class="tab-content" id="tab-attributes">
+  
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Mid | Banks - Diversified</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 100%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_MCap___Industry_Mid___Banks_-_Diversified.png" alt="MCap × Industry=Mid | Banks - Diversified" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Lobby365 × OBuyers: Yes | 5+</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 88%</span>
+                  <span class="stat-pill slugging">Slugging 88%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Lobby365___OBuyers_Yes___5_.png" alt="Lobby365 × OBuyers=Yes | 5+" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OBuyers: Mag7 | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 86%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OBuyers_Mag7___1-2.png" alt="Industry × OBuyers=Mag7 | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Capital Markets | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 86%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OldSurge_Capital_Markets___No.png" alt="Industry × OldSurge=Capital Markets | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OBuyers: Software - Infrastructure | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 86%</span>
+                  <span class="stat-pill slugging">Slugging 114%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OBuyers_Software_-_Infrastructure___1-2.png" alt="Industry × OBuyers=Software - Infrastructure | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Capital Markets | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 86%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Spend_Capital_Markets___Q1.png" alt="Industry × Spend=Capital Markets | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Capital Markets</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 86%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry_Capital_Markets.png" alt="Industry=Capital Markets" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Capital Markets | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 86%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Committee_Capital_Markets___Yes.png" alt="Industry × Committee=Capital Markets | Yes" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Residential Construction | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 80%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Spend_Residential_Construction___Q1.png" alt="Industry × Spend=Residential Construction | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Residential Construction | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 80%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OldSurge_Residential_Construction___No.png" alt="Industry × OldSurge=Residential Construction | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Residential Construction | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 80%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Committee_Residential_Construction___No.png" alt="Industry × Committee=Residential Construction | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Big | Capital Markets</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 80%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_MCap___Industry_Big___Capital_Markets.png" alt="MCap × Industry=Big | Capital Markets" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Residential Construction</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 80%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry_Residential_Construction.png" alt="Industry=Residential Construction" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OBuyers: Semiconductors | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 63%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OBuyers_Semiconductors___1-2.png" alt="Industry × OBuyers=Semiconductors | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Small | Scientific &amp; Technical Instruments</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 140%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_MCap___Industry_Small___Scientific___Technical_Instruments.png" alt="MCap × Industry=Small | Scientific &amp; Technical Instruments" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Subholding: CHARLESSCHWABBROKERAGEACCOUNT548</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">10 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Subholding_CHARLESSCHWABBROKERAGEACCOUNT548.png" alt="Subholding=CHARLESSCHWABBROKERAGEACCOUNT548" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Asset Management | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Committee_Asset_Management___Yes.png" alt="Industry × Committee=Asset Management | Yes" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Lobby365 × Industry: Yes | Specialty Industrial Machinery</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Lobby365___Industry_Yes___Specialty_Industrial_Machinery.png" alt="Lobby365 × Industry=Yes | Specialty Industrial Machinery" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Asset Management | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Spend_Asset_Management___Q1.png" alt="Industry × Spend=Asset Management | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Asset Management</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry_Asset_Management.png" alt="Industry=Asset Management" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Asset Management | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OldSurge_Asset_Management___No.png" alt="Industry × OldSurge=Asset Management | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OBuyers: Software - Application | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">15 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 73%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OBuyers_Software_-_Application___1-2.png" alt="Industry × OBuyers=Software - Application | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OSellers: Mag7 | 3-4</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 64%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OSellers_Mag7___3-4.png" alt="Industry × OSellers=Mag7 | 3-4" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OBuyers × OSellers: 5+ | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 57%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_OBuyers___OSellers_5____1-2.png" alt="OBuyers × OSellers=5+ | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OSellers: Mega | 3-4</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">17 Trades</span>
+                  <span class="stat-pill batting">Batting 53%</span>
+                  <span class="stat-pill slugging">Slugging 59%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_MCap___OSellers_Mega___3-4.png" alt="MCap × OSellers=Mega | 3-4" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Lobby365 × Industry: Yes | Diagnostics &amp; Research</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Lobby365___Industry_Yes___Diagnostics___Research.png" alt="Lobby365 × Industry=Yes | Diagnostics &amp; Research" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Lobby365 × Industry: Yes | Insurance - Life</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Lobby365___Industry_Yes___Insurance_-_Life.png" alt="Lobby365 × Industry=Yes | Insurance - Life" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Banks - Diversified | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OldSurge_Banks_-_Diversified___No.png" alt="Industry × OldSurge=Banks - Diversified | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Banks - Diversified | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Spend_Banks_-_Diversified___Q1.png" alt="Industry × Spend=Banks - Diversified | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Banks - Diversified | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___Committee_Banks_-_Diversified___Yes.png" alt="Industry × Committee=Banks - Diversified | Yes" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OSellers: Healthcare Plans | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OSellers_Healthcare_Plans___1-2.png" alt="Industry × OSellers=Healthcare Plans | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OBuyers: Specialty Industrial Machinery | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry___OBuyers_Specialty_Industrial_Machinery___1-2.png" alt="Industry × OBuyers=Specialty Industrial Machinery | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers × Committee: 3-4 | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">18 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 56%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_OSellers___Committee_3-4___No.png" alt="OSellers × Committee=3-4 | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Banks - Diversified</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Lisa_Mcclain_Industry_Banks_-_Diversified.png" alt="Industry=Banks - Diversified" loading="lazy">
+            </div>
+
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  if (tab === 'timing') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('tab-timing').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('tab-attributes').classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gil Cisneros — Congressional Trading Talents</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 20px;
+  }
+  a { color: #0f3460; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .header h1 { font-size: 1.8em; margin-bottom: 8px; }
+  .header p { opacity: 0.85; font-size: 1.05em; }
+  .header .stats {
+    display: flex; justify-content: center; gap: 20px;
+    margin-top: 15px; font-size: 0.9em; flex-wrap: wrap;
+  }
+  .header .stats span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px; border-radius: 20px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: border-color 0.2s;
+  }
+  .back-link:hover { border-color: #0f3460; text-decoration: none; }
+  .tabs {
+    display: flex;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ddd;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .tab-btn:first-child { border-radius: 8px 0 0 8px; }
+  .tab-btn:last-child { border-radius: 0 8px 8px 0; }
+  .tab-btn.active {
+    background: #0f3460;
+    color: white;
+    border-color: #0f3460;
+    border-bottom-color: #00AA44;
+  }
+  .tab-btn:hover:not(.active) { background: #f5f5f5; }
+  .tab-content { display: none; max-width: 1000px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  .writeup {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    line-height: 1.7;
+    font-size: 0.95em;
+    white-space: pre-line;
+  }
+  .writeup h3 { margin-bottom: 10px; color: #1a1a2e; }
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-header h3 { font-size: 1.1em; }
+  .card img { width: 100%; display: block; }
+  .stat-pill {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.82em;
+    font-weight: 600;
+    display: inline-block;
+    margin: 2px;
+  }
+  .stat-pill.batting { background: #e8f5e9; color: #2e7d32; }
+  .stat-pill.slugging { background: #e3f2fd; color: #0f3460; }
+  .stat-pill.trades { background: #e8eaf6; color: #283593; }
+  .stat-pill.txn { background: #f3e5f5; color: #6a1b9a; }
+  .stat-pill.dim { background: #fff3e0; color: #e65100; }
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chart-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .chart-card img { width: 100%; display: block; }
+  .chart-card .chart-label {
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 0.95em;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+  }
+  .no-data {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1.05em;
+  }
+  @media (max-width: 768px) {
+    .header .stats { gap: 10px; font-size: 0.88em; }
+    .tab-btn { font-size: 0.95em; padding: 12px 14px; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .header { padding: 18px 14px; border-radius: 10px; }
+    .header h1 { font-size: 1.3em; }
+    .header p { font-size: 0.9em; }
+    .header .stats { gap: 6px; font-size: 0.82em; margin-top: 8px; }
+    .header .stats span { padding: 4px 10px; }
+    .back-link { font-size: 0.88em; padding: 6px 14px; margin-bottom: 12px; }
+    .writeup { padding: 14px; font-size: 0.9em; }
+    .tabs { flex-direction: column; margin-bottom: 14px; }
+    .tab-btn { border-radius: 8px !important; padding: 12px 16px; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .card-header h3 { font-size: 1em; }
+    .stat-pill { font-size: 0.78em; padding: 3px 8px; }
+    .charts-grid { gap: 14px; }
+  }
+
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to All Politicians</a>
+
+<div class="header">
+  <h1>Gil Cisneros</h1>
+  <p>Trading talent profile — ticker timing and attribute analysis</p>
+  <div class="stats">
+    <span>2117 Total Trades</span>
+    <span>27 Ticker Talents</span>
+    <span>37 Attribute Talents</span>
+    <span>36 Attribute Charts</span>
+  </div>
+</div>
+
+<div class="writeup">
+  <h3>Talent Summary</h3>
+  Gil Cisneros has 2117 scored trades (1214 purchases, 903 sales).
+
+WHAT THEY&#x27;RE GOOD AT: HAL purchases (100% batting, 3 trades); WAT purchases (100% batting, 4 trades); MTX purchases (100% batting, 3 trades); TRGP purchases (100% batting, 3 trades); MDB purchases (100% batting, 3 trades); Lobby365 × Industry=Yes | Biotechnology purchases (83% batting).
+
+WHAT THEY&#x27;RE BAD AT: MCap × Industry=Big | Capital Markets (38% whiff); Industry × Spend=Specialty Business Services | Q1 (38% whiff); Industry × OldSurge=Specialty Business Services | No (38% whiff).
+
+NOTABLE PATTERNS: Top sectors: Technology (345), Healthcare (323), Industrials (262).
+</div>
+
+<div class="tabs">
+  <div class="tab-btn active" onclick="switchTab('timing')">Ticker Timing</div>
+  <div class="tab-btn" onclick="switchTab('attributes')">Attribute Talents</div>
+</div>
+
+<div class="tab-content active" id="tab-timing">
+  <div class="charts-grid">
+
+            <div class="chart-card">
+              <div class="chart-label">AAPL</div>
+              <img src="../timing_charts/Gil_Cisneros_AAPL.png" alt="Gil Cisneros AAPL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ABCB</div>
+              <img src="../timing_charts/Gil_Cisneros_ABCB.png" alt="Gil Cisneros ABCB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AGIO</div>
+              <img src="../timing_charts/Gil_Cisneros_AGIO.png" alt="Gil Cisneros AGIO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AIG</div>
+              <img src="../timing_charts/Gil_Cisneros_AIG.png" alt="Gil Cisneros AIG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALB</div>
+              <img src="../timing_charts/Gil_Cisneros_ALB.png" alt="Gil Cisneros ALB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALGN</div>
+              <img src="../timing_charts/Gil_Cisneros_ALGN.png" alt="Gil Cisneros ALGN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALKT</div>
+              <img src="../timing_charts/Gil_Cisneros_ALKT.png" alt="Gil Cisneros ALKT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMAT</div>
+              <img src="../timing_charts/Gil_Cisneros_AMAT.png" alt="Gil Cisneros AMAT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMRX</div>
+              <img src="../timing_charts/Gil_Cisneros_AMRX.png" alt="Gil Cisneros AMRX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMTD</div>
+              <img src="../timing_charts/Gil_Cisneros_AMTD.png" alt="Gil Cisneros AMTD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMZN</div>
+              <img src="../timing_charts/Gil_Cisneros_AMZN.png" alt="Gil Cisneros AMZN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ANET</div>
+              <img src="../timing_charts/Gil_Cisneros_ANET.png" alt="Gil Cisneros ANET" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AON</div>
+              <img src="../timing_charts/Gil_Cisneros_AON.png" alt="Gil Cisneros AON" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">APA</div>
+              <img src="../timing_charts/Gil_Cisneros_APA.png" alt="Gil Cisneros APA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">APG</div>
+              <img src="../timing_charts/Gil_Cisneros_APG.png" alt="Gil Cisneros APG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">APP</div>
+              <img src="../timing_charts/Gil_Cisneros_APP.png" alt="Gil Cisneros APP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ARIS</div>
+              <img src="../timing_charts/Gil_Cisneros_ARIS.png" alt="Gil Cisneros ARIS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ARMK</div>
+              <img src="../timing_charts/Gil_Cisneros_ARMK.png" alt="Gil Cisneros ARMK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ASML</div>
+              <img src="../timing_charts/Gil_Cisneros_ASML.png" alt="Gil Cisneros ASML" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ATRC</div>
+              <img src="../timing_charts/Gil_Cisneros_ATRC.png" alt="Gil Cisneros ATRC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AVGO</div>
+              <img src="../timing_charts/Gil_Cisneros_AVGO.png" alt="Gil Cisneros AVGO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AVNT</div>
+              <img src="../timing_charts/Gil_Cisneros_AVNT.png" alt="Gil Cisneros AVNT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AZN</div>
+              <img src="../timing_charts/Gil_Cisneros_AZN.png" alt="Gil Cisneros AZN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BA</div>
+              <img src="../timing_charts/Gil_Cisneros_BA.png" alt="Gil Cisneros BA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BABA</div>
+              <img src="../timing_charts/Gil_Cisneros_BABA.png" alt="Gil Cisneros BABA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BABAF</div>
+              <img src="../timing_charts/Gil_Cisneros_BABAF.png" alt="Gil Cisneros BABAF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BBIO</div>
+              <img src="../timing_charts/Gil_Cisneros_BBIO.png" alt="Gil Cisneros BBIO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BCLYF</div>
+              <img src="../timing_charts/Gil_Cisneros_BCLYF.png" alt="Gil Cisneros BCLYF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BDC</div>
+              <img src="../timing_charts/Gil_Cisneros_BDC.png" alt="Gil Cisneros BDC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BE</div>
+              <img src="../timing_charts/Gil_Cisneros_BE.png" alt="Gil Cisneros BE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BIIB</div>
+              <img src="../timing_charts/Gil_Cisneros_BIIB.png" alt="Gil Cisneros BIIB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BKNG</div>
+              <img src="../timing_charts/Gil_Cisneros_BKNG.png" alt="Gil Cisneros BKNG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BKR</div>
+              <img src="../timing_charts/Gil_Cisneros_BKR.png" alt="Gil Cisneros BKR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BMY</div>
+              <img src="../timing_charts/Gil_Cisneros_BMY.png" alt="Gil Cisneros BMY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BOOT</div>
+              <img src="../timing_charts/Gil_Cisneros_BOOT.png" alt="Gil Cisneros BOOT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BR</div>
+              <img src="../timing_charts/Gil_Cisneros_BR.png" alt="Gil Cisneros BR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BRKB</div>
+              <img src="../timing_charts/Gil_Cisneros_BRKB.png" alt="Gil Cisneros BRKB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BSX</div>
+              <img src="../timing_charts/Gil_Cisneros_BSX.png" alt="Gil Cisneros BSX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BWIN</div>
+              <img src="../timing_charts/Gil_Cisneros_BWIN.png" alt="Gil Cisneros BWIN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">C</div>
+              <img src="../timing_charts/Gil_Cisneros_C.png" alt="Gil Cisneros C" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CACI</div>
+              <img src="../timing_charts/Gil_Cisneros_CACI.png" alt="Gil Cisneros CACI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CAG</div>
+              <img src="../timing_charts/Gil_Cisneros_CAG.png" alt="Gil Cisneros CAG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CAH</div>
+              <img src="../timing_charts/Gil_Cisneros_CAH.png" alt="Gil Cisneros CAH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CAT</div>
+              <img src="../timing_charts/Gil_Cisneros_CAT.png" alt="Gil Cisneros CAT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CB</div>
+              <img src="../timing_charts/Gil_Cisneros_CB.png" alt="Gil Cisneros CB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CBOE</div>
+              <img src="../timing_charts/Gil_Cisneros_CBOE.png" alt="Gil Cisneros CBOE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CCI</div>
+              <img src="../timing_charts/Gil_Cisneros_CCI.png" alt="Gil Cisneros CCI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CENT</div>
+              <img src="../timing_charts/Gil_Cisneros_CENT.png" alt="Gil Cisneros CENT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CF</div>
+              <img src="../timing_charts/Gil_Cisneros_CF.png" alt="Gil Cisneros CF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CFG</div>
+              <img src="../timing_charts/Gil_Cisneros_CFG.png" alt="Gil Cisneros CFG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CGNX</div>
+              <img src="../timing_charts/Gil_Cisneros_CGNX.png" alt="Gil Cisneros CGNX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CHDN</div>
+              <img src="../timing_charts/Gil_Cisneros_CHDN.png" alt="Gil Cisneros CHDN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CL</div>
+              <img src="../timing_charts/Gil_Cisneros_CL.png" alt="Gil Cisneros CL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CLX</div>
+              <img src="../timing_charts/Gil_Cisneros_CLX.png" alt="Gil Cisneros CLX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CMCSA</div>
+              <img src="../timing_charts/Gil_Cisneros_CMCSA.png" alt="Gil Cisneros CMCSA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CME</div>
+              <img src="../timing_charts/Gil_Cisneros_CME.png" alt="Gil Cisneros CME" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CMG</div>
+              <img src="../timing_charts/Gil_Cisneros_CMG.png" alt="Gil Cisneros CMG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CNC</div>
+              <img src="../timing_charts/Gil_Cisneros_CNC.png" alt="Gil Cisneros CNC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CNS</div>
+              <img src="../timing_charts/Gil_Cisneros_CNS.png" alt="Gil Cisneros CNS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COIN</div>
+              <img src="../timing_charts/Gil_Cisneros_COIN.png" alt="Gil Cisneros COIN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COST</div>
+              <img src="../timing_charts/Gil_Cisneros_COST.png" alt="Gil Cisneros COST" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COTY</div>
+              <img src="../timing_charts/Gil_Cisneros_COTY.png" alt="Gil Cisneros COTY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CP</div>
+              <img src="../timing_charts/Gil_Cisneros_CP.png" alt="Gil Cisneros CP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CPRI</div>
+              <img src="../timing_charts/Gil_Cisneros_CPRI.png" alt="Gil Cisneros CPRI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CRNC</div>
+              <img src="../timing_charts/Gil_Cisneros_CRNC.png" alt="Gil Cisneros CRNC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSGP</div>
+              <img src="../timing_charts/Gil_Cisneros_CSGP.png" alt="Gil Cisneros CSGP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSL</div>
+              <img src="../timing_charts/Gil_Cisneros_CSL.png" alt="Gil Cisneros CSL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSW</div>
+              <img src="../timing_charts/Gil_Cisneros_CSW.png" alt="Gil Cisneros CSW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CTVA</div>
+              <img src="../timing_charts/Gil_Cisneros_CTVA.png" alt="Gil Cisneros CTVA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CVS</div>
+              <img src="../timing_charts/Gil_Cisneros_CVS.png" alt="Gil Cisneros CVS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">D</div>
+              <img src="../timing_charts/Gil_Cisneros_D.png" alt="Gil Cisneros D" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DAVA</div>
+              <img src="../timing_charts/Gil_Cisneros_DAVA.png" alt="Gil Cisneros DAVA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DAY</div>
+              <img src="../timing_charts/Gil_Cisneros_DAY.png" alt="Gil Cisneros DAY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DD</div>
+              <img src="../timing_charts/Gil_Cisneros_DD.png" alt="Gil Cisneros DD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DECK</div>
+              <img src="../timing_charts/Gil_Cisneros_DECK.png" alt="Gil Cisneros DECK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DG</div>
+              <img src="../timing_charts/Gil_Cisneros_DG.png" alt="Gil Cisneros DG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DHI</div>
+              <img src="../timing_charts/Gil_Cisneros_DHI.png" alt="Gil Cisneros DHI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DIS</div>
+              <img src="../timing_charts/Gil_Cisneros_DIS.png" alt="Gil Cisneros DIS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DLR</div>
+              <img src="../timing_charts/Gil_Cisneros_DLR.png" alt="Gil Cisneros DLR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DOW</div>
+              <img src="../timing_charts/Gil_Cisneros_DOW.png" alt="Gil Cisneros DOW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DOX</div>
+              <img src="../timing_charts/Gil_Cisneros_DOX.png" alt="Gil Cisneros DOX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DSGX</div>
+              <img src="../timing_charts/Gil_Cisneros_DSGX.png" alt="Gil Cisneros DSGX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DXC</div>
+              <img src="../timing_charts/Gil_Cisneros_DXC.png" alt="Gil Cisneros DXC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EBS</div>
+              <img src="../timing_charts/Gil_Cisneros_EBS.png" alt="Gil Cisneros EBS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EDU</div>
+              <img src="../timing_charts/Gil_Cisneros_EDU.png" alt="Gil Cisneros EDU" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EL</div>
+              <img src="../timing_charts/Gil_Cisneros_EL.png" alt="Gil Cisneros EL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ELAN</div>
+              <img src="../timing_charts/Gil_Cisneros_ELAN.png" alt="Gil Cisneros ELAN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ELV</div>
+              <img src="../timing_charts/Gil_Cisneros_ELV.png" alt="Gil Cisneros ELV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ENTG</div>
+              <img src="../timing_charts/Gil_Cisneros_ENTG.png" alt="Gil Cisneros ENTG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ERIC</div>
+              <img src="../timing_charts/Gil_Cisneros_ERIC.png" alt="Gil Cisneros ERIC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EXAS</div>
+              <img src="../timing_charts/Gil_Cisneros_EXAS.png" alt="Gil Cisneros EXAS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EXC</div>
+              <img src="../timing_charts/Gil_Cisneros_EXC.png" alt="Gil Cisneros EXC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">F</div>
+              <img src="../timing_charts/Gil_Cisneros_F.png" alt="Gil Cisneros F" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FCX</div>
+              <img src="../timing_charts/Gil_Cisneros_FCX.png" alt="Gil Cisneros FCX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FERG</div>
+              <img src="../timing_charts/Gil_Cisneros_FERG.png" alt="Gil Cisneros FERG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FISV</div>
+              <img src="../timing_charts/Gil_Cisneros_FISV.png" alt="Gil Cisneros FISV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FITB</div>
+              <img src="../timing_charts/Gil_Cisneros_FITB.png" alt="Gil Cisneros FITB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FIVE</div>
+              <img src="../timing_charts/Gil_Cisneros_FIVE.png" alt="Gil Cisneros FIVE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FLEX</div>
+              <img src="../timing_charts/Gil_Cisneros_FLEX.png" alt="Gil Cisneros FLEX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FOXA</div>
+              <img src="../timing_charts/Gil_Cisneros_FOXA.png" alt="Gil Cisneros FOXA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GBCI</div>
+              <img src="../timing_charts/Gil_Cisneros_GBCI.png" alt="Gil Cisneros GBCI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GD</div>
+              <img src="../timing_charts/Gil_Cisneros_GD.png" alt="Gil Cisneros GD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GDDY</div>
+              <img src="../timing_charts/Gil_Cisneros_GDDY.png" alt="Gil Cisneros GDDY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GE</div>
+              <img src="../timing_charts/Gil_Cisneros_GE.png" alt="Gil Cisneros GE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GEV</div>
+              <img src="../timing_charts/Gil_Cisneros_GEV.png" alt="Gil Cisneros GEV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GIS</div>
+              <img src="../timing_charts/Gil_Cisneros_GIS.png" alt="Gil Cisneros GIS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GLOB</div>
+              <img src="../timing_charts/Gil_Cisneros_GLOB.png" alt="Gil Cisneros GLOB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GMED</div>
+              <img src="../timing_charts/Gil_Cisneros_GMED.png" alt="Gil Cisneros GMED" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GOOGL</div>
+              <img src="../timing_charts/Gil_Cisneros_GOOGL.png" alt="Gil Cisneros GOOGL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GOOS</div>
+              <img src="../timing_charts/Gil_Cisneros_GOOS.png" alt="Gil Cisneros GOOS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GPN</div>
+              <img src="../timing_charts/Gil_Cisneros_GPN.png" alt="Gil Cisneros GPN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GWW</div>
+              <img src="../timing_charts/Gil_Cisneros_GWW.png" alt="Gil Cisneros GWW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HAL</div>
+              <img src="../timing_charts/Gil_Cisneros_HAL.png" alt="Gil Cisneros HAL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HALO</div>
+              <img src="../timing_charts/Gil_Cisneros_HALO.png" alt="Gil Cisneros HALO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HBAN</div>
+              <img src="../timing_charts/Gil_Cisneros_HBAN.png" alt="Gil Cisneros HBAN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HD</div>
+              <img src="../timing_charts/Gil_Cisneros_HD.png" alt="Gil Cisneros HD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HELE</div>
+              <img src="../timing_charts/Gil_Cisneros_HELE.png" alt="Gil Cisneros HELE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HESAF</div>
+              <img src="../timing_charts/Gil_Cisneros_HESAF.png" alt="Gil Cisneros HESAF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HLI</div>
+              <img src="../timing_charts/Gil_Cisneros_HLI.png" alt="Gil Cisneros HLI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HLIO</div>
+              <img src="../timing_charts/Gil_Cisneros_HLIO.png" alt="Gil Cisneros HLIO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HMN</div>
+              <img src="../timing_charts/Gil_Cisneros_HMN.png" alt="Gil Cisneros HMN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HOG</div>
+              <img src="../timing_charts/Gil_Cisneros_HOG.png" alt="Gil Cisneros HOG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HON</div>
+              <img src="../timing_charts/Gil_Cisneros_HON.png" alt="Gil Cisneros HON" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HOOD</div>
+              <img src="../timing_charts/Gil_Cisneros_HOOD.png" alt="Gil Cisneros HOOD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HQY</div>
+              <img src="../timing_charts/Gil_Cisneros_HQY.png" alt="Gil Cisneros HQY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HRB</div>
+              <img src="../timing_charts/Gil_Cisneros_HRB.png" alt="Gil Cisneros HRB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HUM</div>
+              <img src="../timing_charts/Gil_Cisneros_HUM.png" alt="Gil Cisneros HUM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ICFI</div>
+              <img src="../timing_charts/Gil_Cisneros_ICFI.png" alt="Gil Cisneros ICFI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ICUI</div>
+              <img src="../timing_charts/Gil_Cisneros_ICUI.png" alt="Gil Cisneros ICUI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IDXX</div>
+              <img src="../timing_charts/Gil_Cisneros_IDXX.png" alt="Gil Cisneros IDXX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">INTA</div>
+              <img src="../timing_charts/Gil_Cisneros_INTA.png" alt="Gil Cisneros INTA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">INTC</div>
+              <img src="../timing_charts/Gil_Cisneros_INTC.png" alt="Gil Cisneros INTC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">INTU</div>
+              <img src="../timing_charts/Gil_Cisneros_INTU.png" alt="Gil Cisneros INTU" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IP</div>
+              <img src="../timing_charts/Gil_Cisneros_IP.png" alt="Gil Cisneros IP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IPG</div>
+              <img src="../timing_charts/Gil_Cisneros_IPG.png" alt="Gil Cisneros IPG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IR</div>
+              <img src="../timing_charts/Gil_Cisneros_IR.png" alt="Gil Cisneros IR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IRM</div>
+              <img src="../timing_charts/Gil_Cisneros_IRM.png" alt="Gil Cisneros IRM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IT</div>
+              <img src="../timing_charts/Gil_Cisneros_IT.png" alt="Gil Cisneros IT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ITT</div>
+              <img src="../timing_charts/Gil_Cisneros_ITT.png" alt="Gil Cisneros ITT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IVZ</div>
+              <img src="../timing_charts/Gil_Cisneros_IVZ.png" alt="Gil Cisneros IVZ" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Industrial_Distribution</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry_Industrial_Distribution.png" alt="Gil Cisneros Industry_Industrial_Distribution" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Oil___Gas_Midstream</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry_Oil___Gas_Midstream.png" alt="Gil Cisneros Industry_Oil___Gas_Midstream" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Scientific___Technical_Instruments</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry_Scientific___Technical_Instruments.png" alt="Gil Cisneros Industry_Scientific___Technical_Instruments" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Specialty_Business_Services</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry_Specialty_Business_Services.png" alt="Gil Cisneros Industry_Specialty_Business_Services" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Industrial_Distribution___Yes</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Committee_Industrial_Distribution___Yes.png" alt="Gil Cisneros Industry___Committee_Industrial_Distribution___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Oil___Gas_Midstream___No</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Committee_Oil___Gas_Midstream___No.png" alt="Gil Cisneros Industry___Committee_Oil___Gas_Midstream___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Scientific___Technical_Instruments___Yes</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Committee_Scientific___Technical_Instruments___Yes.png" alt="Gil Cisneros Industry___Committee_Scientific___Technical_Instruments___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Specialty_Business_Services___Yes</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Committee_Specialty_Business_Services___Yes.png" alt="Gil Cisneros Industry___Committee_Specialty_Business_Services___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Mag7___1-2</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OBuyers_Mag7___1-2.png" alt="Gil Cisneros Industry___OBuyers_Mag7___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Software_-_Infrastructure___1-2</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OBuyers_Software_-_Infrastructure___1-2.png" alt="Gil Cisneros Industry___OBuyers_Software_-_Infrastructure___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OSellers_Drug_Manufacturers_-_General___1-2</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OSellers_Drug_Manufacturers_-_General___1-2.png" alt="Gil Cisneros Industry___OSellers_Drug_Manufacturers_-_General___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OSellers_Drug_Manufacturers_-_General___3-4</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OSellers_Drug_Manufacturers_-_General___3-4.png" alt="Gil Cisneros Industry___OSellers_Drug_Manufacturers_-_General___3-4" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OSellers_Mag7___5_</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OSellers_Mag7___5_.png" alt="Gil Cisneros Industry___OSellers_Mag7___5_" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Industrial_Distribution___No</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OldSurge_Industrial_Distribution___No.png" alt="Gil Cisneros Industry___OldSurge_Industrial_Distribution___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Oil___Gas_Midstream___No</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OldSurge_Oil___Gas_Midstream___No.png" alt="Gil Cisneros Industry___OldSurge_Oil___Gas_Midstream___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Scientific___Technical_Instruments___No</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OldSurge_Scientific___Technical_Instruments___No.png" alt="Gil Cisneros Industry___OldSurge_Scientific___Technical_Instruments___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Specialty_Business_Services___No</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OldSurge_Specialty_Business_Services___No.png" alt="Gil Cisneros Industry___OldSurge_Specialty_Business_Services___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Industrial_Distribution___Q1</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Spend_Industrial_Distribution___Q1.png" alt="Gil Cisneros Industry___Spend_Industrial_Distribution___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Oil___Gas_Midstream___Q1</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Spend_Oil___Gas_Midstream___Q1.png" alt="Gil Cisneros Industry___Spend_Oil___Gas_Midstream___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Scientific___Technical_Instruments___Q1</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Spend_Scientific___Technical_Instruments___Q1.png" alt="Gil Cisneros Industry___Spend_Scientific___Technical_Instruments___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Specialty_Business_Services___Q1</div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Spend_Specialty_Business_Services___Q1.png" alt="Gil Cisneros Industry___Spend_Specialty_Business_Services___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">JKHY</div>
+              <img src="../timing_charts/Gil_Cisneros_JKHY.png" alt="Gil Cisneros JKHY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">JPM</div>
+              <img src="../timing_charts/Gil_Cisneros_JPM.png" alt="Gil Cisneros JPM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">K</div>
+              <img src="../timing_charts/Gil_Cisneros_K.png" alt="Gil Cisneros K" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KEY</div>
+              <img src="../timing_charts/Gil_Cisneros_KEY.png" alt="Gil Cisneros KEY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KHC</div>
+              <img src="../timing_charts/Gil_Cisneros_KHC.png" alt="Gil Cisneros KHC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KKR</div>
+              <img src="../timing_charts/Gil_Cisneros_KKR.png" alt="Gil Cisneros KKR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KLAC</div>
+              <img src="../timing_charts/Gil_Cisneros_KLAC.png" alt="Gil Cisneros KLAC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KMI</div>
+              <img src="../timing_charts/Gil_Cisneros_KMI.png" alt="Gil Cisneros KMI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KMX</div>
+              <img src="../timing_charts/Gil_Cisneros_KMX.png" alt="Gil Cisneros KMX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KSS</div>
+              <img src="../timing_charts/Gil_Cisneros_KSS.png" alt="Gil Cisneros KSS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LEN</div>
+              <img src="../timing_charts/Gil_Cisneros_LEN.png" alt="Gil Cisneros LEN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LIN</div>
+              <img src="../timing_charts/Gil_Cisneros_LIN.png" alt="Gil Cisneros LIN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LMT</div>
+              <img src="../timing_charts/Gil_Cisneros_LMT.png" alt="Gil Cisneros LMT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LNTH</div>
+              <img src="../timing_charts/Gil_Cisneros_LNTH.png" alt="Gil Cisneros LNTH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LRCX</div>
+              <img src="../timing_charts/Gil_Cisneros_LRCX.png" alt="Gil Cisneros LRCX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LUMN</div>
+              <img src="../timing_charts/Gil_Cisneros_LUMN.png" alt="Gil Cisneros LUMN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LUV</div>
+              <img src="../timing_charts/Gil_Cisneros_LUV.png" alt="Gil Cisneros LUV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LVS</div>
+              <img src="../timing_charts/Gil_Cisneros_LVS.png" alt="Gil Cisneros LVS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LYB</div>
+              <img src="../timing_charts/Gil_Cisneros_LYB.png" alt="Gil Cisneros LYB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LYV</div>
+              <img src="../timing_charts/Gil_Cisneros_LYV.png" alt="Gil Cisneros LYV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___Industry_Yes___Biotechnology</div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___Industry_Yes___Biotechnology.png" alt="Gil Cisneros Lobby365___Industry_Yes___Biotechnology" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___Industry_Yes___Capital_Markets</div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___Industry_Yes___Capital_Markets.png" alt="Gil Cisneros Lobby365___Industry_Yes___Capital_Markets" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___Industry_Yes___Oil___Gas_Midstream</div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___Industry_Yes___Oil___Gas_Midstream.png" alt="Gil Cisneros Lobby365___Industry_Yes___Oil___Gas_Midstream" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___Industry_Yes___Semiconductors</div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___Industry_Yes___Semiconductors.png" alt="Gil Cisneros Lobby365___Industry_Yes___Semiconductors" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___Industry_Yes___Software_-_Infrastructure</div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___Industry_Yes___Software_-_Infrastructure.png" alt="Gil Cisneros Lobby365___Industry_Yes___Software_-_Infrastructure" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Lobby365___OSellers_Yes___3-4</div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___OSellers_Yes___3-4.png" alt="Gil Cisneros Lobby365___OSellers_Yes___3-4" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MA</div>
+              <img src="../timing_charts/Gil_Cisneros_MA.png" alt="Gil Cisneros MA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MAC</div>
+              <img src="../timing_charts/Gil_Cisneros_MAC.png" alt="Gil Cisneros MAC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MBFJF</div>
+              <img src="../timing_charts/Gil_Cisneros_MBFJF.png" alt="Gil Cisneros MBFJF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCHP</div>
+              <img src="../timing_charts/Gil_Cisneros_MCHP.png" alt="Gil Cisneros MCHP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Big___Capital_Markets</div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Big___Capital_Markets.png" alt="Gil Cisneros MCap___Industry_Big___Capital_Markets" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Mega___Semiconductors</div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Mega___Semiconductors.png" alt="Gil Cisneros MCap___Industry_Mega___Semiconductors" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Mid___Drug_Manufacturers_-_General</div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Mid___Drug_Manufacturers_-_General.png" alt="Gil Cisneros MCap___Industry_Mid___Drug_Manufacturers_-_General" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Small___Drug_Manufacturers_-_Specialty___Generic</div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Small___Drug_Manufacturers_-_Specialty___Generic.png" alt="Gil Cisneros MCap___Industry_Small___Drug_Manufacturers_-_Specialty___Generic" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Small___Engineering___Construction</div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Small___Engineering___Construction.png" alt="Gil Cisneros MCap___Industry_Small___Engineering___Construction" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Small___Software_-_Infrastructure</div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Small___Software_-_Infrastructure.png" alt="Gil Cisneros MCap___Industry_Small___Software_-_Infrastructure" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OSellers_Big___3-4</div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___OSellers_Big___3-4.png" alt="Gil Cisneros MCap___OSellers_Big___3-4" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MDB</div>
+              <img src="../timing_charts/Gil_Cisneros_MDB.png" alt="Gil Cisneros MDB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MEDP</div>
+              <img src="../timing_charts/Gil_Cisneros_MEDP.png" alt="Gil Cisneros MEDP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MELI</div>
+              <img src="../timing_charts/Gil_Cisneros_MELI.png" alt="Gil Cisneros MELI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MET</div>
+              <img src="../timing_charts/Gil_Cisneros_MET.png" alt="Gil Cisneros MET" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MGM</div>
+              <img src="../timing_charts/Gil_Cisneros_MGM.png" alt="Gil Cisneros MGM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MHVYF</div>
+              <img src="../timing_charts/Gil_Cisneros_MHVYF.png" alt="Gil Cisneros MHVYF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MKC</div>
+              <img src="../timing_charts/Gil_Cisneros_MKC.png" alt="Gil Cisneros MKC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MOH</div>
+              <img src="../timing_charts/Gil_Cisneros_MOH.png" alt="Gil Cisneros MOH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MRK</div>
+              <img src="../timing_charts/Gil_Cisneros_MRK.png" alt="Gil Cisneros MRK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MS</div>
+              <img src="../timing_charts/Gil_Cisneros_MS.png" alt="Gil Cisneros MS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MSFT</div>
+              <img src="../timing_charts/Gil_Cisneros_MSFT.png" alt="Gil Cisneros MSFT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MTB</div>
+              <img src="../timing_charts/Gil_Cisneros_MTB.png" alt="Gil Cisneros MTB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MTCH</div>
+              <img src="../timing_charts/Gil_Cisneros_MTCH.png" alt="Gil Cisneros MTCH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MTSI</div>
+              <img src="../timing_charts/Gil_Cisneros_MTSI.png" alt="Gil Cisneros MTSI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MTX</div>
+              <img src="../timing_charts/Gil_Cisneros_MTX.png" alt="Gil Cisneros MTX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NBIX</div>
+              <img src="../timing_charts/Gil_Cisneros_NBIX.png" alt="Gil Cisneros NBIX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NET</div>
+              <img src="../timing_charts/Gil_Cisneros_NET.png" alt="Gil Cisneros NET" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NFLX</div>
+              <img src="../timing_charts/Gil_Cisneros_NFLX.png" alt="Gil Cisneros NFLX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NHI</div>
+              <img src="../timing_charts/Gil_Cisneros_NHI.png" alt="Gil Cisneros NHI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NKE</div>
+              <img src="../timing_charts/Gil_Cisneros_NKE.png" alt="Gil Cisneros NKE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NOC</div>
+              <img src="../timing_charts/Gil_Cisneros_NOC.png" alt="Gil Cisneros NOC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NOVT</div>
+              <img src="../timing_charts/Gil_Cisneros_NOVT.png" alt="Gil Cisneros NOVT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NOW</div>
+              <img src="../timing_charts/Gil_Cisneros_NOW.png" alt="Gil Cisneros NOW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NTDOF</div>
+              <img src="../timing_charts/Gil_Cisneros_NTDOF.png" alt="Gil Cisneros NTDOF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NTRS</div>
+              <img src="../timing_charts/Gil_Cisneros_NTRS.png" alt="Gil Cisneros NTRS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NUE</div>
+              <img src="../timing_charts/Gil_Cisneros_NUE.png" alt="Gil Cisneros NUE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NVDA</div>
+              <img src="../timing_charts/Gil_Cisneros_NVDA.png" alt="Gil Cisneros NVDA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NWL</div>
+              <img src="../timing_charts/Gil_Cisneros_NWL.png" alt="Gil Cisneros NWL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NWS</div>
+              <img src="../timing_charts/Gil_Cisneros_NWS.png" alt="Gil Cisneros NWS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NWSA</div>
+              <img src="../timing_charts/Gil_Cisneros_NWSA.png" alt="Gil Cisneros NWSA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NXPI</div>
+              <img src="../timing_charts/Gil_Cisneros_NXPI.png" alt="Gil Cisneros NXPI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">O</div>
+              <img src="../timing_charts/Gil_Cisneros_O.png" alt="Gil Cisneros O" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OBuyers___Committee_3-4___Yes</div>
+              <img src="../timing_charts/Gil_Cisneros_OBuyers___Committee_3-4___Yes.png" alt="Gil Cisneros OBuyers___Committee_3-4___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OCFC</div>
+              <img src="../timing_charts/Gil_Cisneros_OCFC.png" alt="Gil Cisneros OCFC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OLLI</div>
+              <img src="../timing_charts/Gil_Cisneros_OLLI.png" alt="Gil Cisneros OLLI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OMC</div>
+              <img src="../timing_charts/Gil_Cisneros_OMC.png" alt="Gil Cisneros OMC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ON</div>
+              <img src="../timing_charts/Gil_Cisneros_ON.png" alt="Gil Cisneros ON" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ORCL</div>
+              <img src="../timing_charts/Gil_Cisneros_ORCL.png" alt="Gil Cisneros ORCL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OSellers___Committee_3-4___No</div>
+              <img src="../timing_charts/Gil_Cisneros_OSellers___Committee_3-4___No.png" alt="Gil Cisneros OSellers___Committee_3-4___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OSellers___OldSurge_3-4___No</div>
+              <img src="../timing_charts/Gil_Cisneros_OSellers___OldSurge_3-4___No.png" alt="Gil Cisneros OSellers___OldSurge_3-4___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OSellers___Spend_3-4___Q1</div>
+              <img src="../timing_charts/Gil_Cisneros_OSellers___Spend_3-4___Q1.png" alt="Gil Cisneros OSellers___Spend_3-4___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PAR</div>
+              <img src="../timing_charts/Gil_Cisneros_PAR.png" alt="Gil Cisneros PAR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PCTY</div>
+              <img src="../timing_charts/Gil_Cisneros_PCTY.png" alt="Gil Cisneros PCTY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PCVX</div>
+              <img src="../timing_charts/Gil_Cisneros_PCVX.png" alt="Gil Cisneros PCVX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PEB</div>
+              <img src="../timing_charts/Gil_Cisneros_PEB.png" alt="Gil Cisneros PEB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PEG</div>
+              <img src="../timing_charts/Gil_Cisneros_PEG.png" alt="Gil Cisneros PEG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PFE</div>
+              <img src="../timing_charts/Gil_Cisneros_PFE.png" alt="Gil Cisneros PFE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PGNY</div>
+              <img src="../timing_charts/Gil_Cisneros_PGNY.png" alt="Gil Cisneros PGNY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PHR</div>
+              <img src="../timing_charts/Gil_Cisneros_PHR.png" alt="Gil Cisneros PHR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PLNT</div>
+              <img src="../timing_charts/Gil_Cisneros_PLNT.png" alt="Gil Cisneros PLNT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PLTR</div>
+              <img src="../timing_charts/Gil_Cisneros_PLTR.png" alt="Gil Cisneros PLTR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PNC</div>
+              <img src="../timing_charts/Gil_Cisneros_PNC.png" alt="Gil Cisneros PNC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PODD</div>
+              <img src="../timing_charts/Gil_Cisneros_PODD.png" alt="Gil Cisneros PODD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PPBI</div>
+              <img src="../timing_charts/Gil_Cisneros_PPBI.png" alt="Gil Cisneros PPBI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PRGO</div>
+              <img src="../timing_charts/Gil_Cisneros_PRGO.png" alt="Gil Cisneros PRGO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PTC</div>
+              <img src="../timing_charts/Gil_Cisneros_PTC.png" alt="Gil Cisneros PTC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PVH</div>
+              <img src="../timing_charts/Gil_Cisneros_PVH.png" alt="Gil Cisneros PVH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PWR</div>
+              <img src="../timing_charts/Gil_Cisneros_PWR.png" alt="Gil Cisneros PWR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PYPL</div>
+              <img src="../timing_charts/Gil_Cisneros_PYPL.png" alt="Gil Cisneros PYPL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">QDEL</div>
+              <img src="../timing_charts/Gil_Cisneros_QDEL.png" alt="Gil Cisneros QDEL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RAL</div>
+              <img src="../timing_charts/Gil_Cisneros_RAL.png" alt="Gil Cisneros RAL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RARE</div>
+              <img src="../timing_charts/Gil_Cisneros_RARE.png" alt="Gil Cisneros RARE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RBLX</div>
+              <img src="../timing_charts/Gil_Cisneros_RBLX.png" alt="Gil Cisneros RBLX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RCL</div>
+              <img src="../timing_charts/Gil_Cisneros_RCL.png" alt="Gil Cisneros RCL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ROKU</div>
+              <img src="../timing_charts/Gil_Cisneros_ROKU.png" alt="Gil Cisneros ROKU" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ROP</div>
+              <img src="../timing_charts/Gil_Cisneros_ROP.png" alt="Gil Cisneros ROP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RPD</div>
+              <img src="../timing_charts/Gil_Cisneros_RPD.png" alt="Gil Cisneros RPD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RTX</div>
+              <img src="../timing_charts/Gil_Cisneros_RTX.png" alt="Gil Cisneros RTX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RVTY</div>
+              <img src="../timing_charts/Gil_Cisneros_RVTY.png" alt="Gil Cisneros RVTY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SARO</div>
+              <img src="../timing_charts/Gil_Cisneros_SARO.png" alt="Gil Cisneros SARO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SBCF</div>
+              <img src="../timing_charts/Gil_Cisneros_SBCF.png" alt="Gil Cisneros SBCF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SEE</div>
+              <img src="../timing_charts/Gil_Cisneros_SEE.png" alt="Gil Cisneros SEE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SEI</div>
+              <img src="../timing_charts/Gil_Cisneros_SEI.png" alt="Gil Cisneros SEI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SHW</div>
+              <img src="../timing_charts/Gil_Cisneros_SHW.png" alt="Gil Cisneros SHW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SITE</div>
+              <img src="../timing_charts/Gil_Cisneros_SITE.png" alt="Gil Cisneros SITE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SKY</div>
+              <img src="../timing_charts/Gil_Cisneros_SKY.png" alt="Gil Cisneros SKY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SLB</div>
+              <img src="../timing_charts/Gil_Cisneros_SLB.png" alt="Gil Cisneros SLB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SLG</div>
+              <img src="../timing_charts/Gil_Cisneros_SLG.png" alt="Gil Cisneros SLG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SMCI</div>
+              <img src="../timing_charts/Gil_Cisneros_SMCI.png" alt="Gil Cisneros SMCI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SMEGF</div>
+              <img src="../timing_charts/Gil_Cisneros_SMEGF.png" alt="Gil Cisneros SMEGF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SMTC</div>
+              <img src="../timing_charts/Gil_Cisneros_SMTC.png" alt="Gil Cisneros SMTC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SNDK</div>
+              <img src="../timing_charts/Gil_Cisneros_SNDK.png" alt="Gil Cisneros SNDK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SPG</div>
+              <img src="../timing_charts/Gil_Cisneros_SPG.png" alt="Gil Cisneros SPG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SPHR</div>
+              <img src="../timing_charts/Gil_Cisneros_SPHR.png" alt="Gil Cisneros SPHR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SPOT</div>
+              <img src="../timing_charts/Gil_Cisneros_SPOT.png" alt="Gil Cisneros SPOT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SRPT</div>
+              <img src="../timing_charts/Gil_Cisneros_SRPT.png" alt="Gil Cisneros SRPT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SSNC</div>
+              <img src="../timing_charts/Gil_Cisneros_SSNC.png" alt="Gil Cisneros SSNC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">STAG</div>
+              <img src="../timing_charts/Gil_Cisneros_STAG.png" alt="Gil Cisneros STAG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">STE</div>
+              <img src="../timing_charts/Gil_Cisneros_STE.png" alt="Gil Cisneros STE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">STRL</div>
+              <img src="../timing_charts/Gil_Cisneros_STRL.png" alt="Gil Cisneros STRL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">STT</div>
+              <img src="../timing_charts/Gil_Cisneros_STT.png" alt="Gil Cisneros STT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">STZ</div>
+              <img src="../timing_charts/Gil_Cisneros_STZ.png" alt="Gil Cisneros STZ" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SUPN</div>
+              <img src="../timing_charts/Gil_Cisneros_SUPN.png" alt="Gil Cisneros SUPN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SW</div>
+              <img src="../timing_charts/Gil_Cisneros_SW.png" alt="Gil Cisneros SW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SYF</div>
+              <img src="../timing_charts/Gil_Cisneros_SYF.png" alt="Gil Cisneros SYF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">T</div>
+              <img src="../timing_charts/Gil_Cisneros_T.png" alt="Gil Cisneros T" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TAP</div>
+              <img src="../timing_charts/Gil_Cisneros_TAP.png" alt="Gil Cisneros TAP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TDG</div>
+              <img src="../timing_charts/Gil_Cisneros_TDG.png" alt="Gil Cisneros TDG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TDOC</div>
+              <img src="../timing_charts/Gil_Cisneros_TDOC.png" alt="Gil Cisneros TDOC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TDY</div>
+              <img src="../timing_charts/Gil_Cisneros_TDY.png" alt="Gil Cisneros TDY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TEAM</div>
+              <img src="../timing_charts/Gil_Cisneros_TEAM.png" alt="Gil Cisneros TEAM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TEL</div>
+              <img src="../timing_charts/Gil_Cisneros_TEL.png" alt="Gil Cisneros TEL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">THR</div>
+              <img src="../timing_charts/Gil_Cisneros_THR.png" alt="Gil Cisneros THR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TMUS</div>
+              <img src="../timing_charts/Gil_Cisneros_TMUS.png" alt="Gil Cisneros TMUS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TNDM</div>
+              <img src="../timing_charts/Gil_Cisneros_TNDM.png" alt="Gil Cisneros TNDM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TRGP</div>
+              <img src="../timing_charts/Gil_Cisneros_TRGP.png" alt="Gil Cisneros TRGP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TSLA</div>
+              <img src="../timing_charts/Gil_Cisneros_TSLA.png" alt="Gil Cisneros TSLA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TSM</div>
+              <img src="../timing_charts/Gil_Cisneros_TSM.png" alt="Gil Cisneros TSM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TT</div>
+              <img src="../timing_charts/Gil_Cisneros_TT.png" alt="Gil Cisneros TT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TTWO</div>
+              <img src="../timing_charts/Gil_Cisneros_TTWO.png" alt="Gil Cisneros TTWO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UBER</div>
+              <img src="../timing_charts/Gil_Cisneros_UBER.png" alt="Gil Cisneros UBER" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UBSI</div>
+              <img src="../timing_charts/Gil_Cisneros_UBSI.png" alt="Gil Cisneros UBSI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UHS</div>
+              <img src="../timing_charts/Gil_Cisneros_UHS.png" alt="Gil Cisneros UHS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNCFF</div>
+              <img src="../timing_charts/Gil_Cisneros_UNCFF.png" alt="Gil Cisneros UNCFF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNH</div>
+              <img src="../timing_charts/Gil_Cisneros_UNH.png" alt="Gil Cisneros UNH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNP</div>
+              <img src="../timing_charts/Gil_Cisneros_UNP.png" alt="Gil Cisneros UNP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UPS</div>
+              <img src="../timing_charts/Gil_Cisneros_UPS.png" alt="Gil Cisneros UPS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">USB</div>
+              <img src="../timing_charts/Gil_Cisneros_USB.png" alt="Gil Cisneros USB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">V</div>
+              <img src="../timing_charts/Gil_Cisneros_V.png" alt="Gil Cisneros V" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VC</div>
+              <img src="../timing_charts/Gil_Cisneros_VC.png" alt="Gil Cisneros VC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VCYT</div>
+              <img src="../timing_charts/Gil_Cisneros_VCYT.png" alt="Gil Cisneros VCYT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VIAV</div>
+              <img src="../timing_charts/Gil_Cisneros_VIAV.png" alt="Gil Cisneros VIAV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VICI</div>
+              <img src="../timing_charts/Gil_Cisneros_VICI.png" alt="Gil Cisneros VICI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VNO</div>
+              <img src="../timing_charts/Gil_Cisneros_VNO.png" alt="Gil Cisneros VNO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VRSK</div>
+              <img src="../timing_charts/Gil_Cisneros_VRSK.png" alt="Gil Cisneros VRSK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VRSN</div>
+              <img src="../timing_charts/Gil_Cisneros_VRSN.png" alt="Gil Cisneros VRSN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VRTX</div>
+              <img src="../timing_charts/Gil_Cisneros_VRTX.png" alt="Gil Cisneros VRTX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VTR</div>
+              <img src="../timing_charts/Gil_Cisneros_VTR.png" alt="Gil Cisneros VTR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VTRS</div>
+              <img src="../timing_charts/Gil_Cisneros_VTRS.png" alt="Gil Cisneros VTRS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WAB</div>
+              <img src="../timing_charts/Gil_Cisneros_WAB.png" alt="Gil Cisneros WAB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WAT</div>
+              <img src="../timing_charts/Gil_Cisneros_WAT.png" alt="Gil Cisneros WAT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WBA</div>
+              <img src="../timing_charts/Gil_Cisneros_WBA.png" alt="Gil Cisneros WBA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WBD</div>
+              <img src="../timing_charts/Gil_Cisneros_WBD.png" alt="Gil Cisneros WBD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WDFC</div>
+              <img src="../timing_charts/Gil_Cisneros_WDFC.png" alt="Gil Cisneros WDFC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WFC</div>
+              <img src="../timing_charts/Gil_Cisneros_WFC.png" alt="Gil Cisneros WFC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WMT</div>
+              <img src="../timing_charts/Gil_Cisneros_WMT.png" alt="Gil Cisneros WMT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WPM</div>
+              <img src="../timing_charts/Gil_Cisneros_WPM.png" alt="Gil Cisneros WPM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WRB</div>
+              <img src="../timing_charts/Gil_Cisneros_WRB.png" alt="Gil Cisneros WRB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WTW</div>
+              <img src="../timing_charts/Gil_Cisneros_WTW.png" alt="Gil Cisneros WTW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WY</div>
+              <img src="../timing_charts/Gil_Cisneros_WY.png" alt="Gil Cisneros WY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">XRAY</div>
+              <img src="../timing_charts/Gil_Cisneros_XRAY.png" alt="Gil Cisneros XRAY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">YUM</div>
+              <img src="../timing_charts/Gil_Cisneros_YUM.png" alt="Gil Cisneros YUM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ZTS</div>
+              <img src="../timing_charts/Gil_Cisneros_ZTS.png" alt="Gil Cisneros ZTS" loading="lazy">
+            </div>
+</div>
+
+</div>
+
+<div class="tab-content" id="tab-attributes">
+  
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Lobby365 × Industry: Yes | Biotechnology</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 83%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___Industry_Yes___Biotechnology.png" alt="Lobby365 × Industry=Yes | Biotechnology" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Mid | Drug Manufacturers - General</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 80%</span>
+                  <span class="stat-pill slugging">Slugging 80%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Mid___Drug_Manufacturers_-_General.png" alt="MCap × Industry=Mid | Drug Manufacturers - General" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Lobby365 × Industry: Yes | Capital Markets</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 80%</span>
+                  <span class="stat-pill slugging">Slugging 80%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___Industry_Yes___Capital_Markets.png" alt="Lobby365 × Industry=Yes | Capital Markets" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Big | Capital Markets</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 63%</span>
+                  <span class="stat-pill slugging">Slugging 63%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Big___Capital_Markets.png" alt="MCap × Industry=Big | Capital Markets" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Small | Drug Manufacturers - Specialty &amp; Generic</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 80%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Small___Drug_Manufacturers_-_Specialty___Generic.png" alt="MCap × Industry=Small | Drug Manufacturers - Specialty &amp; Generic" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Mega | Semiconductors</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Mega___Semiconductors.png" alt="MCap × Industry=Mega | Semiconductors" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OSellers: Drug Manufacturers - General | 3-4</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OSellers_Drug_Manufacturers_-_General___3-4.png" alt="Industry × OSellers=Drug Manufacturers - General | 3-4" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Lobby365 × Industry: Yes | Software - Infrastructure</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___Industry_Yes___Software_-_Infrastructure.png" alt="Lobby365 × Industry=Yes | Software - Infrastructure" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers × Committee: 3-4 | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">12 Trades</span>
+                  <span class="stat-pill batting">Batting 58%</span>
+                  <span class="stat-pill slugging">Slugging 58%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_OSellers___Committee_3-4___No.png" alt="OSellers × Committee=3-4 | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers: 3-4</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Industrial Distribution | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Spend_Industrial_Distribution___Q1.png" alt="Industry × Spend=Industrial Distribution | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Industrial Distribution | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Committee_Industrial_Distribution___Yes.png" alt="Industry × Committee=Industrial Distribution | Yes" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers × Spend: 3-4 | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_OSellers___Spend_3-4___Q1.png" alt="OSellers × Spend=3-4 | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OSellers × OldSurge: 3-4 | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">14 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_OSellers___OldSurge_3-4___No.png" alt="OSellers × OldSurge=3-4 | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Small | Engineering &amp; Construction</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Small___Engineering___Construction.png" alt="MCap × Industry=Small | Engineering &amp; Construction" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Industrial Distribution</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry_Industrial_Distribution.png" alt="Industry=Industrial Distribution" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Industrial Distribution | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OldSurge_Industrial_Distribution___No.png" alt="Industry × OldSurge=Industrial Distribution | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OSellers: Big | 3-4</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">9 Trades</span>
+                  <span class="stat-pill batting">Batting 56%</span>
+                  <span class="stat-pill slugging">Slugging 78%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___OSellers_Big___3-4.png" alt="MCap × OSellers=Big | 3-4" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OSellers: Mag7 | 5+</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">9 Trades</span>
+                  <span class="stat-pill batting">Batting 56%</span>
+                  <span class="stat-pill slugging">Slugging 56%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OSellers_Mag7___5_.png" alt="Industry × OSellers=Mag7 | 5+" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OBuyers: Software - Infrastructure | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">11 Trades</span>
+                  <span class="stat-pill batting">Batting 55%</span>
+                  <span class="stat-pill slugging">Slugging 64%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OBuyers_Software_-_Infrastructure___1-2.png" alt="Industry × OBuyers=Software - Infrastructure | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Small | Software - Infrastructure</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">15 Trades</span>
+                  <span class="stat-pill batting">Batting 53%</span>
+                  <span class="stat-pill slugging">Slugging 53%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_MCap___Industry_Small___Software_-_Infrastructure.png" alt="MCap × Industry=Small | Software - Infrastructure" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Lobby365 × OSellers: Yes | 3-4</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___OSellers_Yes___3-4.png" alt="Lobby365 × OSellers=Yes | 3-4" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Lobby365 × Industry: Yes | Oil &amp; Gas Midstream</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___Industry_Yes___Oil___Gas_Midstream.png" alt="Lobby365 × Industry=Yes | Oil &amp; Gas Midstream" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Lobby365 × Industry: Yes | Semiconductors</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Lobby365___Industry_Yes___Semiconductors.png" alt="Lobby365 × Industry=Yes | Semiconductors" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Scientific &amp; Technical Instruments | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 63%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Committee_Scientific___Technical_Instruments___Yes.png" alt="Industry × Committee=Scientific &amp; Technical Instruments | Yes" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Oil &amp; Gas Midstream | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Committee_Oil___Gas_Midstream___No.png" alt="Industry × Committee=Oil &amp; Gas Midstream | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Specialty Business Services | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Spend_Specialty_Business_Services___Q1.png" alt="Industry × Spend=Specialty Business Services | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Scientific &amp; Technical Instruments | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 63%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Spend_Scientific___Technical_Instruments___Q1.png" alt="Industry × Spend=Scientific &amp; Technical Instruments | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Oil &amp; Gas Midstream | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Spend_Oil___Gas_Midstream___Q1.png" alt="Industry × Spend=Oil &amp; Gas Midstream | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Oil &amp; Gas Midstream | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OldSurge_Oil___Gas_Midstream___No.png" alt="Industry × OldSurge=Oil &amp; Gas Midstream | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Scientific &amp; Technical Instruments | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 63%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OldSurge_Scientific___Technical_Instruments___No.png" alt="Industry × OldSurge=Scientific &amp; Technical Instruments | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Specialty Business Services | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OldSurge_Specialty_Business_Services___No.png" alt="Industry × OldSurge=Specialty Business Services | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Specialty Business Services | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___Committee_Specialty_Business_Services___Yes.png" alt="Industry × Committee=Specialty Business Services | Yes" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OSellers: Drug Manufacturers - General | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry___OSellers_Drug_Manufacturers_-_General___1-2.png" alt="Industry × OSellers=Drug Manufacturers - General | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Scientific &amp; Technical Instruments</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 63%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry_Scientific___Technical_Instruments.png" alt="Industry=Scientific &amp; Technical Instruments" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Specialty Business Services</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry_Specialty_Business_Services.png" alt="Industry=Specialty Business Services" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Oil &amp; Gas Midstream</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Gil_Cisneros_Industry_Oil___Gas_Midstream.png" alt="Industry=Oil &amp; Gas Midstream" loading="lazy">
+            </div>
+
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  if (tab === 'timing') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('tab-timing').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('tab-attributes').classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>

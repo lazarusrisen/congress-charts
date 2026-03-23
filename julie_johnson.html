@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julie Johnson — Congressional Trading Talents</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 20px;
+  }
+  a { color: #0f3460; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .header h1 { font-size: 1.8em; margin-bottom: 8px; }
+  .header p { opacity: 0.85; font-size: 1.05em; }
+  .header .stats {
+    display: flex; justify-content: center; gap: 20px;
+    margin-top: 15px; font-size: 0.9em; flex-wrap: wrap;
+  }
+  .header .stats span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px; border-radius: 20px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: border-color 0.2s;
+  }
+  .back-link:hover { border-color: #0f3460; text-decoration: none; }
+  .tabs {
+    display: flex;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ddd;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .tab-btn:first-child { border-radius: 8px 0 0 8px; }
+  .tab-btn:last-child { border-radius: 0 8px 8px 0; }
+  .tab-btn.active {
+    background: #0f3460;
+    color: white;
+    border-color: #0f3460;
+    border-bottom-color: #00AA44;
+  }
+  .tab-btn:hover:not(.active) { background: #f5f5f5; }
+  .tab-content { display: none; max-width: 1000px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  .writeup {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    line-height: 1.7;
+    font-size: 0.95em;
+    white-space: pre-line;
+  }
+  .writeup h3 { margin-bottom: 10px; color: #1a1a2e; }
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-header h3 { font-size: 1.1em; }
+  .card img { width: 100%; display: block; }
+  .stat-pill {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.82em;
+    font-weight: 600;
+    display: inline-block;
+    margin: 2px;
+  }
+  .stat-pill.batting { background: #e8f5e9; color: #2e7d32; }
+  .stat-pill.slugging { background: #e3f2fd; color: #0f3460; }
+  .stat-pill.trades { background: #e8eaf6; color: #283593; }
+  .stat-pill.txn { background: #f3e5f5; color: #6a1b9a; }
+  .stat-pill.dim { background: #fff3e0; color: #e65100; }
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chart-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .chart-card img { width: 100%; display: block; }
+  .chart-card .chart-label {
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 0.95em;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+  }
+  .no-data {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1.05em;
+  }
+  @media (max-width: 768px) {
+    .header .stats { gap: 10px; font-size: 0.88em; }
+    .tab-btn { font-size: 0.95em; padding: 12px 14px; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .header { padding: 18px 14px; border-radius: 10px; }
+    .header h1 { font-size: 1.3em; }
+    .header p { font-size: 0.9em; }
+    .header .stats { gap: 6px; font-size: 0.82em; margin-top: 8px; }
+    .header .stats span { padding: 4px 10px; }
+    .back-link { font-size: 0.88em; padding: 6px 14px; margin-bottom: 12px; }
+    .writeup { padding: 14px; font-size: 0.9em; }
+    .tabs { flex-direction: column; margin-bottom: 14px; }
+    .tab-btn { border-radius: 8px !important; padding: 12px 16px; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .card-header h3 { font-size: 1em; }
+    .stat-pill { font-size: 0.78em; padding: 3px 8px; }
+    .charts-grid { gap: 14px; }
+  }
+
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to All Politicians</a>
+
+<div class="header">
+  <h1>Julie Johnson</h1>
+  <p>Trading talent profile — ticker timing and attribute analysis</p>
+  <div class="stats">
+    <span>498 Total Trades</span>
+    <span>4 Ticker Talents</span>
+    <span>13 Attribute Talents</span>
+    <span>13 Attribute Charts</span>
+  </div>
+</div>
+
+<div class="writeup">
+  <h3>Talent Summary</h3>
+  Julie Johnson has 498 scored trades (79 purchases, 419 sales).
+
+WHAT THEY&#x27;RE GOOD AT: ACN sales (100% batting, 4 trades); GOOG purchases (100% batting, 3 trades); PGR purchases (100% batting, 3 trades); ABT sales (67% batting, 3 trades); MCap × OSellers=Tiny | 1-2 sales (83% batting); Industry × OldSurge=Packaged Foods | No sales (67% batting).
+
+WHAT THEY&#x27;RE BAD AT: MCap × Committee=Big | Yes (50% whiff); Sector=Consumer Defensive (40% whiff); Sector=Utilities (40% whiff).
+
+NOTABLE PATTERNS: Top sectors: Financial Services (86), Industrials (81), Technology (69). Heavily sell-biased (84% sales).
+</div>
+
+<div class="tabs">
+  <div class="tab-btn active" onclick="switchTab('timing')">Ticker Timing</div>
+  <div class="tab-btn" onclick="switchTab('attributes')">Attribute Talents</div>
+</div>
+
+<div class="tab-content active" id="tab-timing">
+  <div class="charts-grid">
+
+            <div class="chart-card">
+              <div class="chart-label">A</div>
+              <img src="../timing_charts/Julie_Johnson_A.png" alt="Julie Johnson A" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ABT</div>
+              <img src="../timing_charts/Julie_Johnson_ABT.png" alt="Julie Johnson ABT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ACN</div>
+              <img src="../timing_charts/Julie_Johnson_ACN.png" alt="Julie Johnson ACN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AJG</div>
+              <img src="../timing_charts/Julie_Johnson_AJG.png" alt="Julie Johnson AJG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALB</div>
+              <img src="../timing_charts/Julie_Johnson_ALB.png" alt="Julie Johnson ALB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">APD</div>
+              <img src="../timing_charts/Julie_Johnson_APD.png" alt="Julie Johnson APD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AVGO</div>
+              <img src="../timing_charts/Julie_Johnson_AVGO.png" alt="Julie Johnson AVGO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AXP</div>
+              <img src="../timing_charts/Julie_Johnson_AXP.png" alt="Julie Johnson AXP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BA</div>
+              <img src="../timing_charts/Julie_Johnson_BA.png" alt="Julie Johnson BA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BAC</div>
+              <img src="../timing_charts/Julie_Johnson_BAC.png" alt="Julie Johnson BAC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BK</div>
+              <img src="../timing_charts/Julie_Johnson_BK.png" alt="Julie Johnson BK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BMY</div>
+              <img src="../timing_charts/Julie_Johnson_BMY.png" alt="Julie Johnson BMY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BX</div>
+              <img src="../timing_charts/Julie_Johnson_BX.png" alt="Julie Johnson BX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CI</div>
+              <img src="../timing_charts/Julie_Johnson_CI.png" alt="Julie Johnson CI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CMCSA</div>
+              <img src="../timing_charts/Julie_Johnson_CMCSA.png" alt="Julie Johnson CMCSA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CME</div>
+              <img src="../timing_charts/Julie_Johnson_CME.png" alt="Julie Johnson CME" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COF</div>
+              <img src="../timing_charts/Julie_Johnson_COF.png" alt="Julie Johnson COF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COP</div>
+              <img src="../timing_charts/Julie_Johnson_COP.png" alt="Julie Johnson COP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DELL</div>
+              <img src="../timing_charts/Julie_Johnson_DELL.png" alt="Julie Johnson DELL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DG</div>
+              <img src="../timing_charts/Julie_Johnson_DG.png" alt="Julie Johnson DG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DHR</div>
+              <img src="../timing_charts/Julie_Johnson_DHR.png" alt="Julie Johnson DHR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EIX</div>
+              <img src="../timing_charts/Julie_Johnson_EIX.png" alt="Julie Johnson EIX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EL</div>
+              <img src="../timing_charts/Julie_Johnson_EL.png" alt="Julie Johnson EL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ENPH</div>
+              <img src="../timing_charts/Julie_Johnson_ENPH.png" alt="Julie Johnson ENPH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EOG</div>
+              <img src="../timing_charts/Julie_Johnson_EOG.png" alt="Julie Johnson EOG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ETN</div>
+              <img src="../timing_charts/Julie_Johnson_ETN.png" alt="Julie Johnson ETN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FIS</div>
+              <img src="../timing_charts/Julie_Johnson_FIS.png" alt="Julie Johnson FIS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FISV</div>
+              <img src="../timing_charts/Julie_Johnson_FISV.png" alt="Julie Johnson FISV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GOOG</div>
+              <img src="../timing_charts/Julie_Johnson_GOOG.png" alt="Julie Johnson GOOG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GPN</div>
+              <img src="../timing_charts/Julie_Johnson_GPN.png" alt="Julie Johnson GPN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HSY</div>
+              <img src="../timing_charts/Julie_Johnson_HSY.png" alt="Julie Johnson HSY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IBM</div>
+              <img src="../timing_charts/Julie_Johnson_IBM.png" alt="Julie Johnson IBM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Packaged_Foods</div>
+              <img src="../timing_charts/Julie_Johnson_Industry_Packaged_Foods.png" alt="Julie Johnson Industry_Packaged_Foods" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Packaged_Foods___No</div>
+              <img src="../timing_charts/Julie_Johnson_Industry___Committee_Packaged_Foods___No.png" alt="Julie Johnson Industry___Committee_Packaged_Foods___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Information_Technology_Services___1-2</div>
+              <img src="../timing_charts/Julie_Johnson_Industry___OBuyers_Information_Technology_Services___1-2.png" alt="Julie Johnson Industry___OBuyers_Information_Technology_Services___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Packaged_Foods___No</div>
+              <img src="../timing_charts/Julie_Johnson_Industry___OldSurge_Packaged_Foods___No.png" alt="Julie Johnson Industry___OldSurge_Packaged_Foods___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Packaged_Foods___Q1</div>
+              <img src="../timing_charts/Julie_Johnson_Industry___Spend_Packaged_Foods___Q1.png" alt="Julie Johnson Industry___Spend_Packaged_Foods___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCHP</div>
+              <img src="../timing_charts/Julie_Johnson_MCHP.png" alt="Julie Johnson MCHP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Committee_Big___Yes</div>
+              <img src="../timing_charts/Julie_Johnson_MCap___Committee_Big___Yes.png" alt="Julie Johnson MCap___Committee_Big___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Committee_Small___No</div>
+              <img src="../timing_charts/Julie_Johnson_MCap___Committee_Small___No.png" alt="Julie Johnson MCap___Committee_Small___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Big___Information_Technology_Services</div>
+              <img src="../timing_charts/Julie_Johnson_MCap___Industry_Big___Information_Technology_Services.png" alt="Julie Johnson MCap___Industry_Big___Information_Technology_Services" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OSellers_Small___1-2</div>
+              <img src="../timing_charts/Julie_Johnson_MCap___OSellers_Small___1-2.png" alt="Julie Johnson MCap___OSellers_Small___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OSellers_Tiny___1-2</div>
+              <img src="../timing_charts/Julie_Johnson_MCap___OSellers_Tiny___1-2.png" alt="Julie Johnson MCap___OSellers_Tiny___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MMM</div>
+              <img src="../timing_charts/Julie_Johnson_MMM.png" alt="Julie Johnson MMM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MS</div>
+              <img src="../timing_charts/Julie_Johnson_MS.png" alt="Julie Johnson MS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MSFT</div>
+              <img src="../timing_charts/Julie_Johnson_MSFT.png" alt="Julie Johnson MSFT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NEE</div>
+              <img src="../timing_charts/Julie_Johnson_NEE.png" alt="Julie Johnson NEE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NSC</div>
+              <img src="../timing_charts/Julie_Johnson_NSC.png" alt="Julie Johnson NSC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PAYC</div>
+              <img src="../timing_charts/Julie_Johnson_PAYC.png" alt="Julie Johnson PAYC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PEP</div>
+              <img src="../timing_charts/Julie_Johnson_PEP.png" alt="Julie Johnson PEP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PG</div>
+              <img src="../timing_charts/Julie_Johnson_PG.png" alt="Julie Johnson PG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PGR</div>
+              <img src="../timing_charts/Julie_Johnson_PGR.png" alt="Julie Johnson PGR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PKG</div>
+              <img src="../timing_charts/Julie_Johnson_PKG.png" alt="Julie Johnson PKG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PLTR</div>
+              <img src="../timing_charts/Julie_Johnson_PLTR.png" alt="Julie Johnson PLTR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PM</div>
+              <img src="../timing_charts/Julie_Johnson_PM.png" alt="Julie Johnson PM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PNC</div>
+              <img src="../timing_charts/Julie_Johnson_PNC.png" alt="Julie Johnson PNC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PPG</div>
+              <img src="../timing_charts/Julie_Johnson_PPG.png" alt="Julie Johnson PPG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PYPL</div>
+              <img src="../timing_charts/Julie_Johnson_PYPL.png" alt="Julie Johnson PYPL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">REGN</div>
+              <img src="../timing_charts/Julie_Johnson_REGN.png" alt="Julie Johnson REGN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SCHW</div>
+              <img src="../timing_charts/Julie_Johnson_SCHW.png" alt="Julie Johnson SCHW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SMCI</div>
+              <img src="../timing_charts/Julie_Johnson_SMCI.png" alt="Julie Johnson SMCI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Sector_Consumer_Cyclical</div>
+              <img src="../timing_charts/Julie_Johnson_Sector_Consumer_Cyclical.png" alt="Julie Johnson Sector_Consumer_Cyclical" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Sector_Consumer_Defensive</div>
+              <img src="../timing_charts/Julie_Johnson_Sector_Consumer_Defensive.png" alt="Julie Johnson Sector_Consumer_Defensive" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Sector_Utilities</div>
+              <img src="../timing_charts/Julie_Johnson_Sector_Utilities.png" alt="Julie Johnson Sector_Utilities" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Subholding_MERRILLLYNCHTAXEFFICIENTCORE</div>
+              <img src="../timing_charts/Julie_Johnson_Subholding_MERRILLLYNCHTAXEFFICIENTCORE.png" alt="Julie Johnson Subholding_MERRILLLYNCHTAXEFFICIENTCORE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TER</div>
+              <img src="../timing_charts/Julie_Johnson_TER.png" alt="Julie Johnson TER" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TFC</div>
+              <img src="../timing_charts/Julie_Johnson_TFC.png" alt="Julie Johnson TFC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TSLA</div>
+              <img src="../timing_charts/Julie_Johnson_TSLA.png" alt="Julie Johnson TSLA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNH</div>
+              <img src="../timing_charts/Julie_Johnson_UNH.png" alt="Julie Johnson UNH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UPS</div>
+              <img src="../timing_charts/Julie_Johnson_UPS.png" alt="Julie Johnson UPS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VZ</div>
+              <img src="../timing_charts/Julie_Johnson_VZ.png" alt="Julie Johnson VZ" loading="lazy">
+            </div>
+</div>
+
+</div>
+
+<div class="tab-content" id="tab-attributes">
+  
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OSellers: Tiny | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 83%</span>
+                  <span class="stat-pill slugging">Slugging 117%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_MCap___OSellers_Tiny___1-2.png" alt="MCap × OSellers=Tiny | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Packaged Foods | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_Industry___OldSurge_Packaged_Foods___No.png" alt="Industry × OldSurge=Packaged Foods | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Packaged Foods</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_Industry_Packaged_Foods.png" alt="Industry=Packaged Foods" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Packaged Foods | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_Industry___Committee_Packaged_Foods___No.png" alt="Industry × Committee=Packaged Foods | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Packaged Foods | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_Industry___Spend_Packaged_Foods___Q1.png" alt="Industry × Spend=Packaged Foods | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OSellers: Small | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">15 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_MCap___OSellers_Small___1-2.png" alt="MCap × OSellers=Small | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Sector: Consumer Defensive</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_Sector_Consumer_Defensive.png" alt="Sector=Consumer Defensive" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Sector: Utilities</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 40%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_Sector_Utilities.png" alt="Sector=Utilities" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Big | Information Technology Services</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_MCap___Industry_Big___Information_Technology_Services.png" alt="MCap × Industry=Big | Information Technology Services" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Sector: Consumer Cyclical</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_Sector_Consumer_Cyclical.png" alt="Sector=Consumer Cyclical" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Committee: Small | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">13 Trades</span>
+                  <span class="stat-pill batting">Batting 54%</span>
+                  <span class="stat-pill slugging">Slugging 77%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_MCap___Committee_Small___No.png" alt="MCap × Committee=Small | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OBuyers: Information Technology Services | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_Industry___OBuyers_Information_Technology_Services___1-2.png" alt="Industry × OBuyers=Information Technology Services | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Committee: Big | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">10 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 40%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Julie_Johnson_MCap___Committee_Big___Yes.png" alt="MCap × Committee=Big | Yes" loading="lazy">
+            </div>
+
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  if (tab === 'timing') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('tab-timing').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('tab-attributes').classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>

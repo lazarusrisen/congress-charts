@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shelley Moore Capito — Congressional Trading Talents</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 20px;
+  }
+  a { color: #0f3460; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .header h1 { font-size: 1.8em; margin-bottom: 8px; }
+  .header p { opacity: 0.85; font-size: 1.05em; }
+  .header .stats {
+    display: flex; justify-content: center; gap: 20px;
+    margin-top: 15px; font-size: 0.9em; flex-wrap: wrap;
+  }
+  .header .stats span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px; border-radius: 20px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: border-color 0.2s;
+  }
+  .back-link:hover { border-color: #0f3460; text-decoration: none; }
+  .tabs {
+    display: flex;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ddd;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .tab-btn:first-child { border-radius: 8px 0 0 8px; }
+  .tab-btn:last-child { border-radius: 0 8px 8px 0; }
+  .tab-btn.active {
+    background: #0f3460;
+    color: white;
+    border-color: #0f3460;
+    border-bottom-color: #00AA44;
+  }
+  .tab-btn:hover:not(.active) { background: #f5f5f5; }
+  .tab-content { display: none; max-width: 1000px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  .writeup {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    line-height: 1.7;
+    font-size: 0.95em;
+    white-space: pre-line;
+  }
+  .writeup h3 { margin-bottom: 10px; color: #1a1a2e; }
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-header h3 { font-size: 1.1em; }
+  .card img { width: 100%; display: block; }
+  .stat-pill {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.82em;
+    font-weight: 600;
+    display: inline-block;
+    margin: 2px;
+  }
+  .stat-pill.batting { background: #e8f5e9; color: #2e7d32; }
+  .stat-pill.slugging { background: #e3f2fd; color: #0f3460; }
+  .stat-pill.trades { background: #e8eaf6; color: #283593; }
+  .stat-pill.txn { background: #f3e5f5; color: #6a1b9a; }
+  .stat-pill.dim { background: #fff3e0; color: #e65100; }
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chart-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .chart-card img { width: 100%; display: block; }
+  .chart-card .chart-label {
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 0.95em;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+  }
+  .no-data {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1.05em;
+  }
+  @media (max-width: 768px) {
+    .header .stats { gap: 10px; font-size: 0.88em; }
+    .tab-btn { font-size: 0.95em; padding: 12px 14px; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .header { padding: 18px 14px; border-radius: 10px; }
+    .header h1 { font-size: 1.3em; }
+    .header p { font-size: 0.9em; }
+    .header .stats { gap: 6px; font-size: 0.82em; margin-top: 8px; }
+    .header .stats span { padding: 4px 10px; }
+    .back-link { font-size: 0.88em; padding: 6px 14px; margin-bottom: 12px; }
+    .writeup { padding: 14px; font-size: 0.9em; }
+    .tabs { flex-direction: column; margin-bottom: 14px; }
+    .tab-btn { border-radius: 8px !important; padding: 12px 16px; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .card-header h3 { font-size: 1em; }
+    .stat-pill { font-size: 0.78em; padding: 3px 8px; }
+    .charts-grid { gap: 14px; }
+  }
+
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to All Politicians</a>
+
+<div class="header">
+  <h1>Shelley Moore Capito</h1>
+  <p>Trading talent profile — ticker timing and attribute analysis</p>
+  <div class="stats">
+    <span>535 Total Trades</span>
+    <span>0 Ticker Talents</span>
+    <span>4 Attribute Talents</span>
+    <span>4 Attribute Charts</span>
+  </div>
+</div>
+
+<div class="writeup">
+  <h3>Talent Summary</h3>
+  Shelley Moore Capito has 535 scored trades (250 purchases, 285 sales).
+
+WHAT THEY&#x27;RE GOOD AT: OBuyers × Committee=3-4 | No purchases (60% batting); OBuyers × OSellers=3-4 | 1-2 purchases (60% batting); Industry × OBuyers=Mag7 | 3-4 purchases (60% batting); MCap × Lobby365=Mega | Yes purchases (50% batting).
+
+NOTABLE PATTERNS: Top sectors: Financial Services (97), Technology (63), Mag7 (62).
+</div>
+
+<div class="tabs">
+  <div class="tab-btn active" onclick="switchTab('timing')">Ticker Timing</div>
+  <div class="tab-btn" onclick="switchTab('attributes')">Attribute Talents</div>
+</div>
+
+<div class="tab-content active" id="tab-timing">
+  <div class="charts-grid">
+
+            <div class="chart-card">
+              <div class="chart-label">AAPL</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_AAPL.png" alt="Shelley Moore Capito AAPL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ABT</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_ABT.png" alt="Shelley Moore Capito ABT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ACN</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_ACN.png" alt="Shelley Moore Capito ACN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ADI</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_ADI.png" alt="Shelley Moore Capito ADI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ADP</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_ADP.png" alt="Shelley Moore Capito ADP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMGN</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_AMGN.png" alt="Shelley Moore Capito AMGN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AVGO</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_AVGO.png" alt="Shelley Moore Capito AVGO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BDX</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_BDX.png" alt="Shelley Moore Capito BDX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BLK</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_BLK.png" alt="Shelley Moore Capito BLK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BMY</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_BMY.png" alt="Shelley Moore Capito BMY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CEG</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_CEG.png" alt="Shelley Moore Capito CEG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CLX</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_CLX.png" alt="Shelley Moore Capito CLX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSCO</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_CSCO.png" alt="Shelley Moore Capito CSCO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CVX</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_CVX.png" alt="Shelley Moore Capito CVX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DE</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_DE.png" alt="Shelley Moore Capito DE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EMR</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_EMR.png" alt="Shelley Moore Capito EMR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FANUY</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_FANUY.png" alt="Shelley Moore Capito FANUY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GDDY</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_GDDY.png" alt="Shelley Moore Capito GDDY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GE</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_GE.png" alt="Shelley Moore Capito GE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GOOGL</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_GOOGL.png" alt="Shelley Moore Capito GOOGL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HXL</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_HXL.png" alt="Shelley Moore Capito HXL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">INTC</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_INTC.png" alt="Shelley Moore Capito INTC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Mag7___3-4</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_Industry___OBuyers_Mag7___3-4.png" alt="Shelley Moore Capito Industry___OBuyers_Mag7___3-4" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">JPM</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_JPM.png" alt="Shelley Moore Capito JPM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LLY</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_LLY.png" alt="Shelley Moore Capito LLY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LOW</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_LOW.png" alt="Shelley Moore Capito LOW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCD</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_MCD.png" alt="Shelley Moore Capito MCD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Lobby365_Mega___Yes</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_MCap___Lobby365_Mega___Yes.png" alt="Shelley Moore Capito MCap___Lobby365_Mega___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MDT</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_MDT.png" alt="Shelley Moore Capito MDT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">META</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_META.png" alt="Shelley Moore Capito META" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MRAAY</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_MRAAY.png" alt="Shelley Moore Capito MRAAY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MRK</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_MRK.png" alt="Shelley Moore Capito MRK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MSFT</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_MSFT.png" alt="Shelley Moore Capito MSFT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NEE</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_NEE.png" alt="Shelley Moore Capito NEE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NKE</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_NKE.png" alt="Shelley Moore Capito NKE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NSC</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_NSC.png" alt="Shelley Moore Capito NSC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OBuyers___OSellers_3-4___1-2</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_OBuyers___OSellers_3-4___1-2.png" alt="Shelley Moore Capito OBuyers___OSellers_3-4___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PAYX</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_PAYX.png" alt="Shelley Moore Capito PAYX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PG</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_PG.png" alt="Shelley Moore Capito PG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PII</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_PII.png" alt="Shelley Moore Capito PII" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PPG</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_PPG.png" alt="Shelley Moore Capito PPG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PSX</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_PSX.png" alt="Shelley Moore Capito PSX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">QCOM</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_QCOM.png" alt="Shelley Moore Capito QCOM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SCG</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_SCG.png" alt="Shelley Moore Capito SCG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SPGI</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_SPGI.png" alt="Shelley Moore Capito SPGI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SYY</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_SYY.png" alt="Shelley Moore Capito SYY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UBSI</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_UBSI.png" alt="Shelley Moore Capito UBSI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">USB</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_USB.png" alt="Shelley Moore Capito USB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VFC</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_VFC.png" alt="Shelley Moore Capito VFC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WEC</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_WEC.png" alt="Shelley Moore Capito WEC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WFC</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_WFC.png" alt="Shelley Moore Capito WFC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">XOM</div>
+              <img src="../timing_charts/Shelley_Moore_Capito_XOM.png" alt="Shelley Moore Capito XOM" loading="lazy">
+            </div>
+</div>
+
+</div>
+
+<div class="tab-content" id="tab-attributes">
+  
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OBuyers × Committee: 3-4 | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Shelley_Moore_Capito_OBuyers___Committee_3-4___No.png" alt="OBuyers × Committee=3-4 | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OBuyers × OSellers: 3-4 | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Shelley_Moore_Capito_OBuyers___OSellers_3-4___1-2.png" alt="OBuyers × OSellers=3-4 | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OBuyers: Mag7 | 3-4</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 100%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Shelley_Moore_Capito_Industry___OBuyers_Mag7___3-4.png" alt="Industry × OBuyers=Mag7 | 3-4" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Lobby365: Mega | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 83%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Shelley_Moore_Capito_MCap___Lobby365_Mega___Yes.png" alt="MCap × Lobby365=Mega | Yes" loading="lazy">
+            </div>
+
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  if (tab === 'timing') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('tab-timing').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('tab-attributes').classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>

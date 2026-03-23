@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Josh Gottheimer — Congressional Trading Talents</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 20px;
+  }
+  a { color: #0f3460; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .header h1 { font-size: 1.8em; margin-bottom: 8px; }
+  .header p { opacity: 0.85; font-size: 1.05em; }
+  .header .stats {
+    display: flex; justify-content: center; gap: 20px;
+    margin-top: 15px; font-size: 0.9em; flex-wrap: wrap;
+  }
+  .header .stats span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px; border-radius: 20px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: border-color 0.2s;
+  }
+  .back-link:hover { border-color: #0f3460; text-decoration: none; }
+  .tabs {
+    display: flex;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ddd;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .tab-btn:first-child { border-radius: 8px 0 0 8px; }
+  .tab-btn:last-child { border-radius: 0 8px 8px 0; }
+  .tab-btn.active {
+    background: #0f3460;
+    color: white;
+    border-color: #0f3460;
+    border-bottom-color: #00AA44;
+  }
+  .tab-btn:hover:not(.active) { background: #f5f5f5; }
+  .tab-content { display: none; max-width: 1000px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  .writeup {
+    background: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    line-height: 1.7;
+    font-size: 0.95em;
+    white-space: pre-line;
+  }
+  .writeup h3 { margin-bottom: 10px; color: #1a1a2e; }
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-header h3 { font-size: 1.1em; }
+  .card img { width: 100%; display: block; }
+  .stat-pill {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.82em;
+    font-weight: 600;
+    display: inline-block;
+    margin: 2px;
+  }
+  .stat-pill.batting { background: #e8f5e9; color: #2e7d32; }
+  .stat-pill.slugging { background: #e3f2fd; color: #0f3460; }
+  .stat-pill.trades { background: #e8eaf6; color: #283593; }
+  .stat-pill.txn { background: #f3e5f5; color: #6a1b9a; }
+  .stat-pill.dim { background: #fff3e0; color: #e65100; }
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chart-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .chart-card img { width: 100%; display: block; }
+  .chart-card .chart-label {
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 0.95em;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+  }
+  .no-data {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 1.05em;
+  }
+  @media (max-width: 768px) {
+    .header .stats { gap: 10px; font-size: 0.88em; }
+    .tab-btn { font-size: 0.95em; padding: 12px 14px; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    .header { padding: 18px 14px; border-radius: 10px; }
+    .header h1 { font-size: 1.3em; }
+    .header p { font-size: 0.9em; }
+    .header .stats { gap: 6px; font-size: 0.82em; margin-top: 8px; }
+    .header .stats span { padding: 4px 10px; }
+    .back-link { font-size: 0.88em; padding: 6px 14px; margin-bottom: 12px; }
+    .writeup { padding: 14px; font-size: 0.9em; }
+    .tabs { flex-direction: column; margin-bottom: 14px; }
+    .tab-btn { border-radius: 8px !important; padding: 12px 16px; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .card-header h3 { font-size: 1em; }
+    .stat-pill { font-size: 0.78em; padding: 3px 8px; }
+    .charts-grid { gap: 14px; }
+  }
+
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">&larr; Back to All Politicians</a>
+
+<div class="header">
+  <h1>Josh Gottheimer</h1>
+  <p>Trading talent profile — ticker timing and attribute analysis</p>
+  <div class="stats">
+    <span>3475 Total Trades</span>
+    <span>32 Ticker Talents</span>
+    <span>22 Attribute Talents</span>
+    <span>22 Attribute Charts</span>
+  </div>
+</div>
+
+<div class="writeup">
+  <h3>Talent Summary</h3>
+  Josh Gottheimer has 3475 scored trades (1450 purchases, 2025 sales).
+
+WHAT THEY&#x27;RE GOOD AT: SPOT sales (100% batting, 4 trades); FOXF sales (100% batting, 3 trades); GMED sales (100% batting, 4 trades); GBOOY purchases (100% batting, 3 trades); NOW purchases (88% batting, 8 trades); Industry × OBuyers=Internet Content &amp; Information | 1-2 sales (100% batting).
+
+WHAT THEY&#x27;RE BAD AT: Ticker=DSCSY (50% whiff); Ticker=GLW (50% whiff); Ticker=MMM (50% whiff).
+
+NOTABLE PATTERNS: Top sectors: Technology (610), Mag7 (567), Healthcare (499).
+</div>
+
+<div class="tabs">
+  <div class="tab-btn active" onclick="switchTab('timing')">Ticker Timing</div>
+  <div class="tab-btn" onclick="switchTab('attributes')">Attribute Talents</div>
+</div>
+
+<div class="tab-content active" id="tab-timing">
+  <div class="charts-grid">
+
+            <div class="chart-card">
+              <div class="chart-label">AAGIY</div>
+              <img src="../timing_charts/Josh_Gottheimer_AAGIY.png" alt="Josh Gottheimer AAGIY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AAPL</div>
+              <img src="../timing_charts/Josh_Gottheimer_AAPL.png" alt="Josh Gottheimer AAPL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ABBV</div>
+              <img src="../timing_charts/Josh_Gottheimer_ABBV.png" alt="Josh Gottheimer ABBV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ABCB</div>
+              <img src="../timing_charts/Josh_Gottheimer_ABCB.png" alt="Josh Gottheimer ABCB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ABEV</div>
+              <img src="../timing_charts/Josh_Gottheimer_ABEV.png" alt="Josh Gottheimer ABEV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ABNB</div>
+              <img src="../timing_charts/Josh_Gottheimer_ABNB.png" alt="Josh Gottheimer ABNB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ABT</div>
+              <img src="../timing_charts/Josh_Gottheimer_ABT.png" alt="Josh Gottheimer ABT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ADBE</div>
+              <img src="../timing_charts/Josh_Gottheimer_ADBE.png" alt="Josh Gottheimer ADBE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ADP</div>
+              <img src="../timing_charts/Josh_Gottheimer_ADP.png" alt="Josh Gottheimer ADP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ADYEY</div>
+              <img src="../timing_charts/Josh_Gottheimer_ADYEY.png" alt="Josh Gottheimer ADYEY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AFRM</div>
+              <img src="../timing_charts/Josh_Gottheimer_AFRM.png" alt="Josh Gottheimer AFRM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AGIO</div>
+              <img src="../timing_charts/Josh_Gottheimer_AGIO.png" alt="Josh Gottheimer AGIO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AIQUY</div>
+              <img src="../timing_charts/Josh_Gottheimer_AIQUY.png" alt="Josh Gottheimer AIQUY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALGM</div>
+              <img src="../timing_charts/Josh_Gottheimer_ALGM.png" alt="Josh Gottheimer ALGM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALGN</div>
+              <img src="../timing_charts/Josh_Gottheimer_ALGN.png" alt="Josh Gottheimer ALGN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALGT</div>
+              <img src="../timing_charts/Josh_Gottheimer_ALGT.png" alt="Josh Gottheimer ALGT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALIZY</div>
+              <img src="../timing_charts/Josh_Gottheimer_ALIZY.png" alt="Josh Gottheimer ALIZY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ALNY</div>
+              <img src="../timing_charts/Josh_Gottheimer_ALNY.png" alt="Josh Gottheimer ALNY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMD</div>
+              <img src="../timing_charts/Josh_Gottheimer_AMD.png" alt="Josh Gottheimer AMD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMGN</div>
+              <img src="../timing_charts/Josh_Gottheimer_AMGN.png" alt="Josh Gottheimer AMGN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMRX</div>
+              <img src="../timing_charts/Josh_Gottheimer_AMRX.png" alt="Josh Gottheimer AMRX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AMZN</div>
+              <img src="../timing_charts/Josh_Gottheimer_AMZN.png" alt="Josh Gottheimer AMZN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ANET</div>
+              <img src="../timing_charts/Josh_Gottheimer_ANET.png" alt="Josh Gottheimer ANET" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">APD</div>
+              <img src="../timing_charts/Josh_Gottheimer_APD.png" alt="Josh Gottheimer APD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">APP</div>
+              <img src="../timing_charts/Josh_Gottheimer_APP.png" alt="Josh Gottheimer APP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">APPF</div>
+              <img src="../timing_charts/Josh_Gottheimer_APPF.png" alt="Josh Gottheimer APPF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ARQT</div>
+              <img src="../timing_charts/Josh_Gottheimer_ARQT.png" alt="Josh Gottheimer ARQT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ASML</div>
+              <img src="../timing_charts/Josh_Gottheimer_ASML.png" alt="Josh Gottheimer ASML" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ATLKY</div>
+              <img src="../timing_charts/Josh_Gottheimer_ATLKY.png" alt="Josh Gottheimer ATLKY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ATRC</div>
+              <img src="../timing_charts/Josh_Gottheimer_ATRC.png" alt="Josh Gottheimer ATRC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AVGO</div>
+              <img src="../timing_charts/Josh_Gottheimer_AVGO.png" alt="Josh Gottheimer AVGO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AYI</div>
+              <img src="../timing_charts/Josh_Gottheimer_AYI.png" alt="Josh Gottheimer AYI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AZO</div>
+              <img src="../timing_charts/Josh_Gottheimer_AZO.png" alt="Josh Gottheimer AZO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">AZTA</div>
+              <img src="../timing_charts/Josh_Gottheimer_AZTA.png" alt="Josh Gottheimer AZTA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BA</div>
+              <img src="../timing_charts/Josh_Gottheimer_BA.png" alt="Josh Gottheimer BA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BABA</div>
+              <img src="../timing_charts/Josh_Gottheimer_BABA.png" alt="Josh Gottheimer BABA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BAP</div>
+              <img src="../timing_charts/Josh_Gottheimer_BAP.png" alt="Josh Gottheimer BAP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BAYRY</div>
+              <img src="../timing_charts/Josh_Gottheimer_BAYRY.png" alt="Josh Gottheimer BAYRY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BBVA</div>
+              <img src="../timing_charts/Josh_Gottheimer_BBVA.png" alt="Josh Gottheimer BBVA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BCRX</div>
+              <img src="../timing_charts/Josh_Gottheimer_BCRX.png" alt="Josh Gottheimer BCRX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BEN</div>
+              <img src="../timing_charts/Josh_Gottheimer_BEN.png" alt="Josh Gottheimer BEN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BHP</div>
+              <img src="../timing_charts/Josh_Gottheimer_BHP.png" alt="Josh Gottheimer BHP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BIIB</div>
+              <img src="../timing_charts/Josh_Gottheimer_BIIB.png" alt="Josh Gottheimer BIIB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BKNG</div>
+              <img src="../timing_charts/Josh_Gottheimer_BKNG.png" alt="Josh Gottheimer BKNG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BMRN</div>
+              <img src="../timing_charts/Josh_Gottheimer_BMRN.png" alt="Josh Gottheimer BMRN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BOOT</div>
+              <img src="../timing_charts/Josh_Gottheimer_BOOT.png" alt="Josh Gottheimer BOOT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BRKB</div>
+              <img src="../timing_charts/Josh_Gottheimer_BRKB.png" alt="Josh Gottheimer BRKB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BSX</div>
+              <img src="../timing_charts/Josh_Gottheimer_BSX.png" alt="Josh Gottheimer BSX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BWIN</div>
+              <img src="../timing_charts/Josh_Gottheimer_BWIN.png" alt="Josh Gottheimer BWIN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">BX</div>
+              <img src="../timing_charts/Josh_Gottheimer_BX.png" alt="Josh Gottheimer BX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CACI</div>
+              <img src="../timing_charts/Josh_Gottheimer_CACI.png" alt="Josh Gottheimer CACI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CATY</div>
+              <img src="../timing_charts/Josh_Gottheimer_CATY.png" alt="Josh Gottheimer CATY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CCI</div>
+              <img src="../timing_charts/Josh_Gottheimer_CCI.png" alt="Josh Gottheimer CCI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CCL</div>
+              <img src="../timing_charts/Josh_Gottheimer_CCL.png" alt="Josh Gottheimer CCL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CELH</div>
+              <img src="../timing_charts/Josh_Gottheimer_CELH.png" alt="Josh Gottheimer CELH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CHGCY</div>
+              <img src="../timing_charts/Josh_Gottheimer_CHGCY.png" alt="Josh Gottheimer CHGCY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CHRD</div>
+              <img src="../timing_charts/Josh_Gottheimer_CHRD.png" alt="Josh Gottheimer CHRD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CLPBY</div>
+              <img src="../timing_charts/Josh_Gottheimer_CLPBY.png" alt="Josh Gottheimer CLPBY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CMCSA</div>
+              <img src="../timing_charts/Josh_Gottheimer_CMCSA.png" alt="Josh Gottheimer CMCSA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COF</div>
+              <img src="../timing_charts/Josh_Gottheimer_COF.png" alt="Josh Gottheimer COF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">COP</div>
+              <img src="../timing_charts/Josh_Gottheimer_COP.png" alt="Josh Gottheimer COP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CRM</div>
+              <img src="../timing_charts/Josh_Gottheimer_CRM.png" alt="Josh Gottheimer CRM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CRNC</div>
+              <img src="../timing_charts/Josh_Gottheimer_CRNC.png" alt="Josh Gottheimer CRNC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CRNX</div>
+              <img src="../timing_charts/Josh_Gottheimer_CRNX.png" alt="Josh Gottheimer CRNX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSGP</div>
+              <img src="../timing_charts/Josh_Gottheimer_CSGP.png" alt="Josh Gottheimer CSGP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSPCY</div>
+              <img src="../timing_charts/Josh_Gottheimer_CSPCY.png" alt="Josh Gottheimer CSPCY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSTL</div>
+              <img src="../timing_charts/Josh_Gottheimer_CSTL.png" alt="Josh Gottheimer CSTL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CSW</div>
+              <img src="../timing_charts/Josh_Gottheimer_CSW.png" alt="Josh Gottheimer CSW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CTSH</div>
+              <img src="../timing_charts/Josh_Gottheimer_CTSH.png" alt="Josh Gottheimer CTSH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CVLT</div>
+              <img src="../timing_charts/Josh_Gottheimer_CVLT.png" alt="Josh Gottheimer CVLT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CVNA</div>
+              <img src="../timing_charts/Josh_Gottheimer_CVNA.png" alt="Josh Gottheimer CVNA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">CVX</div>
+              <img src="../timing_charts/Josh_Gottheimer_CVX.png" alt="Josh Gottheimer CVX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">D</div>
+              <img src="../timing_charts/Josh_Gottheimer_D.png" alt="Josh Gottheimer D" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DASTY</div>
+              <img src="../timing_charts/Josh_Gottheimer_DASTY.png" alt="Josh Gottheimer DASTY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DAVA</div>
+              <img src="../timing_charts/Josh_Gottheimer_DAVA.png" alt="Josh Gottheimer DAVA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DBSDY</div>
+              <img src="../timing_charts/Josh_Gottheimer_DBSDY.png" alt="Josh Gottheimer DBSDY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DE</div>
+              <img src="../timing_charts/Josh_Gottheimer_DE.png" alt="Josh Gottheimer DE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DEO</div>
+              <img src="../timing_charts/Josh_Gottheimer_DEO.png" alt="Josh Gottheimer DEO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DHI</div>
+              <img src="../timing_charts/Josh_Gottheimer_DHI.png" alt="Josh Gottheimer DHI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DSCSY</div>
+              <img src="../timing_charts/Josh_Gottheimer_DSCSY.png" alt="Josh Gottheimer DSCSY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">DSGX</div>
+              <img src="../timing_charts/Josh_Gottheimer_DSGX.png" alt="Josh Gottheimer DSGX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EBS</div>
+              <img src="../timing_charts/Josh_Gottheimer_EBS.png" alt="Josh Gottheimer EBS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EFX</div>
+              <img src="../timing_charts/Josh_Gottheimer_EFX.png" alt="Josh Gottheimer EFX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EL</div>
+              <img src="../timing_charts/Josh_Gottheimer_EL.png" alt="Josh Gottheimer EL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ENPH</div>
+              <img src="../timing_charts/Josh_Gottheimer_ENPH.png" alt="Josh Gottheimer ENPH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ENTG</div>
+              <img src="../timing_charts/Josh_Gottheimer_ENTG.png" alt="Josh Gottheimer ENTG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ETN</div>
+              <img src="../timing_charts/Josh_Gottheimer_ETN.png" alt="Josh Gottheimer ETN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ETSY</div>
+              <img src="../timing_charts/Josh_Gottheimer_ETSY.png" alt="Josh Gottheimer ETSY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EW</div>
+              <img src="../timing_charts/Josh_Gottheimer_EW.png" alt="Josh Gottheimer EW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">EXAS</div>
+              <img src="../timing_charts/Josh_Gottheimer_EXAS.png" alt="Josh Gottheimer EXAS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FANUY</div>
+              <img src="../timing_charts/Josh_Gottheimer_FANUY.png" alt="Josh Gottheimer FANUY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FAST</div>
+              <img src="../timing_charts/Josh_Gottheimer_FAST.png" alt="Josh Gottheimer FAST" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FCX</div>
+              <img src="../timing_charts/Josh_Gottheimer_FCX.png" alt="Josh Gottheimer FCX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FDX</div>
+              <img src="../timing_charts/Josh_Gottheimer_FDX.png" alt="Josh Gottheimer FDX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FIS</div>
+              <img src="../timing_charts/Josh_Gottheimer_FIS.png" alt="Josh Gottheimer FIS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FISV</div>
+              <img src="../timing_charts/Josh_Gottheimer_FISV.png" alt="Josh Gottheimer FISV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FLYW</div>
+              <img src="../timing_charts/Josh_Gottheimer_FLYW.png" alt="Josh Gottheimer FLYW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FMX</div>
+              <img src="../timing_charts/Josh_Gottheimer_FMX.png" alt="Josh Gottheimer FMX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FOXF</div>
+              <img src="../timing_charts/Josh_Gottheimer_FOXF.png" alt="Josh Gottheimer FOXF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FSLR</div>
+              <img src="../timing_charts/Josh_Gottheimer_FSLR.png" alt="Josh Gottheimer FSLR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FTK</div>
+              <img src="../timing_charts/Josh_Gottheimer_FTK.png" alt="Josh Gottheimer FTK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">FUPBY</div>
+              <img src="../timing_charts/Josh_Gottheimer_FUPBY.png" alt="Josh Gottheimer FUPBY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GBOOY</div>
+              <img src="../timing_charts/Josh_Gottheimer_GBOOY.png" alt="Josh Gottheimer GBOOY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GE</div>
+              <img src="../timing_charts/Josh_Gottheimer_GE.png" alt="Josh Gottheimer GE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GIS</div>
+              <img src="../timing_charts/Josh_Gottheimer_GIS.png" alt="Josh Gottheimer GIS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GLOB</div>
+              <img src="../timing_charts/Josh_Gottheimer_GLOB.png" alt="Josh Gottheimer GLOB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GLW</div>
+              <img src="../timing_charts/Josh_Gottheimer_GLW.png" alt="Josh Gottheimer GLW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GMAB</div>
+              <img src="../timing_charts/Josh_Gottheimer_GMAB.png" alt="Josh Gottheimer GMAB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GMED</div>
+              <img src="../timing_charts/Josh_Gottheimer_GMED.png" alt="Josh Gottheimer GMED" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GOOG</div>
+              <img src="../timing_charts/Josh_Gottheimer_GOOG.png" alt="Josh Gottheimer GOOG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GS</div>
+              <img src="../timing_charts/Josh_Gottheimer_GS.png" alt="Josh Gottheimer GS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">GTLS</div>
+              <img src="../timing_charts/Josh_Gottheimer_GTLS.png" alt="Josh Gottheimer GTLS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HAE</div>
+              <img src="../timing_charts/Josh_Gottheimer_HAE.png" alt="Josh Gottheimer HAE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HALO</div>
+              <img src="../timing_charts/Josh_Gottheimer_HALO.png" alt="Josh Gottheimer HALO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HCA</div>
+              <img src="../timing_charts/Josh_Gottheimer_HCA.png" alt="Josh Gottheimer HCA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HD</div>
+              <img src="../timing_charts/Josh_Gottheimer_HD.png" alt="Josh Gottheimer HD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HDB</div>
+              <img src="../timing_charts/Josh_Gottheimer_HDB.png" alt="Josh Gottheimer HDB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HLIO</div>
+              <img src="../timing_charts/Josh_Gottheimer_HLIO.png" alt="Josh Gottheimer HLIO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HMN</div>
+              <img src="../timing_charts/Josh_Gottheimer_HMN.png" alt="Josh Gottheimer HMN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HQY</div>
+              <img src="../timing_charts/Josh_Gottheimer_HQY.png" alt="Josh Gottheimer HQY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HSBC</div>
+              <img src="../timing_charts/Josh_Gottheimer_HSBC.png" alt="Josh Gottheimer HSBC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HSHCY</div>
+              <img src="../timing_charts/Josh_Gottheimer_HSHCY.png" alt="Josh Gottheimer HSHCY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">HUBS</div>
+              <img src="../timing_charts/Josh_Gottheimer_HUBS.png" alt="Josh Gottheimer HUBS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IART</div>
+              <img src="../timing_charts/Josh_Gottheimer_IART.png" alt="Josh Gottheimer IART" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IBM</div>
+              <img src="../timing_charts/Josh_Gottheimer_IBM.png" alt="Josh Gottheimer IBM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IBN</div>
+              <img src="../timing_charts/Josh_Gottheimer_IBN.png" alt="Josh Gottheimer IBN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ICFI</div>
+              <img src="../timing_charts/Josh_Gottheimer_ICFI.png" alt="Josh Gottheimer ICFI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ICUI</div>
+              <img src="../timing_charts/Josh_Gottheimer_ICUI.png" alt="Josh Gottheimer ICUI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IFNNY</div>
+              <img src="../timing_charts/Josh_Gottheimer_IFNNY.png" alt="Josh Gottheimer IFNNY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">INSM</div>
+              <img src="../timing_charts/Josh_Gottheimer_INSM.png" alt="Josh Gottheimer INSM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">INTA</div>
+              <img src="../timing_charts/Josh_Gottheimer_INTA.png" alt="Josh Gottheimer INTA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">INTU</div>
+              <img src="../timing_charts/Josh_Gottheimer_INTU.png" alt="Josh Gottheimer INTU" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">IRT</div>
+              <img src="../timing_charts/Josh_Gottheimer_IRT.png" alt="Josh Gottheimer IRT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ISRG</div>
+              <img src="../timing_charts/Josh_Gottheimer_ISRG.png" alt="Josh Gottheimer ISRG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry_Airlines</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry_Airlines.png" alt="Josh Gottheimer Industry_Airlines" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Airlines___Yes</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___Committee_Airlines___Yes.png" alt="Josh Gottheimer Industry___Committee_Airlines___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Discount_Stores___Yes</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___Committee_Discount_Stores___Yes.png" alt="Josh Gottheimer Industry___Committee_Discount_Stores___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Internet_Content___Information___Yes</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___Committee_Internet_Content___Information___Yes.png" alt="Josh Gottheimer Industry___Committee_Internet_Content___Information___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Committee_Residential_Construction___Yes</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___Committee_Residential_Construction___Yes.png" alt="Josh Gottheimer Industry___Committee_Residential_Construction___Yes" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Credit_Services___3-4</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OBuyers_Credit_Services___3-4.png" alt="Josh Gottheimer Industry___OBuyers_Credit_Services___3-4" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OBuyers_Internet_Content___Information___1-2</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OBuyers_Internet_Content___Information___1-2.png" alt="Josh Gottheimer Industry___OBuyers_Internet_Content___Information___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OSellers_Credit_Services___3-4</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OSellers_Credit_Services___3-4.png" alt="Josh Gottheimer Industry___OSellers_Credit_Services___3-4" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OSellers_Discount_Stores___1-2</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OSellers_Discount_Stores___1-2.png" alt="Josh Gottheimer Industry___OSellers_Discount_Stores___1-2" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OSellers_Mag7___5_</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OSellers_Mag7___5_.png" alt="Josh Gottheimer Industry___OSellers_Mag7___5_" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___OldSurge_Airlines___No</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OldSurge_Airlines___No.png" alt="Josh Gottheimer Industry___OldSurge_Airlines___No" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Industry___Spend_Airlines___Q1</div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___Spend_Airlines___Q1.png" alt="Josh Gottheimer Industry___Spend_Airlines___Q1" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">JNJ</div>
+              <img src="../timing_charts/Josh_Gottheimer_JNJ.png" alt="Josh Gottheimer JNJ" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KKR</div>
+              <img src="../timing_charts/Josh_Gottheimer_KKR.png" alt="Josh Gottheimer KKR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KMI</div>
+              <img src="../timing_charts/Josh_Gottheimer_KMI.png" alt="Josh Gottheimer KMI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KMTUY</div>
+              <img src="../timing_charts/Josh_Gottheimer_KMTUY.png" alt="Josh Gottheimer KMTUY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">KO</div>
+              <img src="../timing_charts/Josh_Gottheimer_KO.png" alt="Josh Gottheimer KO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LAD</div>
+              <img src="../timing_charts/Josh_Gottheimer_LAD.png" alt="Josh Gottheimer LAD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LLY</div>
+              <img src="../timing_charts/Josh_Gottheimer_LLY.png" alt="Josh Gottheimer LLY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LOPE</div>
+              <img src="../timing_charts/Josh_Gottheimer_LOPE.png" alt="Josh Gottheimer LOPE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LOW</div>
+              <img src="../timing_charts/Josh_Gottheimer_LOW.png" alt="Josh Gottheimer LOW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LRCX</div>
+              <img src="../timing_charts/Josh_Gottheimer_LRCX.png" alt="Josh Gottheimer LRCX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LRLCY</div>
+              <img src="../timing_charts/Josh_Gottheimer_LRLCY.png" alt="Josh Gottheimer LRLCY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LULU</div>
+              <img src="../timing_charts/Josh_Gottheimer_LULU.png" alt="Josh Gottheimer LULU" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LVS</div>
+              <img src="../timing_charts/Josh_Gottheimer_LVS.png" alt="Josh Gottheimer LVS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LYFT</div>
+              <img src="../timing_charts/Josh_Gottheimer_LYFT.png" alt="Josh Gottheimer LYFT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">LZAGY</div>
+              <img src="../timing_charts/Josh_Gottheimer_LZAGY.png" alt="Josh Gottheimer LZAGY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MA</div>
+              <img src="../timing_charts/Josh_Gottheimer_MA.png" alt="Josh Gottheimer MA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MAR</div>
+              <img src="../timing_charts/Josh_Gottheimer_MAR.png" alt="Josh Gottheimer MAR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCD</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCD.png" alt="Josh Gottheimer MCD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCK</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCK.png" alt="Josh Gottheimer MCK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Big___Medical_Devices</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Big___Medical_Devices.png" alt="Josh Gottheimer MCap___Industry_Big___Medical_Devices" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Big___Packaged_Foods</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Big___Packaged_Foods.png" alt="Josh Gottheimer MCap___Industry_Big___Packaged_Foods" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Mega___Credit_Services</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Mega___Credit_Services.png" alt="Josh Gottheimer MCap___Industry_Mega___Credit_Services" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Mega___Discount_Stores</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Mega___Discount_Stores.png" alt="Josh Gottheimer MCap___Industry_Mega___Discount_Stores" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Mega___Internet_Content___Information</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Mega___Internet_Content___Information.png" alt="Josh Gottheimer MCap___Industry_Mega___Internet_Content___Information" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Mid___Credit_Services</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Mid___Credit_Services.png" alt="Josh Gottheimer MCap___Industry_Mid___Credit_Services" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Small___Banks_-_Regional</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Small___Banks_-_Regional.png" alt="Josh Gottheimer MCap___Industry_Small___Banks_-_Regional" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Small___Semiconductor_Equipment___Materials</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Small___Semiconductor_Equipment___Materials.png" alt="Josh Gottheimer MCap___Industry_Small___Semiconductor_Equipment___Materials" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___Industry_Tiny___Specialty_Industrial_Machinery</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Tiny___Specialty_Industrial_Machinery.png" alt="Josh Gottheimer MCap___Industry_Tiny___Specialty_Industrial_Machinery" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OSellers_Mega___5_</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___OSellers_Mega___5_.png" alt="Josh Gottheimer MCap___OSellers_Mega___5_" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MCap___OSellers_Mid___3-4</div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___OSellers_Mid___3-4.png" alt="Josh Gottheimer MCap___OSellers_Mid___3-4" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MDB</div>
+              <img src="../timing_charts/Josh_Gottheimer_MDB.png" alt="Josh Gottheimer MDB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MEDP</div>
+              <img src="../timing_charts/Josh_Gottheimer_MEDP.png" alt="Josh Gottheimer MEDP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MELI</div>
+              <img src="../timing_charts/Josh_Gottheimer_MELI.png" alt="Josh Gottheimer MELI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">META</div>
+              <img src="../timing_charts/Josh_Gottheimer_META.png" alt="Josh Gottheimer META" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MGY</div>
+              <img src="../timing_charts/Josh_Gottheimer_MGY.png" alt="Josh Gottheimer MGY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MKTX</div>
+              <img src="../timing_charts/Josh_Gottheimer_MKTX.png" alt="Josh Gottheimer MKTX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MMM</div>
+              <img src="../timing_charts/Josh_Gottheimer_MMM.png" alt="Josh Gottheimer MMM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MNRO</div>
+              <img src="../timing_charts/Josh_Gottheimer_MNRO.png" alt="Josh Gottheimer MNRO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MNST</div>
+              <img src="../timing_charts/Josh_Gottheimer_MNST.png" alt="Josh Gottheimer MNST" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MO</div>
+              <img src="../timing_charts/Josh_Gottheimer_MO.png" alt="Josh Gottheimer MO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MONOY</div>
+              <img src="../timing_charts/Josh_Gottheimer_MONOY.png" alt="Josh Gottheimer MONOY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MOS</div>
+              <img src="../timing_charts/Josh_Gottheimer_MOS.png" alt="Josh Gottheimer MOS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MRK</div>
+              <img src="../timing_charts/Josh_Gottheimer_MRK.png" alt="Josh Gottheimer MRK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MRNA</div>
+              <img src="../timing_charts/Josh_Gottheimer_MRNA.png" alt="Josh Gottheimer MRNA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MS</div>
+              <img src="../timing_charts/Josh_Gottheimer_MS.png" alt="Josh Gottheimer MS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MSFT</div>
+              <img src="../timing_charts/Josh_Gottheimer_MSFT.png" alt="Josh Gottheimer MSFT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MTCH</div>
+              <img src="../timing_charts/Josh_Gottheimer_MTCH.png" alt="Josh Gottheimer MTCH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MTDR</div>
+              <img src="../timing_charts/Josh_Gottheimer_MTDR.png" alt="Josh Gottheimer MTDR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MTHRY</div>
+              <img src="../timing_charts/Josh_Gottheimer_MTHRY.png" alt="Josh Gottheimer MTHRY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">MTX</div>
+              <img src="../timing_charts/Josh_Gottheimer_MTX.png" alt="Josh Gottheimer MTX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NCLTY</div>
+              <img src="../timing_charts/Josh_Gottheimer_NCLTY.png" alt="Josh Gottheimer NCLTY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NFLX</div>
+              <img src="../timing_charts/Josh_Gottheimer_NFLX.png" alt="Josh Gottheimer NFLX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NOC</div>
+              <img src="../timing_charts/Josh_Gottheimer_NOC.png" alt="Josh Gottheimer NOC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NOVT</div>
+              <img src="../timing_charts/Josh_Gottheimer_NOVT.png" alt="Josh Gottheimer NOVT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NOW</div>
+              <img src="../timing_charts/Josh_Gottheimer_NOW.png" alt="Josh Gottheimer NOW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NSC</div>
+              <img src="../timing_charts/Josh_Gottheimer_NSC.png" alt="Josh Gottheimer NSC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NSRGY</div>
+              <img src="../timing_charts/Josh_Gottheimer_NSRGY.png" alt="Josh Gottheimer NSRGY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NTDOY</div>
+              <img src="../timing_charts/Josh_Gottheimer_NTDOY.png" alt="Josh Gottheimer NTDOY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NTRA</div>
+              <img src="../timing_charts/Josh_Gottheimer_NTRA.png" alt="Josh Gottheimer NTRA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NVDA</div>
+              <img src="../timing_charts/Josh_Gottheimer_NVDA.png" alt="Josh Gottheimer NVDA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NVZMY</div>
+              <img src="../timing_charts/Josh_Gottheimer_NVZMY.png" alt="Josh Gottheimer NVZMY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">NWL</div>
+              <img src="../timing_charts/Josh_Gottheimer_NWL.png" alt="Josh Gottheimer NWL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OBuyers___OSellers_5____5_</div>
+              <img src="../timing_charts/Josh_Gottheimer_OBuyers___OSellers_5____5_.png" alt="Josh Gottheimer OBuyers___OSellers_5____5_" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OCFC</div>
+              <img src="../timing_charts/Josh_Gottheimer_OCFC.png" alt="Josh Gottheimer OCFC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">OLLI</div>
+              <img src="../timing_charts/Josh_Gottheimer_OLLI.png" alt="Josh Gottheimer OLLI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ORCL</div>
+              <img src="../timing_charts/Josh_Gottheimer_ORCL.png" alt="Josh Gottheimer ORCL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PANW</div>
+              <img src="../timing_charts/Josh_Gottheimer_PANW.png" alt="Josh Gottheimer PANW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PCAR</div>
+              <img src="../timing_charts/Josh_Gottheimer_PCAR.png" alt="Josh Gottheimer PCAR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PCTY</div>
+              <img src="../timing_charts/Josh_Gottheimer_PCTY.png" alt="Josh Gottheimer PCTY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PEB</div>
+              <img src="../timing_charts/Josh_Gottheimer_PEB.png" alt="Josh Gottheimer PEB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PHR</div>
+              <img src="../timing_charts/Josh_Gottheimer_PHR.png" alt="Josh Gottheimer PHR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PINS</div>
+              <img src="../timing_charts/Josh_Gottheimer_PINS.png" alt="Josh Gottheimer PINS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PM</div>
+              <img src="../timing_charts/Josh_Gottheimer_PM.png" alt="Josh Gottheimer PM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PNGAY</div>
+              <img src="../timing_charts/Josh_Gottheimer_PNGAY.png" alt="Josh Gottheimer PNGAY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PPBI</div>
+              <img src="../timing_charts/Josh_Gottheimer_PPBI.png" alt="Josh Gottheimer PPBI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PSX</div>
+              <img src="../timing_charts/Josh_Gottheimer_PSX.png" alt="Josh Gottheimer PSX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PTEN</div>
+              <img src="../timing_charts/Josh_Gottheimer_PTEN.png" alt="Josh Gottheimer PTEN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PWR</div>
+              <img src="../timing_charts/Josh_Gottheimer_PWR.png" alt="Josh Gottheimer PWR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">PYPL</div>
+              <img src="../timing_charts/Josh_Gottheimer_PYPL.png" alt="Josh Gottheimer PYPL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">QCOM</div>
+              <img src="../timing_charts/Josh_Gottheimer_QCOM.png" alt="Josh Gottheimer QCOM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">QDEL</div>
+              <img src="../timing_charts/Josh_Gottheimer_QDEL.png" alt="Josh Gottheimer QDEL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RBA</div>
+              <img src="../timing_charts/Josh_Gottheimer_RBA.png" alt="Josh Gottheimer RBA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">REGN</div>
+              <img src="../timing_charts/Josh_Gottheimer_REGN.png" alt="Josh Gottheimer REGN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RHHBY</div>
+              <img src="../timing_charts/Josh_Gottheimer_RHHBY.png" alt="Josh Gottheimer RHHBY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RHP</div>
+              <img src="../timing_charts/Josh_Gottheimer_RHP.png" alt="Josh Gottheimer RHP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RIO</div>
+              <img src="../timing_charts/Josh_Gottheimer_RIO.png" alt="Josh Gottheimer RIO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ROG</div>
+              <img src="../timing_charts/Josh_Gottheimer_ROG.png" alt="Josh Gottheimer ROG" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ROK</div>
+              <img src="../timing_charts/Josh_Gottheimer_ROK.png" alt="Josh Gottheimer ROK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RPD</div>
+              <img src="../timing_charts/Josh_Gottheimer_RPD.png" alt="Josh Gottheimer RPD" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RTX</div>
+              <img src="../timing_charts/Josh_Gottheimer_RTX.png" alt="Josh Gottheimer RTX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">RVLV</div>
+              <img src="../timing_charts/Josh_Gottheimer_RVLV.png" alt="Josh Gottheimer RVLV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SAM</div>
+              <img src="../timing_charts/Josh_Gottheimer_SAM.png" alt="Josh Gottheimer SAM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SBCF</div>
+              <img src="../timing_charts/Josh_Gottheimer_SBCF.png" alt="Josh Gottheimer SBCF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SBGSY</div>
+              <img src="../timing_charts/Josh_Gottheimer_SBGSY.png" alt="Josh Gottheimer SBGSY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SBUX</div>
+              <img src="../timing_charts/Josh_Gottheimer_SBUX.png" alt="Josh Gottheimer SBUX" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SCHW</div>
+              <img src="../timing_charts/Josh_Gottheimer_SCHW.png" alt="Josh Gottheimer SCHW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SE</div>
+              <img src="../timing_charts/Josh_Gottheimer_SE.png" alt="Josh Gottheimer SE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SGIOY</div>
+              <img src="../timing_charts/Josh_Gottheimer_SGIOY.png" alt="Josh Gottheimer SGIOY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SGSOY</div>
+              <img src="../timing_charts/Josh_Gottheimer_SGSOY.png" alt="Josh Gottheimer SGSOY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SHLS</div>
+              <img src="../timing_charts/Josh_Gottheimer_SHLS.png" alt="Josh Gottheimer SHLS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SHOP</div>
+              <img src="../timing_charts/Josh_Gottheimer_SHOP.png" alt="Josh Gottheimer SHOP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SHW</div>
+              <img src="../timing_charts/Josh_Gottheimer_SHW.png" alt="Josh Gottheimer SHW" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SITE</div>
+              <img src="../timing_charts/Josh_Gottheimer_SITE.png" alt="Josh Gottheimer SITE" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SKY</div>
+              <img src="../timing_charts/Josh_Gottheimer_SKY.png" alt="Josh Gottheimer SKY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SLB</div>
+              <img src="../timing_charts/Josh_Gottheimer_SLB.png" alt="Josh Gottheimer SLB" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SLGN</div>
+              <img src="../timing_charts/Josh_Gottheimer_SLGN.png" alt="Josh Gottheimer SLGN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SNAP</div>
+              <img src="../timing_charts/Josh_Gottheimer_SNAP.png" alt="Josh Gottheimer SNAP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SONVY</div>
+              <img src="../timing_charts/Josh_Gottheimer_SONVY.png" alt="Josh Gottheimer SONVY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SPGI</div>
+              <img src="../timing_charts/Josh_Gottheimer_SPGI.png" alt="Josh Gottheimer SPGI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SPOT</div>
+              <img src="../timing_charts/Josh_Gottheimer_SPOT.png" alt="Josh Gottheimer SPOT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SPXC</div>
+              <img src="../timing_charts/Josh_Gottheimer_SPXC.png" alt="Josh Gottheimer SPXC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SRPT</div>
+              <img src="../timing_charts/Josh_Gottheimer_SRPT.png" alt="Josh Gottheimer SRPT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SSL</div>
+              <img src="../timing_charts/Josh_Gottheimer_SSL.png" alt="Josh Gottheimer SSL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">SSMXY</div>
+              <img src="../timing_charts/Josh_Gottheimer_SSMXY.png" alt="Josh Gottheimer SSMXY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TCEHY</div>
+              <img src="../timing_charts/Josh_Gottheimer_TCEHY.png" alt="Josh Gottheimer TCEHY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TEL</div>
+              <img src="../timing_charts/Josh_Gottheimer_TEL.png" alt="Josh Gottheimer TEL" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TGT</div>
+              <img src="../timing_charts/Josh_Gottheimer_TGT.png" alt="Josh Gottheimer TGT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TKGBY</div>
+              <img src="../timing_charts/Josh_Gottheimer_TKGBY.png" alt="Josh Gottheimer TKGBY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TLK</div>
+              <img src="../timing_charts/Josh_Gottheimer_TLK.png" alt="Josh Gottheimer TLK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TNDM</div>
+              <img src="../timing_charts/Josh_Gottheimer_TNDM.png" alt="Josh Gottheimer TNDM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TPH</div>
+              <img src="../timing_charts/Josh_Gottheimer_TPH.png" alt="Josh Gottheimer TPH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TPR</div>
+              <img src="../timing_charts/Josh_Gottheimer_TPR.png" alt="Josh Gottheimer TPR" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TSLA</div>
+              <img src="../timing_charts/Josh_Gottheimer_TSLA.png" alt="Josh Gottheimer TSLA" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TSM</div>
+              <img src="../timing_charts/Josh_Gottheimer_TSM.png" alt="Josh Gottheimer TSM" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TT</div>
+              <img src="../timing_charts/Josh_Gottheimer_TT.png" alt="Josh Gottheimer TT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TTC</div>
+              <img src="../timing_charts/Josh_Gottheimer_TTC.png" alt="Josh Gottheimer TTC" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TTNDY</div>
+              <img src="../timing_charts/Josh_Gottheimer_TTNDY.png" alt="Josh Gottheimer TTNDY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TWLO</div>
+              <img src="../timing_charts/Josh_Gottheimer_TWLO.png" alt="Josh Gottheimer TWLO" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TXN</div>
+              <img src="../timing_charts/Josh_Gottheimer_TXN.png" alt="Josh Gottheimer TXN" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">TXRH</div>
+              <img src="../timing_charts/Josh_Gottheimer_TXRH.png" alt="Josh Gottheimer TXRH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UBER</div>
+              <img src="../timing_charts/Josh_Gottheimer_UBER.png" alt="Josh Gottheimer UBER" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UBSI</div>
+              <img src="../timing_charts/Josh_Gottheimer_UBSI.png" alt="Josh Gottheimer UBSI" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UMBF</div>
+              <img src="../timing_charts/Josh_Gottheimer_UMBF.png" alt="Josh Gottheimer UMBF" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNH</div>
+              <img src="../timing_charts/Josh_Gottheimer_UNH.png" alt="Josh Gottheimer UNH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNICY</div>
+              <img src="../timing_charts/Josh_Gottheimer_UNICY.png" alt="Josh Gottheimer UNICY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UNP</div>
+              <img src="../timing_charts/Josh_Gottheimer_UNP.png" alt="Josh Gottheimer UNP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UPS</div>
+              <img src="../timing_charts/Josh_Gottheimer_UPS.png" alt="Josh Gottheimer UPS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">USPH</div>
+              <img src="../timing_charts/Josh_Gottheimer_USPH.png" alt="Josh Gottheimer USPH" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">UTZ</div>
+              <img src="../timing_charts/Josh_Gottheimer_UTZ.png" alt="Josh Gottheimer UTZ" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">V</div>
+              <img src="../timing_charts/Josh_Gottheimer_V.png" alt="Josh Gottheimer V" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VCYT</div>
+              <img src="../timing_charts/Josh_Gottheimer_VCYT.png" alt="Josh Gottheimer VCYT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VIAV</div>
+              <img src="../timing_charts/Josh_Gottheimer_VIAV.png" alt="Josh Gottheimer VIAV" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VRSK</div>
+              <img src="../timing_charts/Josh_Gottheimer_VRSK.png" alt="Josh Gottheimer VRSK" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VRT</div>
+              <img src="../timing_charts/Josh_Gottheimer_VRT.png" alt="Josh Gottheimer VRT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">VZ</div>
+              <img src="../timing_charts/Josh_Gottheimer_VZ.png" alt="Josh Gottheimer VZ" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">W</div>
+              <img src="../timing_charts/Josh_Gottheimer_W.png" alt="Josh Gottheimer W" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WBS</div>
+              <img src="../timing_charts/Josh_Gottheimer_WBS.png" alt="Josh Gottheimer WBS" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WDAY</div>
+              <img src="../timing_charts/Josh_Gottheimer_WDAY.png" alt="Josh Gottheimer WDAY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WMT</div>
+              <img src="../timing_charts/Josh_Gottheimer_WMT.png" alt="Josh Gottheimer WMT" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">WST</div>
+              <img src="../timing_charts/Josh_Gottheimer_WST.png" alt="Josh Gottheimer WST" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">XNGSY</div>
+              <img src="../timing_charts/Josh_Gottheimer_XNGSY.png" alt="Josh Gottheimer XNGSY" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">XP</div>
+              <img src="../timing_charts/Josh_Gottheimer_XP.png" alt="Josh Gottheimer XP" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">XYZ</div>
+              <img src="../timing_charts/Josh_Gottheimer_XYZ.png" alt="Josh Gottheimer XYZ" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">Z</div>
+              <img src="../timing_charts/Josh_Gottheimer_Z.png" alt="Josh Gottheimer Z" loading="lazy">
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-label">ZTO</div>
+              <img src="../timing_charts/Josh_Gottheimer_ZTO.png" alt="Josh Gottheimer ZTO" loading="lazy">
+            </div>
+</div>
+
+</div>
+
+<div class="tab-content" id="tab-attributes">
+  
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OBuyers: Internet Content &amp; Information | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 100%</span>
+                  <span class="stat-pill slugging">Slugging 140%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OBuyers_Internet_Content___Information___1-2.png" alt="Industry × OBuyers=Internet Content &amp; Information | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>OBuyers × OSellers: 5+ | 5+</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">9 Trades</span>
+                  <span class="stat-pill batting">Batting 89%</span>
+                  <span class="stat-pill slugging">Slugging 133%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_OBuyers___OSellers_5____5_.png" alt="OBuyers × OSellers=5+ | 5+" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OSellers: Credit Services | 3-4</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">9 Trades</span>
+                  <span class="stat-pill batting">Batting 78%</span>
+                  <span class="stat-pill slugging">Slugging 89%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OSellers_Credit_Services___3-4.png" alt="Industry × OSellers=Credit Services | 3-4" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OSellers: Mag7 | 5+</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">13 Trades</span>
+                  <span class="stat-pill batting">Batting 77%</span>
+                  <span class="stat-pill slugging">Slugging 131%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OSellers_Mag7___5_.png" alt="Industry × OSellers=Mag7 | 5+" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Small | Banks - Regional</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">8 Trades</span>
+                  <span class="stat-pill batting">Batting 75%</span>
+                  <span class="stat-pill slugging">Slugging 88%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Small___Banks_-_Regional.png" alt="MCap × Industry=Small | Banks - Regional" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Mega | Discount Stores</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 71%</span>
+                  <span class="stat-pill slugging">Slugging 71%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Mega___Discount_Stores.png" alt="MCap × Industry=Mega | Discount Stores" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry: Airlines</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry_Airlines.png" alt="Industry=Airlines" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OSellers: Discount Stores | 1-2</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">9 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OSellers_Discount_Stores___1-2.png" alt="Industry × OSellers=Discount Stores | 1-2" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Spend: Airlines | Q1</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___Spend_Airlines___Q1.png" alt="Industry × Spend=Airlines | Q1" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OldSurge: Airlines | No</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OldSurge_Airlines___No.png" alt="Industry × OldSurge=Airlines | No" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × Committee: Airlines | Yes</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 67%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___Committee_Airlines___Yes.png" alt="Industry × Committee=Airlines | Yes" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OSellers: Mid | 3-4</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">10 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 70%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___OSellers_Mid___3-4.png" alt="MCap × OSellers=Mid | 3-4" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Mega | Credit Services</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">10 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 60%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Mega___Credit_Services.png" alt="MCap × Industry=Mega | Credit Services" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OSellers: Mag7 | 5+</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 80%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OSellers_Mag7___5_.png" alt="Industry × OSellers=Mag7 | 5+" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Small | Semiconductor Equipment &amp; Materials</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 20%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Small___Semiconductor_Equipment___Materials.png" alt="MCap × Industry=Small | Semiconductor Equipment &amp; Materials" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Mega | Internet Content &amp; Information</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">5 Trades</span>
+                  <span class="stat-pill batting">Batting 60%</span>
+                  <span class="stat-pill slugging">Slugging 80%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Mega___Internet_Content___Information.png" alt="MCap × Industry=Mega | Internet Content &amp; Information" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Big | Packaged Foods</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 57%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Big___Packaged_Foods.png" alt="MCap × Industry=Big | Packaged Foods" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Big | Medical Devices</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">7 Trades</span>
+                  <span class="stat-pill batting">Batting 57%</span>
+                  <span class="stat-pill slugging">Slugging 57%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Big___Medical_Devices.png" alt="MCap × Industry=Big | Medical Devices" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × OSellers: Mega | 5+</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">15 Trades</span>
+                  <span class="stat-pill batting">Batting 53%</span>
+                  <span class="stat-pill slugging">Slugging 93%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___OSellers_Mega___5_.png" alt="MCap × OSellers=Mega | 5+" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>Industry × OBuyers: Credit Services | 3-4</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 50%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_Industry___OBuyers_Credit_Services___3-4.png" alt="Industry × OBuyers=Credit Services | 3-4" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Mid | Credit Services</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Sale</span>
+                  <span class="stat-pill trades">22 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 73%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Mid___Credit_Services.png" alt="MCap × Industry=Mid | Credit Services" loading="lazy">
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3>MCap × Industry: Tiny | Specialty Industrial Machinery</h3>
+                </div>
+                <div>
+                  <span class="stat-pill txn">Purchase</span>
+                  <span class="stat-pill trades">6 Trades</span>
+                  <span class="stat-pill batting">Batting 50%</span>
+                  <span class="stat-pill slugging">Slugging 67%</span>
+                </div>
+              </div>
+              <img src="../timing_charts/Josh_Gottheimer_MCap___Industry_Tiny___Specialty_Industrial_Machinery.png" alt="MCap × Industry=Tiny | Specialty Industrial Machinery" loading="lazy">
+            </div>
+
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  if (tab === 'timing') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('tab-timing').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('tab-attributes').classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>
